@@ -45,7 +45,6 @@ Login page
 
 Home page or View task page
 ![Home and View Task](mockup/home.png)
-Home page or View task page
 
 Add or Edit task page
 ![Add or Edit Tasks](mockup/add.png)
