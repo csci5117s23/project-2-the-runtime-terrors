@@ -40,17 +40,18 @@ LINK TO LOW_FIDELITY MOCK_UPS: https://www.figma.com/file/giJnNbf3UK2Fl20W4A3LiA
 
 **[Add images/photos that show your mockup](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
 
-![Login](mockup/login.png)
 Login page
+![Login](mockup/login.png)
 
+Home page or View task page
 ![Home and View Task](mockup/home.png)
 Home page or View task page
 
-![Add or Edit Tasks](mockup/add.png)
 Add or Edit task page
+![Add or Edit Tasks](mockup/add.png)
 
-![Analytics](mockup/analytics.png)
 Analytics page
+![Analytics](mockup/analytics.png)
 
 
 ## Testing Notes
