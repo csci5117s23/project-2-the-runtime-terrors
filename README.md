@@ -4,14 +4,17 @@ CSCI 5117, Spring 2022, [assignment description](https://canvas.umn.edu/courses/
 
 ## App Info:
 
-* Team Name: TODO
-* App Name: TODO
+* Team Name: The Runtime Terrors
+* App Name: TBD
 * App Link: <https://TODO.com/>
 
 ### Students
 
-* First Last, x500@umn.edu
-* ...
+* Pratik Nehete, nehet001@umn.edu
+* Anoushka Sunkum, sunku005@umn.edu
+* John Lei, lei00007@umn.edu
+* Brandon Weinstein, weins127@umn.edu
+* Sarah Kollodge, kollo025@umn.edu
 
 
 ## Key Features
@@ -33,9 +36,21 @@ Which (if any) progressive web app feature(s) does your app support?
 
 ## Mockup images
 
+LINK TO LOW_FIDELITY MOCK_UPS: https://www.figma.com/file/giJnNbf3UK2Fl20W4A3LiA/Project-2?node-id=0-1&t=7nftTO4VlO5hJRVG-0
+
 **[Add images/photos that show your mockup](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
 
-![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif)
+![Login](mockup/login.png)
+Login page
+
+![Home and View Task](mockup/home.png)
+Home page or View task page
+
+![Add or Edit Tasks](mockup/add.png)
+Add or Edit task page
+
+![Analytics](mockup/analytics.png)
+Analytics page
 
 
 ## Testing Notes
