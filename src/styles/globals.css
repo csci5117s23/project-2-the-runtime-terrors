@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  background-color: rgb(239, 247, 254);
+}
+
+header{
+  background-color: rgb(183, 206, 226);
+  height: 3rem;
+}

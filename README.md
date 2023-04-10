@@ -83,3 +83,24 @@ relied on external code, expertise, or anything else, please disclose that
 here:**
 
 ...
+
+
+
+## Setting Up:
+
+Run the development server:
+- npm run dev
+
+# Installs for backend/codehooks
+- npm install codehooks-js codehooks-crudlify
+- npm install jwt-decode
+- npm install yup
+
+# Installs for auth/clerk
+- npm install @clerk/nextjs
+
+
+## Backend commands
+In /backend:
+- coho deploy
+- coho info
