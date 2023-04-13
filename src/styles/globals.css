@@ -7,3 +7,13 @@ header{
   background-color: rgb(183, 206, 226);
   height: 3rem;
 }
+
+main {
+  margin: 3rem;
+  /* text-align: center; */
+}
+
+.center{
+  /* text-align: center;
+  background-color: teal; */
+}

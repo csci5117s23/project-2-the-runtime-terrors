@@ -8,20 +8,28 @@ import {crudlify} from 'codehooks-crudlify'
 import { date, object, string, boolean } from 'yup';
 import jwtDecode from 'jwt-decode';
 
-
-// ADD USER_ID ???
 const choresYup = object({
-    //userId: string().required(),
     content: string().required(),
     done: boolean().required().default(false),
-    assignedTo: string().required(),
-    assignedBy: string().required(),
+    assignedTo: string().required(), // child's user id
+    assignedBy: string().required(), // parent's user id
     due: date().required(),
     createdOn: date().required().default(() => new Date()),
 })
 
-// Use Crudlify to create a REST API for any collection
-crudlify(app, {chores: choresYup})
+const usersYup = object({
+    userId: string().required(),
+    name: string().required(),
+    isParent: boolean().required(),
+})
 
-// bind to serverless runtime
+const childrenYup = object({
+    parentId: string().required(),
+    childId: string().required(),
+})
+
+// Use Crudlify to create a REST API for any collection
+crudlify(app, {chores: choresYup, users: usersYup, children: childrenYup})
+
+// Bind to serverless runtime
 export default app.init();

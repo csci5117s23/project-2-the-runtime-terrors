@@ -86,21 +86,21 @@ here:**
 
 
 
-## Setting Up:
+# Setting Up:
 
 Run the development server:
 - npm run dev
 
-# Installs for backend/codehooks
+## Installs for backend/codehooks
 - npm install codehooks-js codehooks-crudlify
 - npm install jwt-decode
 - npm install yup
 
-# Installs for auth/clerk
+## Installs for auth/clerk
 - npm install @clerk/nextjs
 
 
 ## Backend commands
-In /backend:
+In /backend: 
 - coho deploy
 - coho info
