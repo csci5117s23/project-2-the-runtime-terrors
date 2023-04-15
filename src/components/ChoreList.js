@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getChores } from "@/modules/Data";
+import { getChoresParent, getChoresChild } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import Link from 'next/link'
 
@@ -13,7 +13,15 @@ export default function ChoreList({isParent}){
     async function chores() {
       if (userId) {
         const token = await getToken({ template: "codehooks" });
-        setChoreList(await getChores(token, false));
+
+        // Get chores assigned by this user
+        if(isParent){
+          setChoreList(await getChoresParent(token, false, userId));
+        }
+        // Get chores assigned to this user
+        else{
+          setChoreList(await getChoresChild(token, false, userId));
+        }
         setLoading(false);
       }
     }
@@ -25,14 +33,14 @@ export default function ChoreList({isParent}){
   }
 
   else{
-    const htmlChoreList = choreList.map((item) => <ol id={item._id} content={todoItem.content} status={todoItem.done} editable={false}>{item.content}</ol>);
+    const htmlChoreList = choreList.map((item) => <ol key={item._id} content={item.content} status={item.done.toString()}>{item.content}</ol>);
     
     // Parent vs child view ???
     if(isParent){
       return <>
         <h1>Chores</h1>
         <div>{htmlChoreList}</div>
-        <Link class="pure-button" href="/addChore">Add New Chore</Link>
+        <Link className="pure-button" href="/addChore">Add New Chore</Link>
       </>
     }
     else{

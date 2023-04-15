@@ -1,7 +1,15 @@
-import { ClerkProvider, useUser, useAuth, UserButton, SignIn, SignedOut, SignedIn} from '@clerk/nextjs'
+import { useAuth, UserButton, SignIn, SignedOut, SignedIn} from '@clerk/nextjs'
+import { useRouter } from 'next/router';
 
 export default function Splash() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
+
+  // User is already logged in - Reference: https://sourcefreeze.com/how-to-redirect-to-another-page-in-next-js/
+  if(isLoaded && userId){
+    const router = useRouter();
+    router.push('/chores');
+  }
+
   return (
     <main>
       <h1>
@@ -10,8 +18,6 @@ export default function Splash() {
       <SignedOut>
         <SignIn afterSignInUrl={"/home"} afterSignUpUrl={"/account"} />
       </SignedOut>
-
-      {/* if already logged in, go directly to /home  ??? */}
     </main>
   )
 }
