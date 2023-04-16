@@ -32,7 +32,7 @@ export default function MyApp({ Component, pageProps }) {
       </div>
 
       {/* Header */}
-      <header style={{ display: "flex", justifyContent: "space-between", padding: 20 }}>
+      <header style={{padding: 20 }}>
         <h1>Chore Tracker</h1>
       </header>
 

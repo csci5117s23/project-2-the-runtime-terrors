@@ -8,7 +8,7 @@ export async function getChoresParent(authToken, done, userId) {
     return await result.json();
 }
 
-export async function getChoresChild(authToken, done) {
+export async function getChoresChild(authToken, done, userId) {
     const result = await fetch(backend_base+"/chores?sort=createdOn&done="+done+"&assignedTo="+userId,{
         'method':'GET',
         'headers': {'Authorization': 'Bearer ' + authToken}
@@ -24,12 +24,12 @@ export async function getChore(authToken, id) {
     return await result.json();
 }
 
-export async function addChore(authToken, title, description, due, assignedTo, priority) {
+export async function addChore(authToken, title, description, assignedTo, due, priority) {
     const result = await fetch(backend_base+"/chores/",{
         'method':'POST',
         'headers': {'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'},
-        'body': JSON.stringify({'title': title, 'description': description, 'due': due, 'assignedTo': assignedTo, 'priority': priority})
+        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
         })
     return await result.json();
 }
@@ -38,6 +38,16 @@ export async function getChildren(authToken){
     const result = await fetch(backend_base+"/children/",{
         'method':'GET',
         'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
+export async function addChild(authToken, name, id){
+    const result = await fetch(backend_base+"/children/",{
+        'method':'POST',
+        'headers': {'Authorization': 'Bearer ' + authToken,
+        'Content-Type': 'application/json'},
+        'body': JSON.stringify({'childName': name, 'childId': id})
     })
     return await result.json();
 }

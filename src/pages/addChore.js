@@ -5,12 +5,9 @@ import { useRouter } from "next/router";
 
 export default function AddChore() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
-  // const [content, setContent] = useState("testing");
-  // const [assignedTo, setAssignedTo] = useState(userId); // should be null ??? 
-  // const [due, setDue] = useState(new Date());
   const [loading, setLoading] = useState(true);
   const [childrenList, setChildrenList] = useState([]);
-
+  const router = useRouter();
 
   // Get list of this user's children
   useEffect(() => {
@@ -27,19 +24,17 @@ export default function AddChore() {
   // Add chore for a child
   async function add(e) {
     e.preventDefault();
-    console.log(e.target.title.value);
-    console.log(e.target.description.value);
-    console.log(e.target.assignedTo.value);
-    console.log(e.target.due.value);
-    console.log(e.target.priority.value);
+    const title = e.target.title.value;
+    const description = e.target.description.value;
+    const assignedTo = e.target.assignedTo.value;
+    const due = e.target.due.value;
+    const priority = e.target.priority.value;
 
     if (userId) {
-      // const token = await getToken({ template: "codehooks" });
-      // let newItem = await addChore(token, content, assignedTo, due);
-      // console.log(newItem)
-      // // setContent("");
-      // const router = useRouter();
-      // router.push('/home');
+      const token = await getToken({ template: "codehooks" });
+      let newItem = await addChore(token, title, description, userId, due, priority); // change userId to assignedTo later on ???
+      console.log(newItem)
+      router.push('/home');
     }
   }
 
@@ -49,8 +44,6 @@ export default function AddChore() {
       return <option value={child.childId}>{child.childName}</option>;
     });
   }
-
-  // add()
 
   if(loading){
     return <div>Loading</div>
