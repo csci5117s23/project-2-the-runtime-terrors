@@ -9,11 +9,13 @@ import { date, object, string, boolean } from 'yup';
 import jwtDecode from 'jwt-decode';
 
 const choresYup = object({
-  content: string().required(),
+  title: string().required(),
+  description: string(),
   done: boolean().required().default(false),
   assignedTo: string().required(), // child's user id
   assignedBy: string().required(), // parent's user id
   due: date().required(),
+  priority: string().required(),
   createdOn: date().required().default(() => new Date()),
 })
 
@@ -26,6 +28,7 @@ const usersYup = object({
 const childrenYup = object({
   parentId: string().required(),
   childId: string().required(),
+  childName: string().required()
 })
 
 
@@ -50,6 +53,26 @@ app.use(userAuth)
 app.use('/chores', (req, res, next) => {
   if (req.method === "POST" || req.method === "PATCH") {
     req.body.assignedBy = req.user_token.sub
+  }
+  next();
+})
+
+app.use('/children', (req, res, next) => {
+  if (req.method === "POST") {
+    req.body.parentId = req.user_token.sub
+  } 
+  else if (req.method === "GET") {
+    req.query.parentId = req.user_token.sub
+  }
+  next();
+})
+
+app.use('/users', (req, res, next) => {
+  if (req.method === "POST") {
+    req.body.userId = req.user_token.sub
+  } 
+  else if (req.method === "GET") {
+    req.query.userId = req.user_token.sub
   }
   next();
 })

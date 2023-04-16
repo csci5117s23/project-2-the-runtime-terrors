@@ -7,7 +7,7 @@ export default function Splash() {
   // User is already logged in - Reference: https://sourcefreeze.com/how-to-redirect-to-another-page-in-next-js/
   if(isLoaded && userId){
     const router = useRouter();
-    router.push('/chores');
+    router.push('/home');
   }
 
   return (

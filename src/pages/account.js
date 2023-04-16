@@ -1,9 +1,26 @@
+import { addUser } from "@/modules/Data";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
 export default function AccountSetUp() {
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  const router = useRouter();
 
-  // state shit 
+  async function addAcountInfo(e){
+    e.preventDefault();
+    let name = e.target.name.value;
+    let isParent = false; 
 
-  function addAcountInfo(){
-    // 
+    if(e.target.account.value === "parent"){
+      isParent = true;
+    }
+
+    if (userId) {
+      const token = await getToken({ template: "codehooks" });
+      let newUser = await addUser(token, name, isParent);   
+      console.log(newUser);
+      router.push('/home');
+    }
   }
 
   return (
@@ -11,20 +28,19 @@ export default function AccountSetUp() {
       <h1>Setting Up Your Account</h1>
 
       {/* Need to get user's name and type of account (parent or child) */}
-      <form className="pure-form pure-form-stacked">
-      <fieldset>
+      <form onSubmit={addAcountInfo} className="pure-form pure-form-stacked">
+        <fieldset>
           <legend>Just two quick questions</legend>
-          <label for="first-name">First Name</label>
-          <input type="email" id="first-name" placeholder="Your name" required/>
-          <span className="pure-form-message">This is a required field.</span>
-          <label for="account-type">Account Type</label>
-          <select id="account-type">
-              <option>Parent</option>
-              <option>Child</option>
+          <label for="name">First Name</label>
+          <input id="name" placeholder="Your name" required/>
+
+          <label for="account">Account Type</label>
+          <select id="account" required>
+              <option value="parent">Parent</option>
+              <option value="child">Child</option>
           </select>
-          <span className="pure-form-message">This is a required field.</span>
-          <button onclick={addAcountInfo} className="pure-button pure-button-primary">Sign in</button>
-      </fieldset>
+          <button type="submit" className="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
       </form>
 
       {/* Need some way for parents to list their children - maybe make user _id 
@@ -34,5 +50,3 @@ export default function AccountSetUp() {
     </main>
   )
 }
-
-

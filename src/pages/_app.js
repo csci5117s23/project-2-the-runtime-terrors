@@ -1,5 +1,6 @@
 import { ClerkProvider, SignedIn, SignedOut, UserButton, RedirectToSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 import '@/styles/globals.css';
 
 const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]", "/"];
@@ -20,11 +21,19 @@ export default function MyApp({ Component, pageProps }) {
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     
     <ClerkProvider {...pageProps}>
-      <header style={{ display: "flex", justifyContent: "space-between", padding: 20 }}>
-        <h1>Chore Tracker</h1>
+
+      {/* Bottom navigation */}
+      <div className="navbar">
+        <Link href="/home"> Home </Link>
+        <Link href="/analytics"> Analytics </Link>
         <SignedIn>
           <UserButton/>
         </SignedIn>
+      </div>
+
+      {/* Header */}
+      <header style={{ display: "flex", justifyContent: "space-between", padding: 20 }}>
+        <h1>Chore Tracker</h1>
       </header>
 
       {/* Check if on public page or not */}
