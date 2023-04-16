@@ -2,9 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
 import { useAuth } from "@clerk/nextjs";
-import { getTodo } from "@/modules/Data";
-
-import EditableTodo from '@/components/EditableTodo'
+import { getChore } from "@/modules/Data";
+import ChoreInfo from '@/components/ChoreInfo'
 
 export default function ChoreID() {
   const router = useRouter()
@@ -12,29 +11,28 @@ export default function ChoreID() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   
   // Set states
-  const [todo, setTodo] = useState(null);
+  const [chore, setChore] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Get todo with specific id
+  // Get chore with specific id
   useEffect(() => {
-    async function todoByID() {
+    async function choreByID() {
       if (userId) {
         const token = await getToken({ template: "codehooks" });
-        setTodo(await getTodo(token, id));
+        setChore(await getChore(token, id));
         setLoading(false);
       }
     }
-    todoByID();
+    choreByID();
   }, [isLoaded]);
 
   if(loading){
-    return <div>Loading todo item</div>
+    return <div className="margin">Loading chore item</div>
   }
   else{
     return (
       <>
-      <EditableTodo id={todo._id} content={todo.content} status={todo.done} category={todo.category}></EditableTodo>
-      <Link href="/todos"><button className="pure-button">View Not Done To-dos</button></Link>
+      <ChoreInfo id={chore._id} title={chore.title} status={chore.done}></ChoreInfo>
       </>
     )
   }

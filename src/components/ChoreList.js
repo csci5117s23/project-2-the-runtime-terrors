@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { getChoresParent, getChoresChild } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import Link from 'next/link'
+import Chore from './Chore';
+
 
 export default function ChoreList({isParent}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
@@ -29,11 +31,11 @@ export default function ChoreList({isParent}){
   }, [isLoaded]);
 
   if(loading){
-    return <div>Loading Chores</div>
+    return <div className="margin">Loading Chores</div>
   }
 
   else{
-    const htmlChoreList = choreList.map((item) => <ol key={item._id} title={item.title} status={item.done.toString()}>{item.title}</ol>);
+    const htmlChoreList = choreList.map((item) => <Chore key={item._id} id={item._id} title={item.title} status={item.done} isParent={isParent}></Chore>);
 
     // Parent vs child view ???
     if(isParent){
