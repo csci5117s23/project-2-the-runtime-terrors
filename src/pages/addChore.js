@@ -32,7 +32,7 @@ export default function AddChore() {
 
     if (userId) {
       const token = await getToken({ template: "codehooks" });
-      let newItem = await addChore(token, title, description, userId, due, priority); // change userId to assignedTo later on ???
+      let newItem = await addChore(token, title, description, assignedTo, due, priority);
       console.log(newItem)
       router.push('/home');
     }
@@ -41,7 +41,7 @@ export default function AddChore() {
   // Reference: https://codeflarelimited.com/blog/dynamically-populate-select-options-in-react-js/
   function getChildOptions() {
     return childrenList.map((child) => {
-      return <option value={child.childId}>{child.childName}</option>;
+      return <option key={child.childId} value={child.childId}>{child.childName}</option>;
     });
   }
 
@@ -55,23 +55,23 @@ export default function AddChore() {
         <form onSubmit={add} className="pure-form pure-form-stacked">
           <fieldset>
             <legend>Add New Chore</legend>
-            <label for="title">Title</label>
+            <label htmlFor="title">Title</label>
             <input id="title" placeholder="Chore Name" required/>
 
-            <label for="description">Description</label>
+            <label htmlFor="description">Description</label>
             <textarea id="description"/>
             
-            <label for="assignedTo">Assign To</label>
+            <label htmlFor="assignedTo">Assign To</label>
 
             <select className="margin" name="assignedTo" id="assignedTo">
-              <option selected disabled hidden>Select a Child</option>
+              {/* <option>Select a Child</option> ??? */}
               {getChildOptions()}
             </select>
 
-            <label for="due">Due</label>
+            <label htmlFor="due">Due</label>
             <input id="due" type="date" required/>
 
-            <label for="priority">Priority Level</label>
+            <label htmlFor="priority">Priority Level</label>
             <select id="priority" required>
                 <option>Low</option>
                 <option>Medium</option>

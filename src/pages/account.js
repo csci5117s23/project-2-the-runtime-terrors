@@ -31,10 +31,10 @@ export default function AccountSetUp() {
       <form onSubmit={addAcountInfo} className="pure-form pure-form-stacked">
         <fieldset>
           <legend>Just two quick questions</legend>
-          <label for="name">First Name</label>
+          <label htmlFor="name">First Name</label>
           <input id="name" placeholder="Your name" required/>
 
-          <label for="account">Account Type</label>
+          <label htmlFor="account">Account Type</label>
           <select id="account" required>
               <option value="parent">Parent</option>
               <option value="child">Child</option>
@@ -42,11 +42,6 @@ export default function AccountSetUp() {
           <button type="submit" className="pure-button pure-button-primary">Sign in</button>
         </fieldset>
       </form>
-
-      {/* Need some way for parents to list their children - maybe make user _id 
-        available on your profile --> parents can get it from thier child's account
-      */}
-
     </main>
   )
 }

@@ -14,7 +14,7 @@ export default function AddChild() {
 
     if (userId) {
       const token = await getToken({ template: "codehooks" });
-      let newItem = await addChild(token, name, id); // change userId to assignedTo later on ???
+      let newItem = await addChild(token, name, id);
       console.log(newItem)
       router.push('/home');
     }
@@ -26,12 +26,12 @@ export default function AddChild() {
       <form onSubmit={add} className="pure-form pure-form-stacked">
         <fieldset>
           <legend>Add New Child</legend>
-          <label for="name">Child's Name</label>
+          <label htmlFor="name">Child's Name</label>
           <input id="name" placeholder="First Name" required/>
 
-          <label for="id">Child's Account ID</label>
+          <label htmlFor="id">Child's Account ID</label>
           <input id="id" placeholder="user_###" pattern="user_.+" title="Must start with user_" required/>
-          <span class="pure-form-message">Your child's account id can be found on the home page of their account. Each id starts with 'user_'.</span>
+          <span className="pure-form-message">Your child's account id can be found on the home page of their account. Each id starts with 'user_'.</span>
 
           <button type="submit" className="pure-button pure-button-primary">Add</button>
         </fieldset>

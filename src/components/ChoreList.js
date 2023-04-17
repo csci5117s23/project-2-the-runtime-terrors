@@ -35,12 +35,12 @@ export default function ChoreList({isParent}){
   }
 
   else{
-    const htmlChoreList = choreList.map((item) => <Chore key={item._id} id={item._id} title={item.title} status={item.done} isParent={isParent}></Chore>);
+    const htmlChoreList = choreList.map((chore) => <Chore chore={chore} key={chore._id} id={chore._id} title={chore.title} status={chore.done} isParent={isParent}></Chore>);
 
     // Parent vs child view ???
     if(isParent){
       return <>
-        <h1>Chores for user:</h1>
+        <h1>Chores you have assigned:</h1>
         <h4>{userId}</h4>
         <div>{htmlChoreList}</div>
         <Link className="pure-button" href="/addChore">Add New Chore</Link>

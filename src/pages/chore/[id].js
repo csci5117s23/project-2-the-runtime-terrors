@@ -14,6 +14,8 @@ export default function ChoreID() {
   const [chore, setChore] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // MISSING GET ISPARENT INFO --> get it from [id].js???
+
   // Get chore with specific id
   useEffect(() => {
     async function choreByID() {
@@ -32,7 +34,7 @@ export default function ChoreID() {
   else{
     return (
       <>
-      <ChoreInfo id={chore._id} title={chore.title} status={chore.done}></ChoreInfo>
+      <ChoreInfo chore={chore} isParent={false}></ChoreInfo>
       </>
     )
   }

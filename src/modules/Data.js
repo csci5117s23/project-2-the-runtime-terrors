@@ -1,5 +1,6 @@
 const backend_base = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
 
+// Get chores assigned by this parent
 export async function getChoresParent(authToken, done, userId) {
     const result = await fetch(backend_base+"/chores?sort=createdOn&done="+done+"&assignedBy="+userId,{
         'method':'GET',
@@ -8,6 +9,7 @@ export async function getChoresParent(authToken, done, userId) {
     return await result.json();
 }
 
+// Get chores assigned to this child
 export async function getChoresChild(authToken, done, userId) {
     const result = await fetch(backend_base+"/chores?sort=createdOn&done="+done+"&assignedTo="+userId,{
         'method':'GET',
@@ -16,6 +18,7 @@ export async function getChoresChild(authToken, done, userId) {
     return await result.json();
 }
 
+// Get a specific chore by id
 export async function getChore(authToken, id) {
     const result = await fetch(backend_base+"/chores/"+id,{
         'method':'GET',
@@ -24,6 +27,7 @@ export async function getChore(authToken, id) {
     return await result.json();
 }
 
+// Add a chore
 export async function addChore(authToken, title, description, assignedTo, due, priority) {
     const result = await fetch(backend_base+"/chores/",{
         'method':'POST',
@@ -34,6 +38,7 @@ export async function addChore(authToken, title, description, assignedTo, due, p
     return await result.json();
 }
 
+// Get children of this user (parent)
 export async function getChildren(authToken){
     const result = await fetch(backend_base+"/children/",{
         'method':'GET',
@@ -42,6 +47,7 @@ export async function getChildren(authToken){
     return await result.json();
 }
 
+// Add a child to this user's account
 export async function addChild(authToken, name, id){
     const result = await fetch(backend_base+"/children/",{
         'method':'POST',
@@ -52,12 +58,22 @@ export async function addChild(authToken, name, id){
     return await result.json();
 }
 
+// Add a user account
 export async function addUser(authToken, name, isParent){
     const result = await fetch(backend_base+"/users/",{
         'method':'POST',
         'headers': {'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'},
         'body': JSON.stringify({'name': name, 'isParent': isParent})
+    })
+    return await result.json();
+}
+
+// Get a specific user by id
+export async function getUser(authToken) {
+    const result = await fetch(backend_base+"/users/",{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
     })
     return await result.json();
 }
