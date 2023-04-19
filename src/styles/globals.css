@@ -104,21 +104,10 @@ a:hover {
 * -- LAYOUT STYLES --
 * This layout consists of 2 elements, #list` (email list), and `#main` (email content)
 */
-#layout, #list, #main {
+/* #layout, #list, #main {
   margin: 0;
   padding: 0;
-}
-
-/* Make the navigation 100% width on phones */
-/* #nav {
-  width: 100%;
-  height: 40px;
-  position: relative;
-  background: rgb(37, 42, 58);
-  text-align: center;
 } */
-
-
 
 /*
 * -- EMAIL STYLES --
@@ -127,26 +116,6 @@ a:hover {
 .email-count {
   color: rgb(75, 113, 151);
 }
-
-.email-label-personal,
-.email-label-work,
-.email-label-travel {
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-  margin-right: 0.5em;
-  border-radius: 3px;
-}
-.email-label-personal {
-  background: #ffc94c;
-}
-.email-label-work {
-  background: #41ccb4;
-}
-.email-label-travel {
-  background: #40c365;
-}
-
 
 /* Email Item Styles */
 .email-item {
@@ -212,73 +181,22 @@ a:hover {
   display: hidden;
 } */
 
-/*
-* -- TABLET (AND UP) MEDIA QUERIES --
-* On tablets and other medium-sized devices, we want to customize some
-* of the mobile styles.
-*/
-@media (min-width: 40em) {
-
-  /* Move the layout over so we can fit the nav + list in on the left */
-  #layout {
-      padding-left:350px;  
-      /* ??? 500px */
-      /* "left col (nav + list)" width */
-      position: relative;
-  }
-
-  /* These are position:fixed; elements that will be in the left 500px of the screen */
-  #list {
-      position: fixed;
-      /* top: 0; */
-      /* bottom: 0; */
-      overflow: auto;
-  }
-
-  /* "margin-left: left col (nav + list)" width */
-  /* #nav {
-      margin-left:-500px; 
-      width:150px;
-      height: 100%;
-  } */
-
-
-  #list {
-      margin-left: -350px;
-      width: 100%;
-      height: 33%;
-      border-bottom: 1px solid #ddd;
-  }
-
-  #main {
-      position: fixed;
-      top: 43%;
-      right: 0;
-      bottom: 6%;
-      overflow: auto;
-      width: 100%; /* auto ??? */
-  }
+#main{
+  /* overflow-y:auto; */
+  height: 100%;
+  /* position:as; */
+  /* top: 0; */
+  overflow: scroll;
 }
 
-/*
-* -- DESKTOP (AND UP) MEDIA QUERIES --
-* On desktops and other large-sized devices, we want to customize some
-* of the mobile styles.
-*/
-@media (min-width: 60em) {
+#list {
+  /* margin-right:-3px; */
+  /* border-right: 1px solid #ddd; */
+  overflow: scroll;
+}
 
-  /* This will take up the entire height, and be a little thinner */
-  #list {
-      margin-left: -350px;
-      /* width:350px; */
-      /* height: 100%; */
-      border-right: 1px solid #ddd;
-  }
-
-  /* This will now take up it's own column, so don't need position: fixed; */
-  #main {
-      position: static;
-      margin: 0;
-      padding: 0;
-  }
+#space {
+  padding: 1px;
+  height: 100%;
+  border-right: 1px solid #ddd;
 }

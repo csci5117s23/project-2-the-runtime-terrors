@@ -43,16 +43,11 @@ export default function ChoreInfo({chore, isParent}){
   return (
     <>
     <div className="email-content">
-      <div className="email-content-header pure-g">
-        <div className="pure-u-1-2">
-          <h1 className="email-content-title">{chore.title}</h1>
-          <p className="email-content-subtitle">
-              Created at <span>3:56pm, April 3, 2021</span>
-          </p>
-        </div>
-        <div className="email-content-controls pure-u-1-2">
-            <button className="secondary-button pure-button">Edit</button>
-        </div>
+      <div className="email-content-header">
+        <h1 className="email-content-title">{chore.title}</h1>
+        <p className="email-content-subtitle">
+            Created at <span>3:56pm, April 3, 2021</span>
+        </p>
       </div>
 
       <div className="email-content-body">

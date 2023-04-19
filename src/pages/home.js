@@ -36,9 +36,7 @@ export default function Home() {
   }
   else{
     return (
-      <main>
       <ChoreList isParent={isParent}></ChoreList>
-      </main>
     )
   }
 }
