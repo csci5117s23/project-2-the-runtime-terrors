@@ -49,7 +49,6 @@ const userAuth = async (req, res, next) => {
 }
 app.use(userAuth)
 
-// ???
 app.use('/chores', (req, res, next) => {
   if (req.method === "POST" || req.method === "PATCH") {
     req.body.assignedBy = req.user_token.sub

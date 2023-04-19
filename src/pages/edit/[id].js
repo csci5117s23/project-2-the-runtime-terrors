@@ -1,20 +1,18 @@
+import BuildChore from '@/components/BuildChore';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
 import { useAuth } from "@clerk/nextjs";
 import { getChore } from "@/modules/Data";
-import ChoreInfo from '@/components/ChoreInfo'
 
-export default function ChoreID() {
+export default function EditChore() {
   const router = useRouter()
   const { id } = router.query
   const { isLoaded, userId, sessionId, getToken } = useAuth();
-  
+
   // Set states
   const [chore, setChore] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // MISSING GET ISPARENT INFO --> get it from [id].js???
 
   // Get chore with specific id
   useEffect(() => {
@@ -29,13 +27,14 @@ export default function ChoreID() {
   }, [isLoaded]);
 
   if(loading){
-    return <div className="margin">Loading chore item</div>
+    return <div className="margin">Loading...</div>
   }
   else{
     return (
-      <>
-      <ChoreInfo chore={chore} isParent={true}></ChoreInfo>
-      </>
+      <main>
+        <h1>Edit Chore</h1>
+        <BuildChore isEditing={true} chore={chore}></BuildChore>
+      </main>
     )
   }
 }

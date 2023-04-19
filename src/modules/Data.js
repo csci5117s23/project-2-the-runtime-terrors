@@ -38,6 +38,17 @@ export async function addChore(authToken, title, description, assignedTo, due, p
     return await result.json();
 }
 
+// Update Chore
+export async function updateChore(authToken, title, description, assignedTo, due, priority, id) {
+    const result = await fetch(backend_base+"/chores/"+id,{
+        'method':'PATCH',
+        'headers': {'Authorization': 'Bearer ' + authToken,
+        'Content-Type': 'application/json'},
+        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
+        })
+    return await result.json();
+}
+
 // Get children of this user (parent)
 export async function getChildren(authToken){
     const result = await fetch(backend_base+"/children/",{

@@ -8,6 +8,7 @@ export default function Home() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [loading, setLoading] = useState(true);
   const [isParent, setIsParent] = useState(false);
+  const router = useRouter();
 
   // Get user info - find out if this is a parent or child account
   useEffect(() => {
@@ -16,10 +17,11 @@ export default function Home() {
         const token = await getToken({ template: "codehooks" });
         let user = await getUser(token); 
 
-        // should check if user[0] is null --> need to create an account ???
-        // --> redirect ???
-        console.log(user[0].isParent)
-        if(user[0].isParent){
+        // User's account hasn't been created yet
+        if(user[0] == null){ // test ???
+          router.push("/account") 
+        }
+        else if(user[0].isParent){
           setIsParent(true);
         }
         setLoading(false);

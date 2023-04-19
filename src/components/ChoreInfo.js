@@ -22,7 +22,7 @@ export default function ChoreInfo({chore, isParent}){
 
   // Re-route to edit page
   async function edit(){
-    router.push("/buildChore"); // add this later ???
+    router.push("/edit/"+chore._id);
   }
 
   function getExtraInfo() {
@@ -32,12 +32,12 @@ export default function ChoreInfo({chore, isParent}){
           <div>Assigned To</div>
           <div id="assignedTo">{chore.assignedTo}</div>
           <hr></hr>
-          <button onclick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
+          <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
         </>
       )
     }
     else{
-      return <button onclick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
+      return <button onClick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
     }
   }
 
@@ -62,7 +62,7 @@ export default function ChoreInfo({chore, isParent}){
           <div id="priority">priority</div>
           <hr></hr>
 
-          {/* Specific info depending on parent or child account type */}
+          {/* Specific fields depending on parent or child account type */}
           {getExtraInfo()}
         </fieldset>
     </main>
