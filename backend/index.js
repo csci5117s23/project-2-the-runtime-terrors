@@ -76,6 +76,26 @@ app.use('/users', (req, res, next) => {
   next();
 })
 
+app.use('/chores/:id', async (req, res, next) => {
+  const id = req.params.ID;
+  const userId = req.user_token.sub
+  // Check access rights for the document being read/updated/replaced/deleted
+  const conn = await Datastore.open();
+  try {
+      const doc = await conn.getOne('chores', id)
+      if (doc.assignedBy != userId) { // doc.userId ???
+          // Authenticated user doesn't own this document
+          res.status(403).end(); // quit this request
+          return
+      }
+  } catch (e) {
+      console.log(e);
+      res.status(404).end(e);
+      return;
+  }
+  next();
+})
+
 // Use Crudlify to create a REST API for any collection
 crudlify(app, {chores: choresYup, users: usersYup, children: childrenYup})
 

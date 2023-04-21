@@ -29,7 +29,7 @@ export default function MyApp({ Component, pageProps }) {
         <Link href="/home"> Home </Link>
         <Link href="/analytics"> Analytics </Link>
         <SignedIn>
-          <UserButton/>
+          <div id="userBtn"><UserButton/></div>
         </SignedIn>
       </div>
 

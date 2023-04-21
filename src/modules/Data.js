@@ -38,6 +38,15 @@ export async function addChore(authToken, title, description, assignedTo, due, p
     return await result.json();
 }
 
+// Delete a chore
+export async function deleteChore(authToken, id) {
+    const result = await fetch(backend_base+"/chores/"+id,{
+        'method':'DELETE',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
 // Update Chore
 export async function updateChore(authToken, title, description, assignedTo, due, priority, id) {
     const result = await fetch(backend_base+"/chores/"+id,{

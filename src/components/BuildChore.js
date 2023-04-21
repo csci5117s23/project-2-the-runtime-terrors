@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { addChore, getChildren, updateChore } from "@/modules/Data";
+import { addChore, getChildren, updateChore, deleteChore } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 
@@ -23,7 +23,7 @@ export default function BuildChore({isEditing, chore}) {
   }, [isLoaded]);
   
   // Add or update chore
-  async function add(e) {
+  async function save(e) {
     e.preventDefault();
 
     // Get form data
@@ -32,19 +32,17 @@ export default function BuildChore({isEditing, chore}) {
     const assignedTo = e.target.assignedTo.value;
     const due = e.target.due.value;
     const priority = e.target.priority.value;
+    const token = await getToken({ template: "codehooks" });
 
-    if (userId) {
-      const token = await getToken({ template: "codehooks" });
-      // Update existing chore
-      if(isEditing){
-        await updateChore(token, title, description, assignedTo, due, priority, chore._id);
-      }
-      // Add new chore
-      else{
-        await addChore(token, title, description, assignedTo, due, priority);
-      }
-      router.push('/home');
+    // Update existing chore
+    if(isEditing){
+      await updateChore(token, title, description, assignedTo, due, priority, chore._id);
     }
+    // Add new chore
+    else{
+      await addChore(token, title, description, assignedTo, due, priority);
+    }
+    router.push('/home');
   }
 
   // Reference: https://codeflarelimited.com/blog/dynamically-populate-select-options-in-react-js/
@@ -54,13 +52,32 @@ export default function BuildChore({isEditing, chore}) {
     });
   }
 
+  // Cancel editing/adding chore
+  function cancel(){
+    router.push('/home');
+  }
+
+  // Delete the chore
+  async function deleteItem(){
+    const token = await getToken({ template: "codehooks" });
+    await deleteChore(token, chore._id);
+    router.push('/home');
+  }
+
+  // Add delete button if parent is editing the chore
+  function getDeleteBtn() {
+    if(isEditing){ 
+      return <button onClick={deleteItem} type="button" className="pure-button pure-button-primary">Delete</button>
+    }
+  }
+
   if(loading){
     return <div>Loading</div>
   }
   else{
     return (
       <main>
-        <form onSubmit={add} className="pure-form pure-form-stacked">
+        <form onSubmit={save} className="pure-form pure-form-stacked">
           <fieldset>
             <legend>Chore Details</legend>
             <label htmlFor="title">Title</label>
@@ -85,7 +102,9 @@ export default function BuildChore({isEditing, chore}) {
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
             </select>
-            <button type="submit" className="pure-button pure-button-primary">Add</button>
+            <button type="submit" className="pure-button pure-button-primary">Save</button>
+            <button onClick={cancel} type="button" className="pure-button pure-button-primary">Cancel</button>
+            {getDeleteBtn()}
           </fieldset>
         </form>
     </main>

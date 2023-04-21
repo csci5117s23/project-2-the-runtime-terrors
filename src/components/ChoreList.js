@@ -28,9 +28,11 @@ export default function ChoreList({isParent}){
           chores = await getChoresChild(token, false, userId);
         }
         setChoreList(chores)
-        
-        // FIX LATER: Check if there are no chores ??? Shouldn't display anything ???
-        setSelectedChore(chores[0]);
+
+        // Check if there are chores
+        if(chores.length !== 0){
+          setSelectedChore(chores[0]);
+        }
         setLoading(false);
       }
     }
