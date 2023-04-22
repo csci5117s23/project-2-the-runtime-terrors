@@ -104,3 +104,10 @@ Run the development server:
 In /backend: 
 - coho deploy
 - coho info
+
+
+# Icons - Attribution:
+
+Home by Jokoy from <a href="https://thenounproject.com/browse/icons/term/home/" target="_blank" title="Home Icons">Noun Project</a>
+
+analytics by BomSymbols from <a href="https://thenounproject.com/browse/icons/term/analytics/" target="_blank" title="analytics Icons">Noun Project</a>

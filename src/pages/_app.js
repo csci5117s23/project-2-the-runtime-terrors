@@ -26,8 +26,8 @@ export default function MyApp({ Component, pageProps }) {
 
       {/* Bottom navigation */}
       <div className="navbar">
-        <Link href="/home"> Home </Link>
-        <Link href="/analytics"> Analytics </Link>
+        <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
+        <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
         <SignedIn>
           <div id="userBtn"><UserButton/></div>
         </SignedIn>
