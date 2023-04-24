@@ -95,6 +95,7 @@ Run the development server:
 - npm install codehooks-js codehooks-crudlify
 - npm install jwt-decode
 - npm install yup
+- npm install react-pin-input
 
 ## Installs for auth/clerk
 - npm install @clerk/nextjs

@@ -4,7 +4,7 @@ import { updateChoreStatus } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 
 
-export default function Chore2({chore, isParent, setSelectedChore}){ 
+export default function Chore({chore, isParent, setSelectedChore}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [done, setDone] = useState(chore.done);
 

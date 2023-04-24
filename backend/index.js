@@ -5,7 +5,7 @@
 */
 import {app, Datastore} from 'codehooks-js'
 import {crudlify} from 'codehooks-crudlify'
-import { date, object, string, boolean } from 'yup';
+import { date, object, string, boolean, number } from 'yup';
 import jwtDecode from 'jwt-decode';
 
 const choresYup = object({
@@ -29,6 +29,12 @@ const childrenYup = object({
   parentId: string().required(),
   childId: string().required(),
   childName: string().required()
+})
+
+const pinsYup = object({
+  pin: number().required().integer(),
+  childId: string().required(),
+  childName: string().required(),
 })
 
 
@@ -76,6 +82,13 @@ app.use('/users', (req, res, next) => {
   next();
 })
 
+app.use('/pins', (req, res, next) => {
+  if (req.method === "POST") {
+    req.body.childId = req.user_token.sub
+  } 
+  next();
+})
+
 app.use('/chores/:id', async (req, res, next) => {
   const id = req.params.ID;
   const userId = req.user_token.sub
@@ -97,7 +110,7 @@ app.use('/chores/:id', async (req, res, next) => {
 })
 
 // Use Crudlify to create a REST API for any collection
-crudlify(app, {chores: choresYup, users: usersYup, children: childrenYup})
+crudlify(app, {chores: choresYup, users: usersYup, children: childrenYup, pins: pinsYup})
 
 // Bind to serverless runtime
 export default app.init();

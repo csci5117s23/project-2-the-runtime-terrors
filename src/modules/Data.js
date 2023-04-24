@@ -97,3 +97,36 @@ export async function getUser(authToken) {
     })
     return await result.json();
 }
+
+// Get pin data 
+export async function getPin(authToken, pin) {
+    const result = await fetch(backend_base+"/pins/?pin="+pin,{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
+// Add a pin 
+export async function addPin(authToken, pin, childName){
+    const result = await fetch(backend_base+"/pins/",{
+        'method':'POST',
+        'headers': {'Authorization': 'Bearer ' + authToken,
+        'Content-Type': 'application/json'},
+        'body': JSON.stringify({'pin': pin, 'childName': childName})
+    })
+    let data = await result.json();
+    // setTimeout(deletePin, 180000, authToken, id)
+    // auth token will already be expired  ???
+    return data;
+}
+
+// Delete a pin data 
+export async function deletePin(authToken, id) {
+    const result = await fetch(backend_base+"/pins/"+id,{
+        'method':'DELETE',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+        // 'headers': {'x-apikey': API_KEY} ???
+    })
+    return await result.json();
+}
