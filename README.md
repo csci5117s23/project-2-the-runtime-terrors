@@ -112,3 +112,9 @@ In /backend:
 Home by Jokoy from <a href="https://thenounproject.com/browse/icons/term/home/" target="_blank" title="Home Icons">Noun Project</a>
 
 analytics by BomSymbols from <a href="https://thenounproject.com/browse/icons/term/analytics/" target="_blank" title="analytics Icons">Noun Project</a>
+
+add by Uswah Studio from <a href="https://thenounproject.com/browse/icons/term/add/" target="_blank" title="add Icons">Noun Project</a>
+
+connect by roughen.line from <a href="https://thenounproject.com/browse/icons/term/connect/" target="_blank" title="connect Icons">Noun Project</a>
+
+done by Yudhi Restu Pebriyanto from <a href="https://thenounproject.com/browse/icons/term/done/" target="_blank" title="done Icons">Noun Project</a>

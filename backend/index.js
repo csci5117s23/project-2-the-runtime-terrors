@@ -37,6 +37,11 @@ const pinsYup = object({
   childName: string().required(),
 })
 
+// https://www.mongodb.com/docs/manual/tutorial/expire-data/ ???
+// Expire after 3 min ???
+// db.log_events.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 10 } )
+
+
 
 // Kluver Code
 const userAuth = async (req, res, next) => {

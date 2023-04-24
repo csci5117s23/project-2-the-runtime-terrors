@@ -4,7 +4,7 @@ import { getUser } from "@/modules/Data";
 import Pin from '@/components/Pin';
 import CreatePin from "@/components/CreatePin";
 
-export default function ConnectAccount() {
+export default function Connect() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [isParent, setIsParent] = useState(false);
   const [loading, setLoading] = useState(true);

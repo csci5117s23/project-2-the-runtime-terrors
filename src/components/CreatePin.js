@@ -1,5 +1,5 @@
 // Reference: https://www.npmjs.com/package/react-pin-input
-import { addPin, addChild, getUser } from "@/modules/Data";
+import { addPin, getUser } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react"
@@ -24,6 +24,8 @@ export default function CreatePin() {
     createPin();
   }, [isLoaded]);
 
+  // maybe delete pin after leaving the page ???
+
   // Generate a pin
   function generatePin(){
     // Reference: https://stackoverflow.com/questions/21816595/how-to-generate-a-random-number-of-fixed-length-using-javascript
@@ -31,7 +33,7 @@ export default function CreatePin() {
     return newPin;
   }
 
-  // delete pin here ??? (set timeout ???)
+  // delete pin here ??? (set timeout/leave page ???)
 
   if(loading){
     return <div className="margin">Loading...</div>

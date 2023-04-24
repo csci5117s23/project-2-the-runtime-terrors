@@ -51,7 +51,7 @@ export default function ChoreInfo({chore, isParent}){
       </div>
 
       <div className="email-content-body">
-        <h1>Chore Information</h1>
+        <h1>Chore Information: </h1>
         <fieldset>
           <legend>Chore Information</legend>
           <div>Title</div>
@@ -59,15 +59,15 @@ export default function ChoreInfo({chore, isParent}){
           <hr></hr>
 
           <div>Description</div>
-          <div id="description">description</div>
+          <div id="description">{chore.description}</div>
           <hr></hr>
 
           <div>Due</div>
-          <div id="due">due</div>
+          <div id="due">{chore.due}</div>
           <hr></hr>
 
           <div>Priority Level</div>
-          <div id="priority">priority</div>
+          <div id="priority">{chore.priority}</div>
           <hr></hr>
 
           {/* Specific fields depending on parent or child account type */}

@@ -21,18 +21,11 @@ export default function Pin() {
       console.log("No matching pin");
     }
     else{
-      addKid();
-      // const token = await getToken({ template: "codehooks" });
-      // await addChild(token, data.childName, data.childId);
+      const token = await getToken({ template: "codehooks" });
+      await addChild(token, data[0].childName, data[0].childId);
+      // Send out confirmation message
+      router.push("/home")
     }
-  }
-
-  async function addKid(){
-    // Send out confirmation message
-    const token = await getToken({ template: "codehooks" });
-    await addChild(token, data.childName, data.childId);
-    // Send out confirmation message
-    router.push("/home")
   }
 
   return <>

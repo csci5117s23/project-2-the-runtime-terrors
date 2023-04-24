@@ -52,7 +52,6 @@ export default function ChoreList({isParent}){
       <div id="layout" className="content pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
-            <h4 className="margin">{userId}</h4>
             <Link className="margin pure-button" href="/addChore">Add New Chore</Link>
             <Link className="pure-button margin " href="/connectAccount">Connect a Child</Link>
             <hr></hr>
@@ -70,7 +69,6 @@ export default function ChoreList({isParent}){
       <div id="layout" className="content pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
-            <h4 className="margin">{userId}</h4>
             {htmlChoreList}
             <Link className="pure-button margin " href="/connectAccount">Connect a Parent</Link>
           </div>

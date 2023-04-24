@@ -12,8 +12,6 @@ export default function MyApp({ Component, pageProps }) {
   // Check if the current route matches a public page
   const isPublicPage = publicPages.includes(pathname);
 
-  // If the current route is listed as public, render it directly
-  // Otherwise, use Clerk to require authentication
   return (
     <>
     {/* Pure CSS - Reference: https://purecss.io/start/ */}
@@ -24,28 +22,32 @@ export default function MyApp({ Component, pageProps }) {
     
     <ClerkProvider {...pageProps}>
 
-      {/* Bottom navigation */}
-      <div className="navbar">
-        <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
-        <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
-        <SignedIn>
-          <div id="userBtn"><UserButton/></div>
-        </SignedIn>
-      </div>
-
-      {/* Header */}
-      <header style={{padding: 20 }}>
-        <h1>Chore Tracker</h1>
-      </header>
-
       {/* Check if on public page or not */}
       {isPublicPage ? (
         <Component {...pageProps} />
       ) : (
         <>
           <SignedIn>
+            {/* Header */}
+            <div className="header">
+              <div className="title">Chore Tracker</div>
+              <div id="userBtn"><UserButton/></div>
+            </div>
+
+            {/* Bottom navigation */}
+            <div className="navbar">
+              <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
+              <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
+
+              {/* Only have add button for parent ??? */}
+              <Link href="/addChore"><img className="icon" src="add.png" alt="Add Chore"></img></Link>
+
+              <Link href="/connect"><img className="icon" src="connect2.png" alt="Connect Account"></img></Link>
+              <Link href="/done???"><img className="icon" src="done.png" alt="Done Chores"></img></Link>
+            </div>
             <Component {...pageProps} />
           </SignedIn>
+
           <SignedOut>
             <RedirectToSignIn />
           </SignedOut>

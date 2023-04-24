@@ -32,13 +32,16 @@ main {
 }
 
 /* Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
-.navbar {
+.navbar, .header {
   background-color: var(--medium-blue);
   overflow: hidden;
-  position: fixed;
   height: 3rem;
-  bottom: 0;
   width: 100%;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
 }
 
 /* Style the links inside the navigation bar */
@@ -50,7 +53,14 @@ main {
   text-decoration: none;
 }
 
+.header .title {
+  float: left;
+  text-align: center;
+  padding: 1rem;
+}
+
 #userBtn{
+  float: left;
   padding-top: 0.5rem;
 }
 
