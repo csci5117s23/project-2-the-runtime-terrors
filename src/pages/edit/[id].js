@@ -1,4 +1,5 @@
 import BuildChore from '@/components/BuildChore';
+import Screenshot from '@/components/Screenshot';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"

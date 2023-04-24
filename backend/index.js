@@ -17,6 +17,7 @@ const choresYup = object({
   due: date().required(),
   priority: string().required(),
   createdOn: date().required().default(() => new Date()),
+  imageContent: string(),
 })
 
 const usersYup = object({

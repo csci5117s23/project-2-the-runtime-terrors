@@ -24,16 +24,17 @@ export async function getChore(authToken, id) {
         'method':'GET',
         'headers': {'Authorization': 'Bearer ' + authToken}
     })
-    return await result.json();
+    console.log(result.json());
+    // return await result.json();
 }
 
 // Add a chore
-export async function addChore(authToken, title, description, assignedTo, due, priority) {
+export async function addChore(authToken, title, description, assignedTo, due, priority, imageContent) {
     const result = await fetch(backend_base+"/chores/",{
         'method':'POST',
         'headers': {'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'},
-        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
+        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority, 'imageContent': imageContent})
         })
     return await result.json();
 }
@@ -48,12 +49,12 @@ export async function deleteChore(authToken, id) {
 }
 
 // Update Chore
-export async function updateChore(authToken, title, description, assignedTo, due, priority, id) {
+export async function updateChore(authToken, title, description, assignedTo, due, priority, imageContent, id) {
     const result = await fetch(backend_base+"/chores/"+id,{
         'method':'PATCH',
         'headers': {'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'},
-        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
+        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority, 'imageContent':imageContent})
         })
     return await result.json();
 }

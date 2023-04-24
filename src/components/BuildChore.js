@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { addChore, getChildren, updateChore, deleteChore } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import Webcam from "react-webcam";
 
 
 export default function BuildChore({isEditing, chore}) {
@@ -9,6 +10,9 @@ export default function BuildChore({isEditing, chore}) {
   const [loading, setLoading] = useState(true);
   const [childrenList, setChildrenList] = useState([]);
   const router = useRouter();
+  const [img, setImg] = useState(null);
+  const webcamRef = useRef(null);
+
 
   // Get list of this user's children
   useEffect(() => {
@@ -22,6 +26,18 @@ export default function BuildChore({isEditing, chore}) {
     children();
   }, [isLoaded]);
   
+  //for webcam
+  const videoConstraints = {
+    width: 420,
+    height: 420,
+    facingMode: "user",
+  };
+
+  const capture = useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImg(imageSrc);
+  }, [webcamRef]);
+
   // Add or update chore
   async function save(e) {
     e.preventDefault();
@@ -36,7 +52,7 @@ export default function BuildChore({isEditing, chore}) {
 
     // Update existing chore
     if(isEditing){
-      await updateChore(token, title, description, assignedTo, due, priority, chore._id);
+      await updateChore(token, title, description, assignedTo, due, priority, img, chore._id);
     }
     // Add new chore
     else{
@@ -102,6 +118,22 @@ export default function BuildChore({isEditing, chore}) {
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
             </select>
+            <div>
+            <Webcam
+              mirrored={true}
+              videoConstraints={videoConstraints}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+            />
+            </div>
+            <br></br>
+            <button onClick={capture}>Capture photo</button> 
+      
+            <div>
+              {img && (
+                <img src={img} alt="capturedPhoto"/>
+              )}
+            </div>
             <button type="submit" className="pure-button pure-button-primary">Save</button>
             <button onClick={cancel} type="button" className="pure-button pure-button-primary">Cancel</button>
             {getDeleteBtn()}
