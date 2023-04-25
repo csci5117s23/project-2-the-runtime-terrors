@@ -1,4 +1,4 @@
-import { useAuth, UserButton, SignIn, SignedOut, SignedIn} from '@clerk/nextjs'
+import { useAuth, SignIn, SignedOut} from '@clerk/nextjs'
 import { useRouter } from 'next/router';
 
 export default function Splash() {
