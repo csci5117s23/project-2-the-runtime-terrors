@@ -1,30 +1,45 @@
 // Reference: https://www.npmjs.com/package/react-pin-input
-import { getPin, addChild } from "@/modules/Data";
+import { getPin, addChild, getChild } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import PinInput from 'react-pin-input';
-import { useRouter } from "next/router";
+import { useState, useEffect } from "react"
 
 export default function Pin() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const router = useRouter();
+  const [status, setStatus] = useState("");
 
   async function verifyPin(value, index){
-    console.log("verifying");
-    // Send out verifying message 
-    console.log(value);
+    setStatus("Verifying pin...");
+
+    // Get child associated with this pin
     const token = await getToken({ template: "codehooks" });
     let data = await getPin(token, value);
-    console.log(data);
 
+    // Invalid pin (no matching pin #)
     if(data.length == 0){
-      // Send out incorrect pin message 
-      console.log("No matching pin");
+      setStatus("Sorry, this pin is invalid");
     }
+
+    // Valid pin
     else{
+      connectChild(data[0]);
+    }
+  }
+
+  async function connectChild(user){
+    const token = await getToken({ template: "codehooks" });
+    const child = await getChild(token, user.childId);
+
+    // Child not yet connected to parent's account --> connect them
+    if(child.length == 0){
       const token = await getToken({ template: "codehooks" });
-      await addChild(token, data[0].childName, data[0].childId);
-      // Send out confirmation message
-      router.push("/home")
+      const kid = await addChild(token, user.childName, user.childId);
+      setStatus(kid.childName + " has been successfully connected to your account");
+    }
+    // Child already connected to parent's account
+    else{
+      setStatus(child[0].childName + " is already connected to your account");
+      // 641674 --> pin # delete later ???
     }
   }
 
@@ -42,5 +57,6 @@ export default function Pin() {
       autoSelect={true}
       regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
     />
+    <h1>{status}</h1>
   </>
 }

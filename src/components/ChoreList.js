@@ -45,16 +45,12 @@ export default function ChoreList({isParent}){
 
   else{
     const htmlChoreList = choreList.map((chore) => <Chore chore={chore} key={chore._id} isParent={isParent} setSelectedChore={setSelectedChore}></Chore>);
-
-    // Parent vs child view ???
-    if(isParent){
-      return <>
+    
+    return <>
       <div id="layout" className="content pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
-            <Link className="margin pure-button" href="/addChore">Add New Chore</Link>
-            <Link className="pure-button margin " href="/connectAccount">Connect a Child</Link>
-            <hr></hr>
+            <h2 className="margin">Hello, NAME! Here are your chores</h2>
             {htmlChoreList}
           </div>
         </div>
@@ -62,22 +58,6 @@ export default function ChoreList({isParent}){
           <ChoreInfo chore={selectedChore} isParent={isParent}></ChoreInfo>
         </div>
       </div>
-      </>
-    }
-    else{
-      return <>
-      <div id="layout" className="content pure-g">
-        <div id="list" className="pure-u-1 pure-u-md-1-2">
-          <div id="space">
-            {htmlChoreList}
-            <Link className="pure-button margin " href="/connectAccount">Connect a Parent</Link>
-          </div>
-        </div>
-        <div id="main" className="pure-u-1 pure-u-md-1-2">
-          <ChoreInfo chore={selectedChore} isParent={true}></ChoreInfo>
-        </div>
-      </div>
-      </>
-    }
+    </>
   }
 }

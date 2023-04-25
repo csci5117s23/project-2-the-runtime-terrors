@@ -67,6 +67,15 @@ export async function getChildren(authToken){
     return await result.json();
 }
 
+// Get a child of this user (by id) (parent)
+export async function getChild(authToken, id){
+    const result = await fetch(backend_base+"/children?childId="+id,{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
 // Add a child to this user's account
 export async function addChild(authToken, name, id){
     const result = await fetch(backend_base+"/children/",{

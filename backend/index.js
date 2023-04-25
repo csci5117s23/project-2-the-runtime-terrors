@@ -37,6 +37,11 @@ const pinsYup = object({
   childName: string().required(),
 })
 
+const conn = await Datastore.open()
+const idx = conn.createIndex('pins', { "createdAt": 1 }, { expireAfterSeconds: 10 } )
+
+
+
 // https://www.mongodb.com/docs/manual/tutorial/expire-data/ ???
 // Expire after 3 min ???
 // db.log_events.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 10 } )

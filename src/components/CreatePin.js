@@ -1,7 +1,6 @@
 // Reference: https://www.npmjs.com/package/react-pin-input
 import { addPin, getUser } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react"
 
 export default function CreatePin() {
