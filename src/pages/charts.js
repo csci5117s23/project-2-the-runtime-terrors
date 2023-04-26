@@ -11,9 +11,8 @@ export default function Analytics() {
     const [choreList, setChoreList] = useState([]);
     const [ numDone, setNumDone ] = useState(0);
     const [ numAssigned, setNumAssigned ] = useState(0);
-    const [ deadlinesMissed, setDeadlinesMissed ] = useState(0);
-    const [ deadlinesMet, setDeadlinesMet ] = useState(0);
-
+    const [ deadlinesMissed, setDeadlinesMissed ] = useState(1);
+    const [ deadlinesMet, setDeadlinesMet ] = useState(1);
 
     // Get user info - find out if this is a parent or child account
     useEffect(() => {
@@ -32,13 +31,14 @@ export default function Analytics() {
 
                 let chores;
                 // Get chores assigned by this parent
-                if(isParent){
+                if(user[0].isParent){
                     chores = await getChoresParent(token, false, userId);
                 }
                 // Get chores assigned to this child
                 else{
                     chores = await getChoresChild(token, false, userId);
                 }
+                
                 console.log(chores);
 
                 setChoreList(chores);
@@ -59,9 +59,11 @@ export default function Analytics() {
                 }
                 console.log(done);
                 console.log(deadlines);
+                console.log(chores.length - deadlines);
+                let met = chores.length - deadlines;
                 setNumDone(done);
                 setDeadlinesMissed(deadlines);
-                setDeadlinesMet(chores.length - deadlines);
+                setDeadlinesMet(met);
 
                 setLoading(false);
             }
@@ -81,8 +83,9 @@ export default function Analytics() {
             <p>Tasks Completed: {numDone}</p>
             <p>Tasks Assigned: {numAssigned}</p>
             <p>Deadlines Missed: {deadlinesMissed}</p>
+            <p>Deadlines Met: {deadlinesMet}</p>
             {/* <PieChart label1="Deadlines Met" value1={5} label2="Deadlines Missed" value2 = {6}></PieChart> */}
-            <PieChart label1="Deadlines Met" value1={{deadlinesMet}} label2="Deadlines Missed" value2={{deadlinesMissed}}></PieChart>
+            <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
             {/* <ul> {{ choreListItems }} </ul> */}
         </>)
     }
