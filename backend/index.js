@@ -16,6 +16,7 @@ const choresYup = object({
   assignedBy: string().required(), // parent's user id
   due: date().required(),
   priority: string().required(),
+  doneOn: date(),
   createdOn: date().required().default(() => new Date()),
 })
 
@@ -35,17 +36,8 @@ const pinsYup = object({
   pin: number().required().integer(),
   childId: string().required(),
   childName: string().required(),
+  createdOn: date().required().default(() => new Date()),
 })
-
-const conn = await Datastore.open()
-const idx = conn.createIndex('pins', { "createdAt": 1 }, { expireAfterSeconds: 10 } )
-
-
-
-// https://www.mongodb.com/docs/manual/tutorial/expire-data/ ???
-// Expire after 3 min ???
-// db.log_events.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 10 } )
-
 
 
 // Kluver Code

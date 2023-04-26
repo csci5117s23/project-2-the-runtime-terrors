@@ -31,7 +31,7 @@ export default function Chore({chore, isParent, setSelectedChore}){
       <div className="pure-u-3-4">
         <h5 className="email-name">{chore.title}</h5>
         <h4 className="email-subject">{chore.due}</h4>
-        <p className="email-desc">{chore.description}</p>
+        <p className="email-desc">{chore.priority} Priority</p>
       </div>
     </div>
     {/* <div className="chore">

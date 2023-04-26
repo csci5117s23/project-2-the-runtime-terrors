@@ -70,27 +70,44 @@ main {
   color: var(--light-blue);
 }
 
+a {
+  color: var(--dark-blue);
+  /* text-decoration: none; */
+}
+
+.link{
+  color: darkred;
+}
+
+.link:hover {
+  color: red;
+}
+
+.errorMsg{
+  background-color: #ffffff;
+  display: inline-block;
+  padding: 1rem;
+  border:1px solid red;
+  border-radius:5px;
+}
+
+.link{
+}
+
 /* Add a color to the active/current link */
 /* .navbar a.active {
   background-color: #04AA6D;
   color: white;
 } */
 
-/* Links */
-a {
-  color: var(--dark-blue);
-  text-decoration: none;
+.navbar a:hover {
+  background-color: var(--purple);
+  color: var(--light-blue);
 }
-
-a:hover {
-  color: #82667F;
-}
-
 
 .icon {
   height: 2rem;
 }
-
 
 /* PURE */
 
@@ -118,14 +135,6 @@ a:hover {
   font-size: 80%;
 }
 
-/*
-* -- LAYOUT STYLES --
-* This layout consists of 2 elements, #list` (email list), and `#main` (email content)
-*/
-/* #layout, #list, #main {
-  margin: 0;
-  padding: 0;
-} */
 
 /*
 * -- EMAIL STYLES --
@@ -219,4 +228,87 @@ a:hover {
   padding: 1px;
   height: 100%;
   border-right: 1px solid #ddd;
+}
+
+/* Check this later ??? */
+textarea {
+  white-space: pre-wrap;
+}
+
+
+/* Form Styling */
+/* Taken from: https://codepen.io/atakan/pen/nPOZZR */
+
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+
+.form {
+	width: 600px;
+	margin: 50px auto;
+	text-align: center;
+}
+
+.form fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+}
+
+.form input, .form textarea, select {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+.form div {
+  font-family: montserrat;
+  font-size: 13px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.form label, .form button {
+  padding: 15px;
+  margin-bottom: 10px;
+	/* width: 100%; */
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+.form button {
+  margin-top: 10px;
+  color: white;
+  margin-left: 10px;
+  background-color: var(--purple);
+  /* width: 5rem;  */
+  /* ??? */
+}
+
+.form-title {
+	font-size: 15px;
+	text-transform: uppercase;
+  color: #2C3E50;
+	margin-bottom: 10px;
+}
+.form-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
 }
