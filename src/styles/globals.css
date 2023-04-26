@@ -247,7 +247,7 @@ body {
 }
 
 .form {
-	width: 400px;
+	width: 600px;
 	margin: 50px auto;
 	text-align: center;
 }
@@ -296,7 +296,7 @@ body {
   color: white;
   margin-left: 10px;
   background-color: var(--purple);
-  width: 4rem; 
+  /* width: 5rem;  */
   /* ??? */
 }
 
