@@ -28,9 +28,8 @@ export default function ChoreInfo({chore, isParent}){
     if(isParent){
       return(
         <>
-          <div>Assigned To</div>
-          <div id="assignedTo">{chore.assignedTo}</div>
-          <hr></hr>
+          <label htmlFor="assignedTo">Assigned To</label>
+          <input type="text" placeholder={chore.assignedTo} id="assignedTo" disabled/>
           <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
         </>
       )
@@ -51,28 +50,25 @@ export default function ChoreInfo({chore, isParent}){
       </div>
 
       <div className="email-content-body">
-        <h1>Chore Information: </h1>
+      <form className="form">
         <fieldset>
-          <legend>Chore Information</legend>
-          <div>Title</div>
-          <div id="title">{chore.title}</div>
-          <hr></hr>
+          <h2 className="form-title">Chore details</h2>
+          <label htmlFor="title">Title</label>
+          <input type="text" placeholder={chore.title} id="title" disabled/>
+          
+          <label htmlFor="description">Description</label>
+          <textarea placeholder={chore.description} id="description" disabled/>
 
-          <div>Description</div>
-          <div id="description">{chore.description}</div>
-          <hr></hr>
+          <label htmlFor="due">Due</label>
+          <input id="due" type="text" placeholder={chore.due} disabled/>
+          {/* defaultValue={chore.due} */}
 
-          <div>Due</div>
-          <div id="due">{chore.due}</div>
-          <hr></hr>
-
-          <div>Priority Level</div>
-          <div id="priority">{chore.priority}</div>
-          <hr></hr>
-
-          {/* Specific fields depending on parent or child account type */}
+          <label htmlFor="priority">Priority Level</label>
+          <input type="text" placeholder={chore.priority} id="priority" disabled/>
           {getExtraInfo()}
+
         </fieldset>
+      </form> 
       </div>
     </div>
     </>

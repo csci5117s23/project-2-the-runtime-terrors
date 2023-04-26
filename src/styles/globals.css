@@ -229,3 +229,86 @@ a {
   height: 100%;
   border-right: 1px solid #ddd;
 }
+
+/* Check this later ??? */
+textarea {
+  white-space: pre-wrap;
+}
+
+
+/* Form Styling */
+/* Taken from: https://codepen.io/atakan/pen/nPOZZR */
+
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+
+.form {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+}
+
+.form fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+}
+
+.form input, .form textarea, select {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+.form div {
+  font-family: montserrat;
+  font-size: 13px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.form label, .form button {
+  padding: 15px;
+  margin-bottom: 10px;
+	/* width: 100%; */
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+.form button {
+  margin-top: 10px;
+  color: white;
+  margin-left: 10px;
+  background-color: var(--purple);
+  width: 4rem; 
+  /* ??? */
+}
+
+.form-title {
+	font-size: 15px;
+	text-transform: uppercase;
+  color: #2C3E50;
+	margin-bottom: 10px;
+}
+.form-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}

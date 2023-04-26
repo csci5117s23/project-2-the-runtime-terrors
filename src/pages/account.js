@@ -28,9 +28,10 @@ export default function AccountSetUp() {
       <h1>Setting Up Your Account</h1>
 
       {/* Need to get user's name and type of account (parent or child) */}
-      <form onSubmit={addAcountInfo} className="pure-form pure-form-stacked">
+      <form className="form" onSubmit={addAcountInfo}>
         <fieldset>
-          <legend>Just two quick questions</legend>
+        <h2 className="form-title">Quick questions</h2>
+
           <label htmlFor="name">First Name</label>
           <input id="name" placeholder="Your name" required/>
 
