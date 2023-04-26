@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
 import { getChoresParent, getChoresChild } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
-import Link from 'next/link'
 import Chore from './Chore';
 import ChoreInfo from './ChoreInfo';
 
 
-export default function ChoreList({isParent}){ 
+export default function ChoreList({isParent, name}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [choreList, setChoreList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,13 +43,18 @@ export default function ChoreList({isParent}){
   }
 
   else{
+    if(choreList.length == 0){
+      return <h2 className="margin">No Chores!</h2>
+      // Add a cool animation here
+    }
+
     const htmlChoreList = choreList.map((chore) => <Chore chore={chore} key={chore._id} isParent={isParent} setSelectedChore={setSelectedChore}></Chore>);
     
     return <>
       <div id="layout" className="content pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
-            <h2 className="margin">Hello, NAME! Here are your chores</h2>
+            <h2 className="margin">Hello, {name}! Here are your chores</h2>
             {htmlChoreList}
           </div>
         </div>

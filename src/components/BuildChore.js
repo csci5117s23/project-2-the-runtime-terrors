@@ -2,12 +2,14 @@ import { useState, useEffect } from "react"
 import { addChore, getChildren, updateChore, deleteChore } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import Link from 'next/link'
 
 
 export default function BuildChore({isEditing, chore}) {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [loading, setLoading] = useState(true);
   const [childrenList, setChildrenList] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
 
   // Get list of this user's children
@@ -15,7 +17,13 @@ export default function BuildChore({isEditing, chore}) {
     async function children() {
       if (userId) {
         const token = await getToken({ template: "codehooks" });
-        setChildrenList(await getChildren(token));
+        const children = await getChildren(token);
+        if(children.length == 0){
+          setErrorMsg(<>
+            <div className="errorMsg">Before assigning a chore, you must <Link className="link" href="/connect"> connect a child account</Link></div>
+          </>);
+        }
+        setChildrenList(children);
         setLoading(false);
       }
     }
@@ -87,10 +95,11 @@ export default function BuildChore({isEditing, chore}) {
             <textarea defaultValue={chore.description} id="description"/>
             
             <label htmlFor="assignedTo">Assign To</label>
-            <select defaultValue={chore.assignedTo} className="margin" name="assignedTo" id="assignedTo">
+            <select defaultValue={chore.assignedTo} className="margin" name="assignedTo" id="assignedTo" required>
               {/* <option>Select a Child</option> */}
               {getChildOptions()}
             </select>
+            <div>{errorMsg}</div>
 
             <label htmlFor="due">Due</label>
             <input id="due" type="date" required/>

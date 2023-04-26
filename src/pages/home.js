@@ -8,6 +8,7 @@ export default function Home() {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [loading, setLoading] = useState(true);
   const [isParent, setIsParent] = useState(false);
+  const [name, setName] = useState("");
   const router = useRouter();
 
   // Get user info - find out if this is a parent or child account
@@ -24,6 +25,7 @@ export default function Home() {
         else if(user[0].isParent){
           setIsParent(true);
         }
+        setName(user[0].name)
         setLoading(false);
       }
     }
@@ -36,7 +38,7 @@ export default function Home() {
   }
   else{
     return (
-      <ChoreList isParent={isParent}></ChoreList>
+      <ChoreList isParent={isParent} name={name}></ChoreList>
     )
   }
 }

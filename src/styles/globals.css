@@ -70,27 +70,44 @@ main {
   color: var(--light-blue);
 }
 
+a {
+  color: var(--dark-blue);
+  /* text-decoration: none; */
+}
+
+.link{
+  color: darkred;
+}
+
+.link:hover {
+  color: red;
+}
+
+.errorMsg{
+  background-color: #ffffff;
+  display: inline-block;
+  padding: 1rem;
+  border:1px solid red;
+  border-radius:5px;
+}
+
+.link{
+}
+
 /* Add a color to the active/current link */
 /* .navbar a.active {
   background-color: #04AA6D;
   color: white;
 } */
 
-/* Links */
-a {
-  color: var(--dark-blue);
-  text-decoration: none;
+.navbar a:hover {
+  background-color: var(--purple);
+  color: var(--light-blue);
 }
-
-a:hover {
-  color: #82667F;
-}
-
 
 .icon {
   height: 2rem;
 }
-
 
 /* PURE */
 
@@ -118,14 +135,6 @@ a:hover {
   font-size: 80%;
 }
 
-/*
-* -- LAYOUT STYLES --
-* This layout consists of 2 elements, #list` (email list), and `#main` (email content)
-*/
-/* #layout, #list, #main {
-  margin: 0;
-  padding: 0;
-} */
 
 /*
 * -- EMAIL STYLES --
