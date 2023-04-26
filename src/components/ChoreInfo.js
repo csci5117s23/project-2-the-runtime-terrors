@@ -39,6 +39,16 @@ export default function ChoreInfo({chore, isParent}){
     }
   }
 
+  function refineDate(){
+    const newDate = new Date(chore.due);
+    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + ", at " + newDate.getHours() + ":";
+    let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
+    // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+    let ampm = (newDate.getHours() >= 12 ? 'PM' : 'AM');
+    newDate2 = newDate2+minutes+ " " + ampm;
+    return newDate2;
+  }
+
   return (
     <>
     <div className="email-content">
@@ -60,8 +70,8 @@ export default function ChoreInfo({chore, isParent}){
           <textarea placeholder={chore.description} id="description" disabled/>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder={chore.due} disabled/>
-          {/* defaultValue={chore.due} */}
+          <input id="due" type="text" placeholder= {refineDate()} disabled/>
+          
 
           <label htmlFor="priority">Priority Level</label>
           <input type="text" placeholder={chore.priority} id="priority" disabled/>
