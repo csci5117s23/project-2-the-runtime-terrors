@@ -1,47 +1,59 @@
-/* Site Colors - Reference: https://www.w3schools.com/css/css3_variables.asp */
+/* Site Colors - References: 
+  https://www.w3schools.com/css/css3_variables.asp 
+  https://blog.logrocket.com/a-guide-to-theming-in-css/
+*/
 :root {
-  --dark-blue: #003249;
-  --medium-blue: #b7cee2;
-  --light-blue: #eff7fe;
-  --purple: #82667F;
-  /* rgb(75, 113, 151); */
+  --font-color: #3a1055;
+  --nav-color: #6b9f7a;;
+  --bg-color: #d7edd8;
+  --font2-color: #527d5e;
+/* #c5ebc6; 
+d7e9e0*/
+  /* ade1e5; */
+  /* 73ab84; */
+  --emphasis-color: #82667F;
+}
+
+[data-theme="parent"] {
+  --font-color: #473144;
+  --nav-color: #602234;
+  --bg-color: #e3ded0;
+  --font2-color: #948e7c;
+  --emphasis-color: #773344;
+  /* 436845 */
 }
 
 body {
   margin: 0;
-  background-color: var(--light-blue);
-  color: var(--dark-blue);
-}
-
-header{
-  background-color: var(--medium-blue);
-  height: 3rem;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  height: 100%;
 }
 
 .margin {
-  margin: 2rem;
+  margin: 1.5rem;
+  margin-top: 2rem;
 }
 
 main {
-  margin: 3rem;  /* text-align: center; */
-}
-
-.center{
-  /* text-align: center;
-  background-color: teal; */
+  margin: 3rem;
 }
 
 /* Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
 .navbar, .header {
-  background-color: var(--medium-blue);
+  background-color: var(--nav-color);
   overflow: hidden;
   height: 3rem;
   width: 100%;
+  position: fixed;
 }
 
 .navbar {
-  position: fixed;
   bottom: 0;
+}
+
+.header{
+  top: 0;
 }
 
 /* Style the links inside the navigation bar */
@@ -66,12 +78,12 @@ main {
 
 /* Change the color of links on hover */
 .navbar a:hover {
-  background-color: var(--purple);
-  color: var(--light-blue);
+  background-color: var(--emphasis-color);
+  color: var(--bg-color);
 }
 
 a {
-  color: var(--dark-blue);
+  color: var(--font-color);
   /* text-decoration: none; */
 }
 
@@ -87,12 +99,10 @@ a {
   background-color: #ffffff;
   display: inline-block;
   padding: 1rem;
-  border:1px solid red;
+  border:1px solid rgb(189, 25, 25);
   border-radius:5px;
 }
 
-.link{
-}
 
 /* Add a color to the active/current link */
 /* .navbar a.active {
@@ -101,116 +111,87 @@ a {
 } */
 
 .navbar a:hover {
-  background-color: var(--purple);
-  color: var(--light-blue);
+  background-color: var(--emphasis-color);
+  color: var(--bg-color);
 }
 
+/* Icon styling */
 .icon {
   height: 2rem;
 }
 
-/* PURE */
+.small-icon{
+  height: 1rem;
+}
 
-/*
-* -- HELPER STYLES --
-* Over-riding some of the .pure-button styles to make my buttons look unique
+/* Pin font styling */
+.pin {
+  font-size: 150%;
+  /* background-color: var(--emphasis-color) */
+}
+
+/* Add top-margin */
+.margin-top {
+  margin-top: 5rem;
+}
+
+/* Center text */
+.center {
+  text-align: center;
+}
+
+/* PURE - Taken from: 
+  https://purecss.io/layouts/email/, 
+  https://github.com/pure-css/pure/blob/master/site/static/layouts/email/styles.css
 */
-.primary-button,
-.secondary-button {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border-radius: 20px;
-}
-.primary-button {
-  color: #fff;
-  background: #1b98f8;
-  margin: 1em 0;
-}
-.secondary-button {
-  background: #fff;
-  border: 1px solid #ddd;
-  color: #666;
-  padding: 0.5em 2em;
-  font-size: 80%;
-}
 
-
-/*
-* -- EMAIL STYLES --
-* Styles relevant to the email messages, labels, counts, and more.
-*/
-.email-count {
-  color: rgb(75, 113, 151);
-}
-
-/* Email Item Styles */
-.email-item {
+/* Chore Item Styles */
+.chore-item {
   padding: 0.9em 1em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--emphasis-color);
   border-left: 6px solid transparent;
 }
-.email-avatar {
-    border-radius: 3px;
-    margin-right: 0.5em;
+.chore-name, .chore-due {
+  margin: 0;
 }
-.email-name, .email-subject {
-    margin: 0;
+.chore-name {
+  text-transform: uppercase;
+  color: var(--font-color);
 }
-.email-name {
-    text-transform: uppercase;
-    color: #999;
+.chore-priority {
+  font-size: 80%;
+  margin: 0.4em 0;
 }
-.email-desc {
-    font-size: 80%;
-    margin: 0.4em 0;
-}
-.email-item-selected {
+.chore-item-selected {
   background: #eee;
 }
-.email-item-unread {
-  border-left: 6px solid #1b98f8;
+.chore-due{
+  color: var(--font2-color);
 }
-
-/* Email Content Styles */
-.email-content-header, .email-content-body, .email-content-footer {
+.chore-content-header, .chore-content-body, .chore-content-footer {
   padding: 1em 2em;
 }
-.email-content-header {
-  border-bottom: 1px solid #ddd;
+.chore-content-header {
+  border-bottom: 1px solid var(--emphasis-color)
 }
+.chore-content-title {
+  text-transform: capitalize;
 
-.email-content-title {
   margin: 0.5em 0 0;
 }
-.email-content-subtitle {
+.chore-content-subtitle {
   font-size: 1em;
   margin: 0;
   font-weight: normal;
 }
-.email-content-subtitle span {
-  color: #999;
+.chore-content-subtitle span {
+  color: var(--font2-color);
 }
-.email-content-controls {
-  margin-top: 2em;
-  text-align: right;
-}
-.email-content-controls .secondary-button {
-  margin-bottom: 0.3em;
-}
-
-.email-avatar {
-  width: 40px;
-  height: 40px;
-}
-
-/* #main{
-  display: hidden;
-} */
 
 #layout{
   padding-bottom: 3rem;
-  height: 100%;
+  padding-top: 3rem;
+  height: calc(100vh - 6rem); 
 }
 
 #main{
@@ -222,12 +203,15 @@ a {
 #list {
   height: 100%;
   overflow: scroll; 
+  top: 0;
+  bottom: 0;
 }
 
 #space {
   padding: 1px;
   height: 100%;
-  border-right: 1px solid #ddd;
+  /* height: 100vh; */
+  border-right: 1px solid var(--emphasis-color);
 }
 
 /* Check this later ??? */
@@ -247,7 +231,8 @@ body {
 }
 
 .form {
-	width: 600px;
+  /* width: 600px; */
+  max-width: 600px;
 	margin: 50px auto;
 	text-align: center;
 }
@@ -256,7 +241,7 @@ body {
 	background: white;
 	border: 0 none;
 	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 15px 1px var(--emphasis-color);
 	padding: 20px 30px;
 	box-sizing: border-box;
 	width: 80%;
@@ -265,50 +250,44 @@ body {
 
 .form input, .form textarea, select {
 	padding: 15px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--emphasis-color);
 	border-radius: 3px;
-	margin-bottom: 10px;
+	margin-bottom: 1rem;
 	width: 100%;
 	box-sizing: border-box;
 	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
+	color:  var(--font-color)
 }
 
 .form div {
   font-family: montserrat;
-  font-size: 13px;
+  /* font-size: 13px; */
   border-radius: 3px;
   padding: 15px;
 }
 
 .form label, .form button {
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 	/* width: 100%; */
 	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
 }
 
 .form button {
   margin-top: 10px;
   color: white;
   margin-left: 10px;
-  background-color: var(--purple);
-  /* width: 5rem;  */
-  /* ??? */
+  background-color: var(--emphasis-color);
 }
 
 .form-title {
 	font-size: 15px;
 	text-transform: uppercase;
-  color: #2C3E50;
-	margin-bottom: 10px;
+  color: var(--emphasis-color);
+	margin-bottom: 1.5rem;
 }
 .form-subtitle {
 	font-weight: normal;
-	font-size: 13px;
 	color: #666;
 	margin-bottom: 20px;
 }

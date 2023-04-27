@@ -65,20 +65,6 @@ export default function BuildChore({isEditing, chore}) {
     router.push('/home');
   }
 
-  // Delete the chore
-  async function deleteItem(){
-    const token = await getToken({ template: "codehooks" });
-    await deleteChore(token, chore._id);
-    router.push('/home');
-  }
-
-  // Add delete button if parent is editing the chore
-  function getDeleteBtn() {
-    if(isEditing){ 
-      return <button onClick={deleteItem} type="button" className="pure-button pure-button-primary">Delete</button>
-    }
-  }
-
   if(loading){
     return <div>Loading</div>
   }
@@ -112,7 +98,6 @@ export default function BuildChore({isEditing, chore}) {
           </select>
           <button type="submit" className="pure-button pure-button-primary">Save</button>
           <button onClick={cancel} type="button" className="pure-button pure-button-primary">Cancel</button>
-          {getDeleteBtn()}
         </fieldset>
       </form>
     )
