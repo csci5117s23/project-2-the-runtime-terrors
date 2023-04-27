@@ -51,7 +51,7 @@ export default function ChoreList({isParent, name}){
     const htmlChoreList = choreList.map((chore) => <Chore chore={chore} key={chore._id} isParent={isParent} setSelectedChore={setSelectedChore}></Chore>);
     
     return <>
-      <div id="layout" className="content pure-g">
+      <div id="layout" className="pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
             <h2 className="margin">Hello, {name}! Here are your chores</h2>

@@ -40,7 +40,7 @@ export default function CreatePin() {
 
   else{
     return <>
-      <div>{pin}</div>
+      <div className="pin">{pin}</div>
     </>
   }
 }

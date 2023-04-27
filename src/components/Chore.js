@@ -23,15 +23,11 @@ export default function Chore({chore, isParent, setSelectedChore}){
 
   return (
     <>
-    <div onClick={viewChore} className="email-item email-item-unread pure-g">
-      <div className="pure-u">
-        <img width="64" height="64" alt="Chore avatar" className="email-avatar" src="/img/common/ericf-avatar.png"/>
-      </div>
-
+    <div onClick={viewChore} className="chore-item pure-g">
       <div className="pure-u-3-4">
-        <h5 className="email-name">{chore.title}</h5>
-        <h4 className="email-subject">{chore.due}</h4>
-        <p className="email-desc">{chore.priority} Priority</p>
+        <h5 className="chore-name">{chore.title}</h5>
+        <h4 className="chore-due">{chore.due}</h4>
+        <p className="chore-priority">{chore.priority} Priority</p>
       </div>
     </div>
     {/* <div className="chore">

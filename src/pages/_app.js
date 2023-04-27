@@ -1,6 +1,7 @@
 import { ClerkProvider, SignedIn, SignedOut, UserButton, RedirectToSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 import Link from 'next/link'
+import Navigation from '@/components/Navigation';
 import '@/styles/globals.css';
 
 const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]", "/"];
@@ -28,26 +29,9 @@ export default function MyApp({ Component, pageProps }) {
       ) : (
         <>
           <SignedIn>
-            {/* Header */}
-            <div className="header">
-              <div className="title">Chore Tracker</div>
-              <div id="userBtn"><UserButton/></div>
-            </div>
-
-            {/* Bottom navigation */}
-            <div className="navbar">
-              <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
-              <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
-
-              {/* Only have add button for parent ??? */}
-              <Link href="/addChore"><img className="icon" src="add.png" alt="Add Chore"></img></Link>
-
-              <Link href="/connect"><img className="icon" src="connect2.png" alt="Connect Account"></img></Link>
-              <Link href="/done???"><img className="icon" src="done.png" alt="Done Chores"></img></Link>
-            </div>
+            <Navigation></Navigation>
             <Component {...pageProps} />
           </SignedIn>
-
           <SignedOut>
             <RedirectToSignIn />
           </SignedOut>
