@@ -11,32 +11,33 @@ export default function ChoreList({isParent, name}){
   const [loading, setLoading] = useState(true);
   const [selectedChore, setSelectedChore] = useState("");
     
-  // Get chores for this user
   useEffect(() => {
-    async function chores() {
-      if (userId) {
-        const token = await getToken({ template: "codehooks" });
-        let chores;
-
-        // Get chores assigned by this parent
-        if(isParent){
-          chores = await getChoresParent(token, false, userId);
-        }
-        // Get chores assigned to this child
-        else{
-          chores = await getChoresChild(token, false, userId);
-        }
-        setChoreList(chores)
-
-        // Check if there are chores
-        if(chores.length !== 0){
-          setSelectedChore(chores[0]);
-        }
-        setLoading(false);
-      }
-    }
     chores();
   }, [isLoaded]);
+
+  // Get chores for this user
+  async function chores() {
+    if (userId) {
+      const token = await getToken({ template: "codehooks" });
+      let chores;
+
+      // Get chores assigned by this parent
+      if(isParent){
+        chores = await getChoresParent(token, false, userId);
+      }
+      // Get chores assigned to this child
+      else{
+        chores = await getChoresChild(token, false, userId);
+      }
+      setChoreList(chores)
+
+      // Check if there are chores
+      if(chores.length !== 0){
+        setSelectedChore(chores[0]);
+      }
+      setLoading(false);
+    }
+  }
 
   if(loading){
     return <div className="margin">Loading...</div>
@@ -44,8 +45,8 @@ export default function ChoreList({isParent, name}){
 
   else{
     if(choreList.length == 0){
-      return <h2 className="margin">No Chores!</h2>
-      // Add a cool animation here
+      return <h2 className="margin-top center">No Chores!</h2>
+      // Add a cool animation here ???
     }
 
     const htmlChoreList = choreList.map((chore) => <Chore chore={chore} key={chore._id} isParent={isParent} setSelectedChore={setSelectedChore}></Chore>);
@@ -59,7 +60,7 @@ export default function ChoreList({isParent, name}){
           </div>
         </div>
         <div id="main" className="pure-u-1 pure-u-md-1-2">
-          <ChoreInfo chore={selectedChore} isParent={isParent}></ChoreInfo>
+          <ChoreInfo chore={selectedChore} isParent={isParent} chores={chores}></ChoreInfo>
         </div>
       </div>
     </>

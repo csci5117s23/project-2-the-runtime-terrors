@@ -2,9 +2,10 @@ import { useState, useEffect } from "react"
 import Link from 'next/link'
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
+import { deleteChore } from "@/modules/Data";
 
 
-export default function ChoreInfo({chore, isParent}){ 
+export default function ChoreInfo({chore, isParent, chores}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [done, setDone] = useState(chore.done);
   const router = useRouter();
@@ -24,6 +25,13 @@ export default function ChoreInfo({chore, isParent}){
     router.push("/edit/"+chore._id);
   }
 
+  // Delete chore
+  async function remove(){
+    const token = await getToken({ template: "codehooks" });
+    await deleteChore(token, chore._id);
+    chores();
+  }
+
   function getExtraInfo() {
     if(isParent){
       return(
@@ -31,6 +39,7 @@ export default function ChoreInfo({chore, isParent}){
           <label htmlFor="assignedTo">Assigned To</label>
           <input type="text" placeholder={chore.assignedTo} id="assignedTo" disabled/>
           <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
+          <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
         </>
       )
     }

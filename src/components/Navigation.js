@@ -27,6 +27,12 @@ export default function Navigation(){
     user();
   }, [isLoaded]);
 
+  // Let parents have access to "add chore" button
+  let addBtn = <div></div>
+  if(isParent){
+    addBtn = <Link href="/addChore"><img className="icon" src="add.png" alt="Add Chore"></img></Link>;
+  }
+
   if(loading){
     return <div className="margin">Loading...</div>
   }
@@ -43,10 +49,7 @@ export default function Navigation(){
       <div className="navbar">
         <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
         <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
-
-        {/* Only have add button for parent ??? */}
-        <Link href="/addChore"><img className="icon" src="add.png" alt="Add Chore"></img></Link>
-
+        {addBtn}
         <Link href="/connect"><img className="icon" src="connect2.png" alt="Connect Account"></img></Link>
       </div>
       </>

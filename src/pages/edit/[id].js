@@ -32,7 +32,7 @@ export default function EditChore() {
   else{
     return (
       <main>
-        <h1>Edit Chore</h1>
+        <h1 className="margin-top center">Edit Chore</h1>
         <BuildChore isEditing={true} chore={chore}></BuildChore>
       </main>
     )

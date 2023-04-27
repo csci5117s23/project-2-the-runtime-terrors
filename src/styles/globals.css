@@ -1,10 +1,14 @@
-/* Site Colors - Reference: https://www.w3schools.com/css/css3_variables.asp */
+/* Site Colors - References: 
+  https://www.w3schools.com/css/css3_variables.asp 
+  https://blog.logrocket.com/a-guide-to-theming-in-css/
+*/
 :root {
   --font-color: #3a1055;
   --nav-color: #6b9f7a;;
-  --bg-color: #c5ebc6;
+  --bg-color: #d7edd8;
   --font2-color: #527d5e;
-
+/* #c5ebc6; 
+d7e9e0*/
   /* ade1e5; */
   /* 73ab84; */
   --emphasis-color: #82667F;
@@ -171,6 +175,8 @@ a {
   border-bottom: 1px solid var(--emphasis-color)
 }
 .chore-content-title {
+  text-transform: capitalize;
+
   margin: 0.5em 0 0;
 }
 .chore-content-subtitle {
