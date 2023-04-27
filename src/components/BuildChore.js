@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { addChore, getChildren, updateChore, deleteChore } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import Webcam from "react-webcam";
 import Link from 'next/link'
 
 
@@ -11,6 +12,9 @@ export default function BuildChore({isEditing, chore}) {
   const [childrenList, setChildrenList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
+  const [img, setImg] = useState(null);
+  const webcamRef = useRef(null);
+
 
   // Get list of this user's children
   useEffect(() => {
@@ -30,6 +34,18 @@ export default function BuildChore({isEditing, chore}) {
     children();
   }, [isLoaded]);
   
+  //for webcam
+  const videoConstraints = {
+    width: 420,
+    height: 420,
+    facingMode: "user",
+  };
+
+  const capture = useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImg(imageSrc);
+  }, [webcamRef]);
+
   // Add or update chore
   async function save(e) {
     e.preventDefault();
@@ -44,11 +60,11 @@ export default function BuildChore({isEditing, chore}) {
 
     // Update existing chore
     if(isEditing){
-      await updateChore(token, title, description, assignedTo, due, priority, chore._id);
+      await updateChore(token, title, description, assignedTo, due, priority, img, chore._id);
     }
     // Add new chore
     else{
-      await addChore(token, title, description, assignedTo, due, priority);
+      await addChore(token, title, description, assignedTo, due, img, priority);
     }
     router.push('/home');
   }
@@ -90,16 +106,34 @@ export default function BuildChore({isEditing, chore}) {
           <input id="due" type="date" required/>
           {/* defaultValue={chore.due} */}
 
-          <label htmlFor="priority">Priority Level</label>
-          <select defaultValue={chore.priority} id="priority" required>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-          <button type="submit" className="pure-button pure-button-primary">Save</button>
-          <button onClick={cancel} type="button" className="pure-button pure-button-primary">Cancel</button>
-        </fieldset>
-      </form>
+            <label htmlFor="priority">Priority Level</label>
+            <select defaultValue={chore.priority} id="priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+            <div>
+            <Webcam
+              mirrored={true}
+              videoConstraints={videoConstraints}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+            />
+            </div>
+            <br></br>
+            <button onClick={capture}>Capture photo</button> 
+      
+            <div>
+              {img && (
+                <img src={img} alt="capturedPhoto"/>
+              )}
+            </div>
+            <button type="submit" className="pure-button pure-button-primary">Save</button>
+            <button onClick={cancel} type="button" className="pure-button pure-button-primary">Cancel</button>
+            {/* {getDeleteBtn()} */}
+          </fieldset>
+        </form>
+    // </main>
     )
   }
 }

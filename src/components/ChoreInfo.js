@@ -72,8 +72,12 @@ export default function ChoreInfo({chore, isParent, chores}){
           <input id="due" type="text" placeholder={chore.due} disabled/>
           {/* defaultValue={chore.due} */}
 
+
           <label htmlFor="priority">Priority Level</label>
           <input type="text" placeholder={chore.priority} id="priority" disabled/>
+
+          <label htmlFor="priority">Screenshot</label>
+          <img src={chore.imageContent} alt="No screenshot for chore" />;
           {getExtraInfo()}
 
         </fieldset>
