@@ -4,10 +4,14 @@ import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
 
 
-export default function ChoreInfo({chore, isParent}){ 
+export default function ChoreInfo({chore, isParent, name}){ 
+  console.log("chore: ", chore)
+  console.log("is parent: ", isParent)
+  console.log("name: ", name)
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [done, setDone] = useState(chore.done);
   const router = useRouter();
+
 
   // MISSING GET ISPARENT INFO --> get it from [id].js???
 
@@ -29,7 +33,7 @@ export default function ChoreInfo({chore, isParent}){
       return(
         <>
           <label htmlFor="assignedTo">Assigned To</label>
-          <input type="text" placeholder={chore.assignedTo} id="assignedTo" disabled/>
+          <input type="text" placeholder={name} id="assignedTo" disabled/>
           <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
         </>
       )
@@ -38,16 +42,19 @@ export default function ChoreInfo({chore, isParent}){
       return <button onClick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
     }
   }
-
+  
+  //date string maniputlation
   function refineDate(){
     const newDate = new Date(chore.due);
-    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + ", at " + newDate.getHours() + ":";
+    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
+    let hours = (newDate.getHours()>=12? newDate.getHours()-12 : newDate.getHours());
     let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
     // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-    let ampm = (newDate.getHours() >= 12 ? 'PM' : 'AM');
-    newDate2 = newDate2+minutes+ " " + ampm;
+    let ampm = (newDate.getHours()>=12?'PM':'AM');
+    newDate2 = newDate2 + hours+ ":" + minutes+ " " + ampm;
     return newDate2;
   }
+
 
   return (
     <>

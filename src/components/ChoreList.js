@@ -59,7 +59,7 @@ export default function ChoreList({isParent, name}){
           </div>
         </div>
         <div id="main" className="pure-u-1 pure-u-md-1-2">
-          <ChoreInfo chore={selectedChore} isParent={isParent}></ChoreInfo>
+          <ChoreInfo chore={selectedChore} isParent={isParent} name = {name}></ChoreInfo>
         </div>
       </div>
     </>
