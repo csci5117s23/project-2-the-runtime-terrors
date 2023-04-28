@@ -60,6 +60,16 @@ export async function updateChore(authToken, title, description, assignedTo, due
     return await result.json();
 }
 
+// Filter chores
+export async function getFilteredChores(authToken, status, priority, due, userInfo) {
+    console.log("/chores?"+status+priority+due+userInfo);
+    const result = await fetch(backend_base+"/chores?"+status+priority+due+userInfo,{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
 // Get children of this user (parent)
 export async function getChildren(authToken){
     const result = await fetch(backend_base+"/children/",{

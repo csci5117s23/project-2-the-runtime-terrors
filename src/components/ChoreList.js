@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
-import { getChoresParent, getChoresChild } from "@/modules/Data";
+import { getFilteredChores } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import Chore from './Chore';
+import Filters from './Filters'
 import ChoreInfo from './ChoreInfo';
 
 
@@ -12,22 +13,22 @@ export default function ChoreList({isParent, name}){
   const [selectedChore, setSelectedChore] = useState("");
     
   useEffect(() => {
-    chores();
+    chores("", "", "");
   }, [isLoaded]);
 
   // Get chores for this user
-  async function chores() {
+  async function chores(status, priority, due) {
     if (userId) {
       const token = await getToken({ template: "codehooks" });
       let chores;
 
       // Get chores assigned by this parent
       if(isParent){
-        chores = await getChoresParent(token, false, userId);
+        chores = await getFilteredChores(token, status, priority, due, "assignedBy="+userId);
       }
       // Get chores assigned to this child
       else{
-        chores = await getChoresChild(token, false, userId);
+        chores = await getFilteredChores(token, status, priority, due, "assignedTo="+userId);
       }
       setChoreList(chores)
 
@@ -45,7 +46,10 @@ export default function ChoreList({isParent, name}){
 
   else{
     if(choreList.length == 0){
-      return <h2 className="margin-top center">No Chores!</h2>
+      return <>
+        <h2 className="margin-top center">No Chores!</h2>
+        <Filters filterChores={chores}></Filters>
+      </>
       // Add a cool animation here ???
     }
 
@@ -56,6 +60,7 @@ export default function ChoreList({isParent, name}){
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
             <h2 className="margin">Hello, {name}! Here are your chores</h2>
+            <Filters filterChores={chores}></Filters>
             {htmlChoreList}
           </div>
         </div>

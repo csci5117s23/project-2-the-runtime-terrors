@@ -261,6 +261,12 @@ body {
 	color:  var(--font-color)
 }
 
+.filter {
+  width: fit-content;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
 .form div {
   font-family: montserrat;
   /* font-size: 13px; */
