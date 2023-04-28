@@ -64,7 +64,7 @@ export default function BuildChore({isEditing, chore}) {
     }
     // Add new chore
     else{
-      await addChore(token, title, description, assignedTo, due, img, priority);
+      await addChore(token, title, description, assignedTo, due, priority);
     }
     router.push('/home');
   }

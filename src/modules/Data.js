@@ -29,14 +29,15 @@ export async function getChore(authToken, id) {
 }
 
 // Add a chore
-export async function addChore(authToken, title, description, assignedTo, due, priority, imageContent) {
+export async function addChore(authToken, title, description, assignedTo, due, priority) {
     const result = await fetch(backend_base+"/chores/",{
         'method':'POST',
         'headers': {'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'},
-        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority, 'imageContent': imageContent})
+        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
         })
-    return await result.json();
+    console.log(result.json());
+    // return await result.json();
 }
 
 // Delete a chore
