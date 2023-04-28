@@ -18,6 +18,8 @@ export async function getChoresChild(authToken, done, userId) {
     return await result.json();
 }
 
+
+
 // Get a specific chore by id
 export async function getChore(authToken, id) {
     const result = await fetch(backend_base+"/chores/"+id,{
@@ -25,6 +27,24 @@ export async function getChore(authToken, id) {
         'headers': {'Authorization': 'Bearer ' + authToken}
     })
 
+    return await result.json();
+}
+
+// Get all chores assigned to this parent
+export async function getChoresParentAll(authToken, userId) {
+    const result = await fetch(backend_base+"/chores?sort=createdOn&assignedBy="+userId,{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
+// Get all chores assigned to this child
+export async function getChoresChildAll(authToken, userId) {
+    const result = await fetch(backend_base+"/chores?sort=createdOn&assignedTo="+userId,{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
     return await result.json();
 }
 
@@ -39,6 +59,7 @@ export async function addChore(authToken, title, description, assignedTo, due, p
     console.log(result.json());
     // return await result.json();
 }
+
 
 // Delete a chore
 export async function deleteChore(authToken, id) {

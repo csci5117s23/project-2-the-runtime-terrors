@@ -121,7 +121,7 @@ export default function BuildChore({isEditing, chore}) {
             />
             </div>
             <br></br>
-            <button onClick={capture}>Capture photo</button> 
+            <button type="button" onClick={capture}>Capture photo</button> 
       
             <div>
               {img && (
