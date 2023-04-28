@@ -95,7 +95,10 @@ Run the development server:
 - npm install codehooks-js codehooks-crudlify
 - npm install jwt-decode
 - npm install yup
+
+
 - npm install react-pin-input
+- npm install react-webcam
 
 ## Installs for auth/clerk
 - npm install @clerk/nextjs
@@ -116,5 +119,3 @@ analytics by BomSymbols from <a href="https://thenounproject.com/browse/icons/te
 add by Uswah Studio from <a href="https://thenounproject.com/browse/icons/term/add/" target="_blank" title="add Icons">Noun Project</a>
 
 connect by roughen.line from <a href="https://thenounproject.com/browse/icons/term/connect/" target="_blank" title="connect Icons">Noun Project</a>
-
-done by Yudhi Restu Pebriyanto from <a href="https://thenounproject.com/browse/icons/term/done/" target="_blank" title="done Icons">Noun Project</a>
