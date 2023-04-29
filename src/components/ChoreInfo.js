@@ -5,10 +5,11 @@ import { useRouter } from 'next/router'
 import { deleteChore } from "@/modules/Data";
 
 
-export default function ChoreInfo({chore, isParent, chores}){ 
+export default function ChoreInfo({chore, isParent, chores, name}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [done, setDone] = useState(chore.done);
   const router = useRouter();
+
 
   // MISSING GET ISPARENT INFO --> get it from [id].js???
 
@@ -37,7 +38,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       return(
         <>
           <label htmlFor="assignedTo">Assigned To</label>
-          <input type="text" placeholder={chore.assignedTo} id="assignedTo" disabled/>
+          <input type="text" placeholder={name} id="assignedTo" disabled/>
           <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
           <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
         </>
@@ -47,6 +48,19 @@ export default function ChoreInfo({chore, isParent, chores}){
       return <button onClick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
     }
   }
+  
+  //date string maniputlation
+  function refineDate(){
+    const newDate = new Date(chore.due);
+    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
+    let hours = (newDate.getHours()>=12? newDate.getHours()-12 : newDate.getHours());
+    let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
+    // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+    let ampm = (newDate.getHours()>=12?'PM':'AM');
+    newDate2 = newDate2 + hours+ ":" + minutes+ " " + ampm;
+    return newDate2;
+  }
+
 
   return (
     <>
@@ -69,8 +83,8 @@ export default function ChoreInfo({chore, isParent, chores}){
           <textarea placeholder={chore.description} id="description" disabled/>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder={chore.due} disabled/>
-          {/* defaultValue={chore.due} */}
+          <input id="due" type="text" placeholder= {refineDate()} disabled/>
+          
 
 
           <label htmlFor="priority">Priority Level</label>
