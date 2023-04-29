@@ -19,20 +19,21 @@ export default function Home() {
         let user = await getUser(token); 
 
         // User's account hasn't been created yet
-        if(user[0] == null){ // test ???
+        if(user.length == 0){ 
           router.push("/account") 
         }
-        else if(user[0].isParent){
-          setIsParent(true);
+        else{
+          if(user[0].isParent){
+            setIsParent(true);
+          }
+          setName(user[0].name)
         }
-        setName(user[0].name)
         setLoading(false);
       }
     }
     user();
   }, [isLoaded]);
 
-  // Get user info about if this is a parent or child ???
   if(loading){
     return <div className="margin">Loading...</div>
   }

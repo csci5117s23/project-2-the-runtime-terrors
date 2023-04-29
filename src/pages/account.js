@@ -17,15 +17,14 @@ export default function AccountSetUp() {
 
     if (userId) {
       const token = await getToken({ template: "codehooks" });
-      let newUser = await addUser(token, name, isParent);   
-      console.log(newUser);
+      await addUser(token, name, isParent);   
       router.push('/home');
     }
   }
 
   return (
     <main>
-      <h1>Setting Up Your Account</h1>
+      <h1 className="margin-top center">Setting Up Your Account</h1>
 
       {/* Need to get user's name and type of account (parent or child) */}
       <form className="form" onSubmit={addAcountInfo}>
@@ -33,7 +32,7 @@ export default function AccountSetUp() {
         <h2 className="form-title">Quick questions</h2>
 
           <label htmlFor="name">First Name</label>
-          <input id="name" placeholder="Your name" required/>
+          <input id="name" placeholder="Your preferred name" required/>
 
           <label htmlFor="account">Account Type</label>
           <select id="account" required>

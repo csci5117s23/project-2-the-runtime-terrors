@@ -16,7 +16,10 @@ export default function Navigation(){
       if (userId) {
         const token = await getToken({ template: "codehooks" });
         let user = await getUser(token); 
-        if(user[0].isParent){
+        if(user.length == 0){
+          console.log("okokok")
+        }
+        else if(user[0].isParent){
           setIsParent(true);
           // Set theme
           document.documentElement.setAttribute('data-theme', 'parent');

@@ -7,22 +7,14 @@ import { deleteChore, getChild } from "@/modules/Data";
 export default function ChoreInfo({chore, isParent, chores}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const router = useRouter();
-  const [assignedTo, setAssignedTo] = useState("");
-  const [loading, setLoading] = useState(true);
 
-
-  useEffect(() => {
-    async function getChildName() {
-      if (userId && isParent) {
-        const token = await getToken({ template: "codehooks" });
-        const child = await getChild(token, chore.assignedTo);
-
-        setAssignedTo(child[0].childName);
-      }
-      setLoading(false);
+  async function getChildName() {
+    if(isParent) {
+      const token = await getToken({ template: "codehooks" });
+      const child = await getChild(token, chore.assignedTo);
+      return child[0].childName;
     }
-    getChildName();
-  }, [isLoaded]);
+  }
 
   // Re-route to edit page
   async function edit(){
@@ -43,15 +35,25 @@ export default function ChoreInfo({chore, isParent, chores}){
 
   function getExtraInfo() {
     if(isParent){
+      let childName = "sa";
+      getChildName().then(function(result){
+        // console.log(result);
+        childName = result;
+        console.log(childName)
+      }
+      );
       return(<>
         <label htmlFor="assignedTo">Assigned To</label>
-        <input type="text" placeholder={assignedTo} id="assignedTo" disabled/>
+        <input type="text" placeholder={childName} id="assignedTo" disabled/>
         <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
         <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
       </>)
     }
+    else if(chore.done){
+      return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Incomplete"}</button>
+    }
     else{
-      return <button onClick={complete} type="button" className="pure-button pure-button-primary">Update or Complete Chore</button>
+      return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Complete"}</button>
     }
   }
   
@@ -67,42 +69,40 @@ export default function ChoreInfo({chore, isParent, chores}){
     return newDate2;
   }
 
-  if(!loading){
-    return (
-      <>
-      <div className="chore-content">
-        <div className="chore-content-header">
-          <h1 className="chore-content-title">{chore.title}</h1>
-          <p className="chore-content-subtitle">
-            Created at <span>{chore.createdOn}</span>
-          </p>
-        </div>
-
-        <div className="email-content-body">
-        <form className="form">
-          <fieldset>
-            <h2 className="form-title">Chore details</h2>
-            <label htmlFor="title">Title</label>
-            <input type="text" placeholder={chore.title} id="title" disabled/>
-            
-            <label htmlFor="description">Description</label>
-            <textarea placeholder={chore.description} id="description" disabled/>
-
-            <label htmlFor="due">Due</label>
-            <input id="due" type="text" placeholder= {refineDate()} disabled/>
-          
-            <label htmlFor="priority">Priority Level</label>
-            <input type="text" placeholder={chore.priority} id="priority" disabled/>
-
-            <label htmlFor="image">Screenshot</label>
-            <img src={chore.imageContent} alt="No screenshot for chore" />
-            {getExtraInfo()}
-
-          </fieldset>
-        </form> 
-        </div>
+  return (
+    <>
+    <div className="chore-content">
+      <div className="chore-content-header">
+        <h1 className="chore-content-title">{chore.title}</h1>
+        <p className="chore-content-subtitle">
+          Created at <span>{chore.createdOn}</span>
+        </p>
       </div>
-      </>
-    )
-  }
+
+      <div className="email-content-body">
+      <form className="form">
+        <fieldset>
+          <h2 className="form-title">Chore details</h2>
+          <label htmlFor="title">Title</label>
+          <input type="text" placeholder={chore.title} id="title" disabled/>
+          
+          <label htmlFor="description">Description</label>
+          <textarea placeholder={chore.description} id="description" disabled/>
+
+          <label htmlFor="due">Due</label>
+          <input id="due" type="text" placeholder= {refineDate()} disabled/>
+        
+          <label htmlFor="priority">Priority Level</label>
+          <input type="text" placeholder={chore.priority} id="priority" disabled/>
+
+          <label htmlFor="image">Screenshot</label>
+          <img src={chore.imageContent} alt="No screenshot for chore" />
+          {getExtraInfo()}
+
+        </fieldset>
+      </form> 
+      </div>
+    </div>
+    </>
+  )
 }

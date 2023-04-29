@@ -34,6 +34,10 @@ export default function CompleteChore() {
     router.push("/home");
   }
 
+  async function cancel(){
+    router.push("/home");
+  }
+
   return (<>
     <h1 className="margin-top center">Take a picture of your completed chore! </h1>
     <form className="form">
@@ -53,8 +57,8 @@ export default function CompleteChore() {
           )}
         </div>
         <button type="button" onClick={submitChore} className="pure-button pure-button-primary">Submit Chore</button> 
+        <button type="button" onClick={cancel} className="pure-button pure-button-primary">Cancel</button> 
       </fieldset>
     </form>
   </>)
-//   }
 }
