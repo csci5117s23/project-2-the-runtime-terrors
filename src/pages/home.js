@@ -35,7 +35,7 @@ export default function Home() {
 
   // Get user info about if this is a parent or child ???
   if(loading){
-    return <div className="margin">Loading..<Player></Player></div>
+    return <div className="margin"><Player></Player></div>
 
   }
   else{
