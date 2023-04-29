@@ -96,7 +96,7 @@ Run the development server:
 - npm install jwt-decode
 - npm install yup
 
-
+## Installs for extra react packages
 - npm install react-pin-input
 - npm install react-webcam
 
