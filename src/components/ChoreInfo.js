@@ -1,17 +1,29 @@
 import { useState, useEffect } from "react"
-import Link from 'next/link'
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
-import { deleteChore } from "@/modules/Data";
+import { deleteChore, getChild } from "@/modules/Data";
 
 
-export default function ChoreInfo({chore, isParent, chores, name}){ 
+export default function ChoreInfo({chore, isParent, chores}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [done, setDone] = useState(chore.done);
   const router = useRouter();
+  const [assignedTo, setAssignedTo] = useState("");
+  const [loading, setLoading] = useState(true);
 
 
-  // MISSING GET ISPARENT INFO --> get it from [id].js???
+  useEffect(() => {
+    async function getChildName() {
+      if (userId && isParent) {
+        const token = await getToken({ template: "codehooks" });
+        const child = await getChild(token, chore.assignedTo);
+
+        setAssignedTo(child[0].childName);
+      }
+      setLoading(false);
+    }
+    getChildName();
+  }, [isLoaded]);
 
   // Toggle chore completion status
   async function toggleDone(){
@@ -35,21 +47,19 @@ export default function ChoreInfo({chore, isParent, chores, name}){
 
   function getExtraInfo() {
     if(isParent){
-      return(
-        <>
-          <label htmlFor="assignedTo">Assigned To</label>
-          <input type="text" placeholder={name} id="assignedTo" disabled/>
-          <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
-          <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
-        </>
-      )
+      return(<>
+        <label htmlFor="assignedTo">Assigned To</label>
+        <input type="text" placeholder={assignedTo} id="assignedTo" disabled/>
+        <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
+        <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
+      </>)
     }
     else{
       return <button onClick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
     }
   }
   
-  //date string maniputlation
+  // Date string maniputlation
   function refineDate(){
     const newDate = new Date(chore.due);
     let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
@@ -61,43 +71,42 @@ export default function ChoreInfo({chore, isParent, chores, name}){
     return newDate2;
   }
 
-
-  return (
-    <>
-    <div className="chore-content">
-      <div className="chore-content-header">
-        <h1 className="chore-content-title">{chore.title}</h1>
-        <p className="chore-content-subtitle">
+  if(!loading){
+    return (
+      <>
+      <div className="chore-content">
+        <div className="chore-content-header">
+          <h1 className="chore-content-title">{chore.title}</h1>
+          <p className="chore-content-subtitle">
             Created at <span>{chore.createdOn}</span>
-        </p>
-      </div>
+          </p>
+        </div>
 
-      <div className="email-content-body">
-      <form className="form">
-        <fieldset>
-          <h2 className="form-title">Chore details</h2>
-          <label htmlFor="title">Title</label>
-          <input type="text" placeholder={chore.title} id="title" disabled/>
+        <div className="email-content-body">
+        <form className="form">
+          <fieldset>
+            <h2 className="form-title">Chore details</h2>
+            <label htmlFor="title">Title</label>
+            <input type="text" placeholder={chore.title} id="title" disabled/>
+            
+            <label htmlFor="description">Description</label>
+            <textarea placeholder={chore.description} id="description" disabled/>
+
+            <label htmlFor="due">Due</label>
+            <input id="due" type="text" placeholder= {refineDate()} disabled/>
           
-          <label htmlFor="description">Description</label>
-          <textarea placeholder={chore.description} id="description" disabled/>
+            <label htmlFor="priority">Priority Level</label>
+            <input type="text" placeholder={chore.priority} id="priority" disabled/>
 
-          <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder= {refineDate()} disabled/>
-          
+            <label htmlFor="image">Screenshot</label>
+            <img src={chore.imageContent} alt="No screenshot for chore" />
+            {getExtraInfo()}
 
-
-          <label htmlFor="priority">Priority Level</label>
-          <input type="text" placeholder={chore.priority} id="priority" disabled/>
-
-          <label htmlFor="image">Screenshot</label>
-          <img src={chore.imageContent} alt="No screenshot for chore" />
-          {getExtraInfo()}
-
-        </fieldset>
-      </form> 
+          </fieldset>
+        </form> 
+        </div>
       </div>
-    </div>
-    </>
-  )
+      </>
+    )
+  }
 }
