@@ -299,18 +299,3 @@ body {
 	color: #666;
 	margin-bottom: 20px;
 }
-
-.filterForm {
-    border-radius: 7px;
-    display: block;
-    width: auto;
-    height: 10px;
-    overflow: auto;
-    background-color: lightblue;
-    outline: rgb(86, 89, 89) solid 1px;
-    padding: 0.5em;
-    padding-bottom: 2.5em;
-    text-align: center;
-    margin-top: 4em;
-  
-}

@@ -6,7 +6,6 @@ import { deleteChore, getChild } from "@/modules/Data";
 
 export default function ChoreInfo({chore, isParent, chores}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const [done, setDone] = useState(chore.done);
   const router = useRouter();
   const [assignedTo, setAssignedTo] = useState("");
   const [loading, setLoading] = useState(true);
@@ -25,17 +24,14 @@ export default function ChoreInfo({chore, isParent, chores}){
     getChildName();
   }, [isLoaded]);
 
-  // Toggle chore completion status
-  async function toggleDone(){
-    const token = await getToken({ template: "codehooks" });
-    // const newItem = await updateChoreStatus(token, id, !done); ???
-    setDone(!done);
-    router.push("/home");
-  }
-
   // Re-route to edit page
   async function edit(){
     router.push("/edit/"+chore._id);
+  }
+
+  // Re-route to complete page
+  async function complete(){
+    router.push("/complete/"+chore._id);
   }
 
   // Delete chore
@@ -55,7 +51,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       </>)
     }
     else{
-      return <button onClick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
+      return <button onClick={complete} type="button" className="pure-button pure-button-primary">Update or Complete Chore</button>
     }
   }
   
