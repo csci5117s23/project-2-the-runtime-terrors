@@ -18,7 +18,7 @@ export default function Chore({chore, isParent, setSelectedChore}){
         router.push("/complete/"+chore._id);
       }
       else{
-        
+        // ???
       }
     }
   }
@@ -27,20 +27,26 @@ export default function Chore({chore, isParent, setSelectedChore}){
     setSelectedChore(chore); 
   }
 
+  function getDoneStatus(){
+    if(isParent){
+      return  <input className="margin-right" checked={done} type="checkbox" disabled/>
+    }
+    else{
+      return <input className="margin-right" checked={done} type="checkbox" onChange={toggleDone}/>
+    }
+  }
+
   return (
     <>
     <div onClick={viewChore} className="chore-item pure-g">
       <div className="pure-u-3-4">
-        <input checked={done} type="checkbox" onChange={toggleDone}/>
-        <h5 className="chore-name">{chore.title}</h5>
+        {getDoneStatus()}
+        <span className="chore-name">{chore.title}</span>
         <h4 className="chore-due">Due: {chore.due}</h4>
         <p className="chore-priority">{chore.priority} Priority</p>
       </div>
     </div>
-    {/* <div className="chore">
-      <input className="margin" checked={done} type="checkbox" onChange={toggleDone}/>
-      <Link href={"/chore/"+chore._id}><span >{chore.title}</span></Link>
-    </div> */}
+    {/* <Link href={"/chore/"+chore._id}><span >{chore.title}</span></Link> */}
     </>
   )
 }

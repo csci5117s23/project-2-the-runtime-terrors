@@ -7,14 +7,19 @@ import { deleteChore, getChild } from "@/modules/Data";
 export default function ChoreInfo({chore, isParent, chores}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const router = useRouter();
+  const [assignedTo, setAssignedTo] = useState("");
 
-  async function getChildName() {
-    if(isParent) {
-      const token = await getToken({ template: "codehooks" });
-      const child = await getChild(token, chore.assignedTo);
-      return child[0].childName;
+  // Get name of child (who this chore is assigned to)
+  useEffect(() => {
+    async function getChildName() {
+      if (userId && isParent) {
+        const token = await getToken({ template: "codehooks" });
+        const child = await getChild(token, chore.assignedTo);
+        setAssignedTo(child[0].childName);
+      }
     }
-  }
+    getChildName();
+  });
 
   // Re-route to edit page
   async function edit(){
@@ -34,17 +39,11 @@ export default function ChoreInfo({chore, isParent, chores}){
   }
 
   function getExtraInfo() {
+    // setAssignedTo("")
     if(isParent){
-      let childName = "sa";
-      getChildName().then(function(result){
-        // console.log(result);
-        childName = result;
-        console.log(childName)
-      }
-      );
       return(<>
         <label htmlFor="assignedTo">Assigned To</label>
-        <input type="text" placeholder={childName} id="assignedTo" disabled/>
+        <input type="text" placeholder={assignedTo} id="assignedTo" disabled/>
         <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
         <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
       </>)
@@ -96,7 +95,7 @@ export default function ChoreInfo({chore, isParent, chores}){
           <input type="text" placeholder={chore.priority} id="priority" disabled/>
 
           <label htmlFor="image">Screenshot</label>
-          <img src={chore.imageContent} alt="No screenshot for chore" />
+          <div><img className="imgField" src={chore.imageContent} alt="No screenshot for chore" /></div>
           {getExtraInfo()}
 
         </fieldset>
