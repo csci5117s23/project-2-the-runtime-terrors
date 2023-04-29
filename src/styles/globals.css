@@ -314,3 +314,31 @@ body {
     margin-top: 4em;
   
 }
+
+/* player styling */
+
+
+.dino-animation{
+  display: flex;
+  justify-content:left;
+  position: absolute;
+  left: 45%;
+  top: 25%;
+}
+
+#dino-pic{
+  width:10rem;
+
+}
+
+.splash-title{
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  
+}
+
+#splash-img{
+  width:50%;
+  font-family: cave;
+}
