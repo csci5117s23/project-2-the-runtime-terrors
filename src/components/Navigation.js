@@ -48,7 +48,7 @@ export default function Navigation(){
       {/* Bottom navigation */}
       <div className="navbar">
         <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
-        <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
+        <Link href="/charts"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
         {addBtn}
         <Link href="/connect"><img className="icon" src="connect2.png" alt="Connect Account"></img></Link>
       </div>

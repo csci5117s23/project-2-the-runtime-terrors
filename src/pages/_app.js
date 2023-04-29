@@ -20,7 +20,6 @@ export default function MyApp({ Component, pageProps }) {
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css" />
 
-    
     <ClerkProvider {...pageProps}>
 
       {/* Check if on public page or not */}
