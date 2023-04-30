@@ -4,7 +4,7 @@ import  anime from 'animejs';
 
 const ticks = Array.from(Array(8));
 
-export default function Player() {
+export default function Loading() {
   const [playing, setPlaying] = useState(false);
   const animation = useRef(null);
 
@@ -36,8 +36,7 @@ export default function Player() {
       animation.current.add(
         {
           targets: `#splash-img`,
-          translateX: 1600,
-          scale: 2,
+          translatex: 600,
           duration: 350
         },
     

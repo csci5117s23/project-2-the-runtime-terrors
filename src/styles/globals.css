@@ -39,6 +39,10 @@ main {
   margin: 3rem;
 }
 
+#main-login{
+  margin: 0rem;
+}
+
 /* Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
 .navbar, .header {
   background-color: var(--nav-color);
@@ -71,6 +75,10 @@ main {
   float: left;
   text-align: center;
   padding: 1rem;
+}
+
+#welcome{
+  text-align: center;
 }
 
 #userBtn{
@@ -326,19 +334,58 @@ body {
   top: 25%;
 }
 
+
+/* .dino-animation{
+  display: flex;
+  justify-content:left;
+  position: absolute;
+  left: 45%;
+  top: 25%;
+} */
+
+
 #dino-pic{
-  width:10rem;
+  width:6rem;
+  left: 15px;
+
+}
+
+#dino-pic-landing{
+  width:5rem;
+  top: 100px;
+  
 
 }
 
 .splash-title{
   position: absolute;
   top: 25%;
-  left: 35%;
+  left: 10%;
   
 }
 
 #splash-img{
-  width:50%;
-  font-family: cave;
+  width:300px;
+  
+}
+
+#intro-background{
+ background-image: url(/dinoArt2.png);
+ background-size: 150px;
+ background-position: 0em 0em;
+ padding-left: 10px;
+ width: 100%;
+
+}
+
+#intro-title{
+  display:flex;
+  justify-content: space-around;
+  width:370px;
+  height: 300px;
+  align-items: center;
+}
+
+#welcome-to-app {
+  width:20rem;
 }
