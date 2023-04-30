@@ -20,6 +20,7 @@
   --emphasis-color: #8a3c4f;
 }
 
+/* Overall styling */
 body {
   margin: 0;
   background-color: var(--bg-color);
@@ -32,11 +33,27 @@ body {
   margin-top: 2rem;
 }
 
+.margin-top {
+  margin-top: 5rem;
+}
+
+.margin-right {
+  margin-right: 1rem;
+}
+
+.margin-left {
+  margin-left: 1rem;
+}
+
+.center {
+  text-align: center;
+}
+
 main {
   margin: 3rem;
 }
 
-/* Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
+/* Navigation styling - Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
 .navbar, .header {
   background-color: var(--nav-color);
   overflow: hidden;
@@ -64,6 +81,11 @@ main {
   text-decoration: none;
 }
 
+.navbar a:hover {
+  background-color: var(--emphasis-color);
+  color: var(--bg-color);
+}
+
 .header .title {
   float: left;
   text-align: center;
@@ -75,12 +97,7 @@ main {
   padding-top: 0.5rem;
 }
 
-/* Change the color of links on hover */
-.navbar a:hover {
-  background-color: var(--emphasis-color);
-  color: var(--bg-color);
-}
-
+/* Style other links */
 a {
   color: var(--font-color);
   /* text-decoration: none; */
@@ -94,6 +111,7 @@ a {
   color: red;
 }
 
+/* Add chore styling */
 .errorMsg{
   background-color: #ffffff;
   display: inline-block;
@@ -102,16 +120,8 @@ a {
   border-radius:5px;
 }
 
-
-/* Add a color to the active/current link */
-/* .navbar a.active {
-  background-color: #04AA6D;
-  color: white;
-} */
-
-.navbar a:hover {
-  background-color: var(--emphasis-color);
-  color: var(--bg-color);
+textarea {
+  white-space: pre-wrap;
 }
 
 /* Icon styling */
@@ -129,21 +139,6 @@ a {
   /* background-color: var(--emphasis-color) */
 }
 
-/* Add top-margin */
-.margin-top {
-  margin-top: 5rem;
-}
-
-/* Add right-margin */
-.margin-right {
-  margin-right: 1rem;
-}
-
-/* Center text */
-.center {
-  text-align: center;
-}
-
 /* PURE - Taken from: 
   https://purecss.io/layouts/email/, 
   https://github.com/pure-css/pure/blob/master/site/static/layouts/email/styles.css
@@ -158,33 +153,26 @@ a {
 .chore-item:hover{
   background-color: var(--highlight-color);
 }
-.chore-name, .chore-due {
-  margin: 0;
-}
 .chore-name {
   text-transform: uppercase;
   color: var(--font-color);
+  margin: 0;
 }
 .chore-priority {
   font-size: 80%;
   margin: 0.4em 0;
 }
-.chore-item-selected {
-  background: #eee;
-}
 .chore-due{
   color: var(--font2-color);
-}
-.chore-content-header, .chore-content-body, .chore-content-footer {
-  padding: 1em 2em;
-  margin-top: 3rem;
+  margin: 0;
 }
 .chore-content-header {
+  padding: 1em 2em;
+  margin-top: 3rem;
   border-bottom: 1px solid var(--emphasis-color)
 }
 .chore-content-title {
   text-transform: capitalize;
-
   margin: 0.5em 0 0;
 }
 .chore-content-subtitle {
@@ -196,6 +184,7 @@ a {
   color: var(--font2-color);
 }
 
+/* Home page layout styling */
 #layout{
   padding-bottom: 3rem;
   padding-top: 3rem;
@@ -203,15 +192,13 @@ a {
 }
 
 #main{
-  /* border-top: 1px solid var(--emphasis-color); */
   overflow-y: scroll;
   height: 0%;
-  /* overflow: scroll; */
 }
 
 #list {
   height: 100%;
-  overflow: scroll; 
+  overflow-y: scroll; 
   top: 0;
   bottom: 0;
 }
@@ -219,7 +206,7 @@ a {
 #space {
   padding: 1px;
   height: 100%;
-  /* height: 100vh; */
+  overflow-y: scroll; 
   border-right: 1px solid var(--emphasis-color);
 }
 
@@ -229,25 +216,17 @@ a {
     height: 100%;
   }
   #main{
-    /* border-top: 1px solid var(--emphasis-color); */
     overflow-y: scroll;
     height: 100%;
-    /* overflow: scroll; */
   }
   .chore-content-header, .chore-content-body, .chore-content-footer {
     margin-top: 0;
   }
 }
 
-textarea {
-  white-space: pre-wrap;
-}
-
 
 /* Form Styling */
 /* Taken from: https://codepen.io/atakan/pen/nPOZZR */
-
-/*custom font*/
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body {
@@ -292,6 +271,20 @@ body {
   margin-bottom: 1rem;
 }
 
+select.filter {
+  padding: 7px;
+	border: 1px solid var(--emphasis-color);
+	border-radius: 3px;
+  font-family: montserrat;
+  color:  var(--font-color);
+}
+
+button.filter{
+  background-color: var(--emphasis-color);
+  font-family: montserrat;
+  margin-top: 12px;
+}
+
 /* .form div {
   font-family: montserrat;
   border-radius: 3px;
@@ -306,8 +299,6 @@ body {
 }
 
 .form button {
-  margin-top: 15px;
-  margin-bottom: 15px;
   color: white;
   background-color: var(--emphasis-color);
 }
@@ -320,6 +311,6 @@ body {
 }
 .form-subtitle {
 	font-weight: normal;
-	color: #666;
+	color: var(--font2-color);
 	margin-bottom: 20px;
 }

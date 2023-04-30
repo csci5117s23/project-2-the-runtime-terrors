@@ -64,7 +64,6 @@ export async function addChore(authToken, title, description, assignedTo, due, p
         'Content-Type': 'application/json'},
         'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
         })
-    console.log(result.json());
     return await result.json();
 }
 

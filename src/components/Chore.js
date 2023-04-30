@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import Link from 'next/link'
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
+import { completeChore } from "@/modules/Data";
 
 
 export default function Chore({chore, isParent, setSelectedChore}){ 
@@ -11,14 +11,14 @@ export default function Chore({chore, isParent, setSelectedChore}){
 
   // Toggle chore completion status
   async function toggleDone(){
-    if(!isParent){
+    if(!done){
+      router.push("/complete/"+chore._id);
+    }
+    else{
       const token = await getToken({ template: "codehooks" });
-      if(!done){
-        router.push("/complete/"+chore._id);
-      }
-      else{
-        // ???
-      }
+      const data = await completeChore(token, false, null, null, chore._id);
+      setDone(false);
+      setSelectedChore(data)
     }
   }
   
@@ -49,8 +49,6 @@ export default function Chore({chore, isParent, setSelectedChore}){
     return chore.due
   }
 
-  // console.log(newDate.toString())
-  // console.log(newDate.toLocaleTimeString('en-US'))
   return (
     <>
     <div onClick={viewChore} className="chore-item pure-g">
@@ -61,7 +59,6 @@ export default function Chore({chore, isParent, setSelectedChore}){
         <p className="chore-priority">{chore.priority} Priority</p>
       </div>
     </div>
-    {/* <Link href={"/chore/"+chore._id}><span >{chore.title}</span></Link> */}
     </>
   )
 }

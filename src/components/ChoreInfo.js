@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
-import { deleteChore, getChild } from "@/modules/Data";
+import { deleteChore, getChild, completeChore } from "@/modules/Data";
 
 
 export default function ChoreInfo({chore, isParent, chores}){ 
@@ -31,6 +31,14 @@ export default function ChoreInfo({chore, isParent, chores}){
     router.push("/complete/"+chore._id);
   }
 
+  // Mark chore as incomplete
+  async function incomplete(){
+    const token = await getToken({ template: "codehooks" });
+    const data = await completeChore(token, false, null, null, chore._id);
+    console.log(data);
+    chore = data; 
+  }
+
   // Delete chore
   async function remove(){
     const token = await getToken({ template: "codehooks" });
@@ -55,7 +63,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       </>)
     }
     else if(chore.done){
-      return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Incomplete"}</button>
+      return <button onClick={incomplete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Incomplete"}</button>
     }
     else{
       return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Complete"}</button>
@@ -88,8 +96,7 @@ export default function ChoreInfo({chore, isParent, chores}){
         </p>
       </div>
 
-      <div className="email-content-body">
-      <form className="form">
+      <div className="form">
         <fieldset>
           <h2 className="form-title">Chore details</h2>
           <label htmlFor="title">Title</label>
@@ -110,9 +117,8 @@ export default function ChoreInfo({chore, isParent, chores}){
           {getExtraInfo()}
 
         </fieldset>
-      </form> 
+      </div> 
       </div>
-    </div>
     </>
   )
 }

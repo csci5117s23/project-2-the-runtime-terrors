@@ -58,7 +58,7 @@ export default function ChoreList({isParent, name}){
       <div id="layout" className="pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
-            <h2 className="margin">Hello, {name}! Here are your chores</h2>
+            <h2 className="margin-left">Hello, {name}! Here are your chores</h2>
             <Filters filterChores={chores}></Filters>
             {htmlChoreList}
           </div>
