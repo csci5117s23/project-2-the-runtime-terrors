@@ -7,7 +7,6 @@ export default function Filters({filterChores}){
   // const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
-  const [due, setDue] = useState("");
 
   function changePriority(e){
     const priorityFilter = e.target.value;
@@ -23,7 +22,7 @@ export default function Filters({filterChores}){
       newPriority = "priority=Low&";
     }
     setPriority(newPriority);
-    filterChores(status, newPriority, due);
+    filterChores(status, newPriority);
   }
 
   function changeStatus(e){
@@ -37,23 +36,12 @@ export default function Filters({filterChores}){
       newStatus = "done=false&";
     }
     setStatus(newStatus);
-    filterChores(newStatus, priority, due);
-  }
-
-  function changeDue(e){
-    const dueFilter = e.target.value;
-    let newDue = "";
-    if(dueFilter === "earliest"){
-      newDue = "sort=due&";
-    }
-    setDue("sort=due&");
-    filterChores(status, priority, newDue);
+    filterChores(newStatus, priority);
   }
 
   function clear(){
     setStatus("");
     setPriority("");
-    setDue("");
     filterChores("", "", "");
   }
 
@@ -69,11 +57,6 @@ export default function Filters({filterChores}){
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
-      </select>
-      <select defaultValue="default" className="filter" onChange={changeDue} name="due" id="due">
-        <option value="default" disabled>Due</option>
-        <option value="earliest">Earliest</option>
-        <option value="latest">Latest</option>
       </select>
       <button type="button" onClick={clear} className="filter pure-button pure-button-primary">Clear</button>
     </form>

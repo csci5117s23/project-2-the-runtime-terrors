@@ -23,7 +23,7 @@ export default function Chore({chore, isParent, setSelectedChore}){
   }
   
   function viewChore(){
-    // Small screen --> mobile view
+    // Small screen --> mobile view - https://www.w3schools.com/howto/howto_js_media_queries.asp
     if(!window.matchMedia("screen and (min-width: 48em)").matches){
       router.push("chore/"+chore._id)
     }

@@ -16,18 +16,18 @@ export default function ChoreList({isParent, name}){
   }, [isLoaded]);
 
   // Get chores for this user
-  async function chores(status, priority, due) {
+  async function chores(status, priority) {
     if (userId) {
       const token = await getToken({ template: "codehooks" });
       let chores;
 
       // Get chores assigned by this parent
       if(isParent){
-        chores = await getFilteredChores(token, status, priority, due, "assignedBy="+userId);
+        chores = await getFilteredChores(token, status, priority, "assignedBy="+userId);
       }
       // Get chores assigned to this child
       else{
-        chores = await getFilteredChores(token, status, priority, due, "assignedTo="+userId);
+        chores = await getFilteredChores(token, status, priority, "assignedTo="+userId);
       }
       setChoreList(chores)
 

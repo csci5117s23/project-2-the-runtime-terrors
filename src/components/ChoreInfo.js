@@ -38,17 +38,14 @@ export default function ChoreInfo({chore, isParent, chores}){
 
     // Mobile view --> go back to home page
     if(!chores){
-      console.log("hereeeeeeeee")
       router.push("/home");
     }
     else{
-      console.log("oooooo")
       chores();
     }
   }
 
   function getExtraInfo() {
-    // setAssignedTo("")
     if(isParent){
       return(<>
         <label htmlFor="assignedTo">Assigned To</label>
