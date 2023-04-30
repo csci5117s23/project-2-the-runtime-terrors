@@ -335,13 +335,11 @@ body {
 }
 
 
-/* .dino-animation{
-  display: flex;
-  justify-content:left;
+.dino-animation{
   position: absolute;
-  left: 45%;
-  top: 25%;
-} */
+  left: 34%;
+  top: 15%;
+}
 
 
 #dino-pic{
@@ -369,7 +367,7 @@ body {
   
 }
 
-#intro-background{
+.intro-background{
  background-image: url(/dinoArt2.png);
  background-size: 150px;
  background-position: 0em 0em;
