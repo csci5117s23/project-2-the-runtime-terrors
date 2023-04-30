@@ -35,7 +35,16 @@ export default function ChoreInfo({chore, isParent, chores}){
   async function remove(){
     const token = await getToken({ template: "codehooks" });
     await deleteChore(token, chore._id);
-    chores();
+
+    // Mobile view --> go back to home page
+    if(!chores){
+      console.log("hereeeeeeeee")
+      router.push("/home");
+    }
+    else{
+      console.log("oooooo")
+      chores();
+    }
   }
 
   function getExtraInfo() {
@@ -59,7 +68,11 @@ export default function ChoreInfo({chore, isParent, chores}){
   // Date string maniputlation
   function refineDate(){
     const newDate = new Date(chore.due);
-    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
+    console.log(newDate.toString())
+    console.log(newDate.toLocaleTimeString('en-US'))
+
+
+    let newDate2 = newDate.getMonth()+1 + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
     let hours = (newDate.getHours()>=12? newDate.getHours()-12 : newDate.getHours());
     let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
     // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
@@ -74,7 +87,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       <div className="chore-content-header">
         <h1 className="chore-content-title">{chore.title}</h1>
         <p className="chore-content-subtitle">
-          Created at <span>{chore.createdOn}</span>
+          Created on <span>{chore.createdOn}</span>
         </p>
       </div>
 
@@ -89,7 +102,8 @@ export default function ChoreInfo({chore, isParent, chores}){
           <textarea placeholder={chore.description} id="description" disabled/>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder= {refineDate()} disabled/>
+          <input id="due" type="text" placeholder={refineDate()} disabled/>
+          {/* {chore.due.substring(0,chore.due.length-1)} */}
         
           <label htmlFor="priority">Priority Level</label>
           <input type="text" placeholder={chore.priority} id="priority" disabled/>

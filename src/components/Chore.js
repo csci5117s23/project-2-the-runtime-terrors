@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import Link from 'next/link'
-import { updateChoreStatus } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
 
@@ -24,6 +23,10 @@ export default function Chore({chore, isParent, setSelectedChore}){
   }
   
   function viewChore(){
+    // Small screen --> mobile view
+    if(!window.matchMedia("screen and (min-width: 48em)").matches){
+      router.push("chore/"+chore._id)
+    }
     setSelectedChore(chore); 
   }
 
@@ -36,13 +39,25 @@ export default function Chore({chore, isParent, setSelectedChore}){
     }
   }
 
+  function getDate(){
+    // console.log("okok: " + chore.due)
+    let newDate = new Date(chore.due);
+    // console.log("here: " + newDate.toString());
+    // console.log("new: " + newDate.toLocaleString());
+    // console.log("time: " + newDate.toLocaleDateString());
+
+    return chore.due
+  }
+
+  // console.log(newDate.toString())
+  // console.log(newDate.toLocaleTimeString('en-US'))
   return (
     <>
     <div onClick={viewChore} className="chore-item pure-g">
       <div className="pure-u-3-4">
         {getDoneStatus()}
         <span className="chore-name">{chore.title}</span>
-        <h4 className="chore-due">Due: {chore.due}</h4>
+        <h4 className="chore-due">Due: {getDate()}</h4>
         <p className="chore-priority">{chore.priority} Priority</p>
       </div>
     </div>
