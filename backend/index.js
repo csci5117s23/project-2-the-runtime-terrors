@@ -94,6 +94,7 @@ async function removePin(req, res) {
 }
 
 app.get('/pins', async (req, res, next) => {
+  console.log("pog");
   if (req.method === "POST") {
     req.body.childId = req.user_token.sub
 
