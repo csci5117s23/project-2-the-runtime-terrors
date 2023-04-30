@@ -59,7 +59,7 @@ const userAuth = async (req, res, next) => {
 app.use(userAuth)
 
 app.use('/chores', (req, res, next) => {
-  if (req.method === "POST" || req.method === "PATCH") {
+  if (req.method === "POST") {
     req.body.assignedBy = req.user_token.sub
   }
   next();
@@ -98,12 +98,12 @@ app.use('/chores/:id', async (req, res, next) => {
   // Check access rights for the document being read/updated/replaced/deleted
   const conn = await Datastore.open();
   try {
-      const doc = await conn.getOne('chores', id)
-      if (doc.assignedBy != userId) { // doc.userId ???
-          // Authenticated user doesn't own this document
-          res.status(403).end(); // quit this request
-          return
-      }
+    const doc = await conn.getOne('chores', id)
+    if (doc.assignedBy != userId && doc.assignedTo != userId) { // doc.userId ???
+      // Authenticated user doesn't own this document
+      res.status(403).end(); // quit this request
+      return
+    }
   } catch (e) {
       console.log(e);
       res.status(404).end(e);

@@ -16,7 +16,10 @@ export default function Navigation(){
       if (userId) {
         const token = await getToken({ template: "codehooks" });
         let user = await getUser(token); 
-        if(user[0].isParent){
+        if(user.length == 0){
+          console.log("okokok")
+        }
+        else if(user[0].isParent){
           setIsParent(true);
           // Set theme
           document.documentElement.setAttribute('data-theme', 'parent');
@@ -48,7 +51,7 @@ export default function Navigation(){
       {/* Bottom navigation */}
       <div className="navbar">
         <Link href="/home"><img className="icon" src="home.png" alt="Home"></img></Link>
-        <Link href="/analytics"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
+        <Link href="/charts"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
         {addBtn}
         <Link href="/connect"><img className="icon" src="connect2.png" alt="Connect Account"></img></Link>
       </div>

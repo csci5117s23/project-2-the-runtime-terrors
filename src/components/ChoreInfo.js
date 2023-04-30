@@ -1,28 +1,34 @@
 import { useState, useEffect } from "react"
-import Link from 'next/link'
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
-import { deleteChore } from "@/modules/Data";
+import { deleteChore, getChild } from "@/modules/Data";
 
 
 export default function ChoreInfo({chore, isParent, chores}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const [done, setDone] = useState(chore.done);
   const router = useRouter();
+  const [assignedTo, setAssignedTo] = useState("");
 
-  // MISSING GET ISPARENT INFO --> get it from [id].js???
-
-  // Toggle chore completion status
-  async function toggleDone(){
-    const token = await getToken({ template: "codehooks" });
-    // const newItem = await updateChoreStatus(token, id, !done); ???
-    setDone(!done);
-    router.push("/home");
-  }
+  // Get name of child (who this chore is assigned to)
+  useEffect(() => {
+    async function getChildName() {
+      if (userId && isParent) {
+        const token = await getToken({ template: "codehooks" });
+        const child = await getChild(token, chore.assignedTo);
+        setAssignedTo(child[0].childName);
+      }
+    }
+    getChildName();
+  });
 
   // Re-route to edit page
   async function edit(){
     router.push("/edit/"+chore._id);
+  }
+
+  // Re-route to complete page
+  async function complete(){
+    router.push("/complete/"+chore._id);
   }
 
   // Delete chore
@@ -33,19 +39,33 @@ export default function ChoreInfo({chore, isParent, chores}){
   }
 
   function getExtraInfo() {
+    // setAssignedTo("")
     if(isParent){
-      return(
-        <>
-          <label htmlFor="assignedTo">Assigned To</label>
-          <input type="text" placeholder={chore.assignedTo} id="assignedTo" disabled/>
-          <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
-          <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
-        </>
-      )
+      return(<>
+        <label htmlFor="assignedTo">Assigned To</label>
+        <input type="text" placeholder={assignedTo} id="assignedTo" disabled/>
+        <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
+        <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
+      </>)
+    }
+    else if(chore.done){
+      return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Incomplete"}</button>
     }
     else{
-      return <button onClick={toggleDone} type="button" className="pure-button pure-button-primary">Complete Chore</button>
+      return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Complete"}</button>
     }
+  }
+  
+  // Date string maniputlation
+  function refineDate(){
+    const newDate = new Date(chore.due);
+    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
+    let hours = (newDate.getHours()>=12? newDate.getHours()-12 : newDate.getHours());
+    let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
+    // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+    let ampm = (newDate.getHours()>=12?'PM':'AM');
+    newDate2 = newDate2 + hours+ ":" + minutes+ " " + ampm;
+    return newDate2;
   }
 
   return (
@@ -54,7 +74,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       <div className="chore-content-header">
         <h1 className="chore-content-title">{chore.title}</h1>
         <p className="chore-content-subtitle">
-            Created at <span>{chore.createdOn}</span>
+          Created at <span>{chore.createdOn}</span>
         </p>
       </div>
 
@@ -69,15 +89,13 @@ export default function ChoreInfo({chore, isParent, chores}){
           <textarea placeholder={chore.description} id="description" disabled/>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder={chore.due} disabled/>
-          {/* defaultValue={chore.due} */}
-
-
+          <input id="due" type="text" placeholder= {refineDate()} disabled/>
+        
           <label htmlFor="priority">Priority Level</label>
           <input type="text" placeholder={chore.priority} id="priority" disabled/>
 
-          <label htmlFor="priority">Screenshot</label>
-          <img src={chore.imageContent} alt="No screenshot for chore" />
+          <label htmlFor="image">Screenshot</label>
+          <div><img className="imgField" src={chore.imageContent} alt="No screenshot for chore" /></div>
           {getExtraInfo()}
 
         </fieldset>

@@ -4,16 +4,12 @@ import { useAuth } from "@clerk/nextjs";
 import Chore from './Chore';
 import Filters from './Filters'
 import ChoreInfo from './ChoreInfo';
-import { useRouter } from "next/router";
-
 
 export default function ChoreList({isParent, name}){ 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const [choreList, setChoreList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedChore, setSelectedChore] = useState("");
-  const [filters, setFilters] = useState("");
-  const router = useRouter();
     
   useEffect(() => {
     chores("", "", "");
@@ -42,27 +38,6 @@ export default function ChoreList({isParent, name}){
       setLoading(false);
     }
   }
- 
-  //function to set filter value
-  // async function filter(e) {
-    
-  //   e.preventDefault();
-
-  //   // Get form data
-  //   const filterType = e.target.filter.value;
-
-  //   if(filterType == "Done"){
-  //     chores(filterType);
-  //   }
-    
-    
-  //   setFilters(filterType)
-
-  //   // window.location.reload(false);
-  //   // chores()
-  //   // e.stopPropagation();
-  //   console.log(filters)
-  // }
 
   if(loading){
     return <div className="margin">Loading...</div>
@@ -89,7 +64,7 @@ export default function ChoreList({isParent, name}){
           </div>
         </div>
         <div id="main" className="pure-u-1 pure-u-md-1-2">
-          <ChoreInfo chore={selectedChore} isParent={isParent} chores={chores}></ChoreInfo>
+          <ChoreInfo chore={selectedChore} isParent={isParent} chores={chores} name ={name}></ChoreInfo>
         </div>
       </div>
     </>

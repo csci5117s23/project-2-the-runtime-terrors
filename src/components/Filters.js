@@ -50,6 +50,13 @@ export default function Filters({filterChores}){
     filterChores(status, priority, newDue);
   }
 
+  function clear(){
+    setStatus("");
+    setPriority("");
+    setDue("");
+    filterChores("", "", "");
+  }
+
   return <>
     <form>
       <select defaultValue="default" className="filter" onChange={changeStatus} name="status" id="status">
@@ -68,6 +75,7 @@ export default function Filters({filterChores}){
         <option value="earliest">Earliest</option>
         <option value="latest">Latest</option>
       </select>
+      <button type="button" onClick={clear} className="filter pure-button pure-button-primary">Clear</button>
     </form>
   </>
 }

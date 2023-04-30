@@ -18,8 +18,6 @@ export async function getChoresChild(authToken, done, userId) {
     return await result.json();
 }
 
-
-
 // Get a specific chore by id
 export async function getChore(authToken, id) {
     const result = await fetch(backend_base+"/chores/"+id,{
@@ -42,6 +40,16 @@ export async function getChoresParentAll(authToken, userId) {
 // Get all chores assigned to this child
 export async function getChoresChildAll(authToken, userId) {
     const result = await fetch(backend_base+"/chores?sort=createdOn&assignedTo="+userId,{
+        'method':'GET',
+        'headers': {'Authorization': 'Bearer ' + authToken}
+    })
+    return await result.json();
+}
+
+// Filter chores
+export async function getFilteredChores(authToken, status, priority, due, userInfo) {
+    console.log("/chores?"+status+priority+due+userInfo);
+    const result = await fetch(backend_base+"/chores?"+status+priority+due+userInfo,{
         'method':'GET',
         'headers': {'Authorization': 'Bearer ' + authToken}
     })
@@ -71,23 +79,24 @@ export async function deleteChore(authToken, id) {
 }
 
 // Update Chore
-export async function updateChore(authToken, title, description, assignedTo, due, priority, imageContent, id) {
+export async function updateChore(authToken, title, description, assignedTo, due, priority, id) {
     const result = await fetch(backend_base+"/chores/"+id,{
         'method':'PATCH',
         'headers': {'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'},
-        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority, 'imageContent':imageContent})
+        'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
         })
     return await result.json();
 }
 
-// Filter chores
-export async function getFilteredChores(authToken, status, priority, due, userInfo) {
-    console.log("/chores?"+status+priority+due+userInfo);
-    const result = await fetch(backend_base+"/chores?"+status+priority+due+userInfo,{
-        'method':'GET',
-        'headers': {'Authorization': 'Bearer ' + authToken}
-    })
+// Complete Chore ???
+export async function completeChore(authToken, status, imageContent, date, id) {
+    const result = await fetch(backend_base+"/chores/"+id,{
+        'method':'PATCH',
+        'headers': {'Authorization': 'Bearer ' + authToken,
+        'Content-Type': 'application/json'},
+        'body': JSON.stringify({'done': status, 'imageContent': imageContent, 'doneOn': date})
+        })
     return await result.json();
 }
 
