@@ -3,7 +3,7 @@
 * Auto generated Codehooks (c) example
 * Install: npm i codehooks-js codehooks-crudlify
 */
-import {app, Datastore} from 'codehooks-js'
+import {app, Datastore, schedule} from 'codehooks-js'
 import {crudlify} from 'codehooks-crudlify'
 import { date, object, string, boolean, number } from 'yup';
 import jwtDecode from 'jwt-decode';
@@ -85,9 +85,23 @@ app.use('/users', (req, res, next) => {
   next();
 })
 
-app.use('/pins', (req, res, next) => {
+async function removePin(req, res) {
+  const conn = await Datastore.open();
+  const data = await conn.removeOne('pin', req.params['pin']);
+
+  console.log(data);
+  console.log("Removed");
+}
+
+app.get('/pins', async (req, res, next) => {
   if (req.method === "POST") {
     req.body.childId = req.user_token.sub
+
+    console.log("in pins");
+
+    const when = new Date(Date.now() + 500)
+    await schedule.runAt(when, removePin(req, res), "Worker")
+
   } 
   next();
 })
