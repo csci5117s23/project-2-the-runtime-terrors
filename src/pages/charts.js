@@ -71,26 +71,38 @@ export default function Analytics() {
   }, [isLoaded]);
 
   if(loading){
-    return <div className="margin">Loading...</div>
+    return <div class="margin">Loading...</div>
   } 
   else {
     if (isParent) {
       return (<>
+      <div className="container">
+        <div className="analytics">
+          <div className="analytics-card">
         <h1>Analytics</h1>
-        <p>Tasks Completed by Child(s): {numDone}</p>
+        <p> Tasks Completed by Child(s): {numDone}</p>
         <p>Total Tasks Assigned to Child(s): {numAssigned}</p>
         <p>Deadlines Missed by Child(s): {deadlinesMissed}</p>
         <p>Deadlines Met by Child(s): {deadlinesMet}</p>
         <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
+        </div>
+        </div>
+      </div>
       </>)
     } else {
       return (<>
-        <h1>Analytics</h1>
-        <p>Tasks Completed: {numDone}</p>
-        <p>Tasks Assigned: {numAssigned}</p>
-        <p>Deadlines Missed: {deadlinesMissed}</p>
-        <p>Deadlines Met: {deadlinesMet}</p>
-        <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
+       <div className="container">
+          <div className="analytics">
+            <div className="analytics-card">
+              <h1>Analytics</h1>
+              <p>Tasks Completed: {numDone}</p>
+              <p>Tasks Assigned: {numAssigned}</p>
+              <p>Deadlines Missed: {deadlinesMissed}</p>
+              <p>Deadlines Met: {deadlinesMet}</p>
+              <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
+              </div>
+        </div>
+      </div>
       </>)
     }
   }

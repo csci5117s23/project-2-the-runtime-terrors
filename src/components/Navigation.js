@@ -48,7 +48,7 @@ export default function Navigation(){
     return <>
       {/* Header */}
       <div className="header">
-        <div className="title">Chorosaurus Rex</div>
+        <div className="title">Chore-A-Saurus</div>
         <div id="userBtn"><UserButton/></div>
       </div>
 

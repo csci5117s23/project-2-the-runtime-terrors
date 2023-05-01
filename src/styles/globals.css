@@ -4,7 +4,7 @@
 */
 :root {
   --font-color: #3a1055;
-  --nav-color: #6b9f7a;;
+  --nav-color: #6b9f7a;
   --bg-color: #d7edd8;
   --font2-color: #527d5e;
   --highlight-color: #c0d3c1;
@@ -15,6 +15,7 @@
   --background-picture-form: url('../../public/triceratops.jpg');
   --background-color-chore: #d7edd8;
   --background-size-form: none;
+  --analytic-color: #9ae3af;
 
 
 }
@@ -37,6 +38,7 @@
   --background-picture-form: none; 
   --background-color-chore: #722F37;
   --background-size-form: 480px;
+  --analytic-color: #DAABB2;
 }
 
 
@@ -369,17 +371,31 @@ button.filter{
   font-family: var(--font-family-body);
 }
 
-/* .filterForm {
+.analytics {
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  /* display: block; */
+  margin-top:20px;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+}
+
+.analytics-card {
     border-radius: 7px;
     display: block;
     width: auto;
-    height: 10px;
+    height: auto;
     overflow: auto;
-    background-color: lightblue;
+    background-color: var(--analytic-color);
     outline: rgb(86, 89, 89) solid 1px;
     padding: 0.5em;
     padding-bottom: 2.5em;
     text-align: center;
     margin-top: 4em;
   
-} */
+}
