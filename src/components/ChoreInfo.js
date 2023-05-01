@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
 import { deleteChore } from "@/modules/Data";
+import { notifyChore } from "@/modules/Push";
 
 
 export default function ChoreInfo({chore, isParent, chores}){ 
@@ -32,6 +33,11 @@ export default function ChoreInfo({chore, isParent, chores}){
     chores();
   }
 
+  async function notify() {
+    const token = await getToken({ template: "codehooks" });
+    await notifyChore(token, chore);
+  }
+
   function getExtraInfo() {
     if(isParent){
       return(
@@ -40,6 +46,7 @@ export default function ChoreInfo({chore, isParent, chores}){
           <input type="text" placeholder={chore.assignedTo} id="assignedTo" disabled/>
           <button onClick={edit} type="button" className="pure-button pure-button-primary">Edit</button>
           <button onClick={remove} type="button" className="pure-button pure-button-primary">Delete</button>
+          <button onClick={notify} type="button" className="pure-button pure-button-primary">Notify</button>
         </>
       )
     }

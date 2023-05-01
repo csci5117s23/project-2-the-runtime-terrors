@@ -37,4 +37,17 @@ export async function updateSubscriptionOnServer(authToken, subscriptionPackage)
     }
     return data;
 }
+
+export async function notifyChore(authToken, chore) {
+    chore.notified = false;
+    const result = await fetch(backend_base+'/chores/' + chore._id,{
+        'method':'PATCH',
+        'headers': {'Authorization': 'Bearer ' + authToken,
+        'Content-Type': 'application/json'},
+        'body': JSON.stringify(chore)
+    });
+
+    const data = await result.json();
+    return data;
+}
   
