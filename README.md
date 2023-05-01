@@ -71,6 +71,79 @@ along with a very brief caption:**
 
 ![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
 
+## *Home*
+The parent and child home pages include a list of chores as well as being able to click a chore to see further details. There are filters in place as well to filter the chores by status and priority.
+
+Parent
+![](screenshots/parent_home.png)
+
+Child
+![](screenshots/child_home.png)
+
+
+## *Chore Information*
+The parent and child chore pages shows information on each individual chore. There are options to edit, delete, notify, and mark as complete on either side respectively.
+
+Parent
+![](screenshots/parent_chore.png)
+
+Child
+![](screenshots/child_chore.png)
+
+
+## *Add Chore*
+This page allows only the parent to add a new chore to any of their connected children.
+
+Parent
+![](screenshots/parent_add_chore.png)
+
+
+## *Edit Chore*
+This page allows only the parent to edit chores tied to any of their connected children.
+
+Parent
+![](screenshots/parent_edit_chore.png)
+
+
+## *Completed Chore*
+These pages allow a child to submit a completed chore alongside a picture of it.
+
+Child - Default page
+![](screenshots/child_completed_chore.png)
+
+Child - Completed chore page after submission
+![](screenshots/child_completed_chore_homepage.png)
+
+
+## *Connect Pin*
+These pages allow a parent to input a child's generated pin to connect their accounts together.
+
+Parent - Default Screen
+![](screenshots/parent_pin.png)
+
+Parent - After connecting child
+![](screenshots/parent_pin_connect.png)
+
+Child
+![](screenshots/child_pin.png)
+
+
+## *Analytics*
+These pages allow for metrics to be tracked of chores completed. A pie chart visualization has also been incorporated.
+
+Parent
+![](screenshots/parent_analytics.png)
+
+Child
+![](screenshots/child_analytics.png)
+
+
+## *Signin*
+The clerk default signin page.
+
+
+Clerk
+![](screenshots/signin.png)
 
 
 ## External Dependencies
