@@ -22,6 +22,7 @@ export default function MyApp({ Component, pageProps }) {
     <link href="https://fonts.cdnfonts.com/css/caveman" rel="stylesheet" />
     <link href="https://fonts.cdnfonts.com/css/vtks-wine-label-two" rel="stylesheet"/>
     <link href="https://fonts.cdnfonts.com/css/little-dinosaur" rel="stylesheet"></link>
+    <link href="https://fonts.cdnfonts.com/css/elegant-2" rel="stylesheet"></link>
                 
     
 

@@ -13,23 +13,30 @@ d7e9e0*/
   /* ade1e5; */
   /* 73ab84; */
   --emphasis-color: #82667F;
+  --font-family: 'Caveman', sans-serif;
+  --font-family-body: 'Little Dinosaur', sans-serif;
+  --background-picture: url('../../public/dinosaur.png');
+  --background-picture-form: url('../../public/triceratops.jpg');
+  --background-color-chore: #d7edd8;
+  --background-size-form: none;
+
+
 }
 
 [data-theme="parent"] {
-  --font-color: white;
+  --font-color: black;
   --nav-color: #602234;
   --bg-color: #e3ded0;
   --font2-color: #948e7c;
   --emphasis-color: #773344;
-  /* --font-family: 'Vtks Wine Label', sans-serif; */
-  /* 436845 */
+  --font-family: 'Vtks Wine Label', sans-serif;
+  --font-family-body: 'ELEGANT', sans-serif;
+  --background-picture: none;
+  /* --background-picture-form: url('../../public/wine-pouring.jpg'); */
+  --background-picture-form: none; 
+  --background-color-chore: #722F37;
+  --background-size-form: 480px;
 }
-
-/* [data-theme="parent"] .header .title {
-  float: left;
-  text-align: center;
-  padding: 1rem;
-  /* 436845 */
 
 
 body {
@@ -42,7 +49,7 @@ body {
 .margin {
   margin: 1.5rem;
   margin-top: 2rem;
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 main {
@@ -84,7 +91,7 @@ main {
   float: left;
   text-align: center;
   padding: 1rem;
-  font-family: 'Caveman', sans-serif;
+  font-family: var(--font-family);
   
                 
 }
@@ -168,12 +175,14 @@ a {
   padding: 0.9em 1em;
   border-bottom: 1px solid var(--emphasis-color);
   border-left: 6px solid transparent;
-  background-image: url('../../public/dinosaur.png');
-  background-color: #d7edd8;
+  background-image: var(--background-picture);
+  background-color: var(--background-color-chore);
   background-size: 150px;
+  /* background-size: 100px; */
   background-repeat: no-repeat;
   background-position: right;
   background-blend-mode: soft-light;
+  mix-blend-mode: multiply;
   
 }
 .chore-name, .chore-due {
@@ -252,7 +261,7 @@ textarea {
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body {
-	font-family: 'Little Dinosaur', sans-serif;
+	font-family: var(--font-family-body);
 }
 
 .form {
@@ -272,8 +281,9 @@ body {
 	box-sizing: border-box;
 	width: 80%;
 	margin: 0 10%;
-  background-image: url('../../public/triceratops.jpg');
-  background-color: #d7edd8;
+  background-image: var(--background-picture-form);
+  background-color: var(--bg-color);
+  background-size: var(--background-size-form);
   background-repeat: no-repeat;
   background-blend-mode: soft-light;
   /* opacity: 0.5;*/
@@ -286,7 +296,7 @@ body {
 	margin-bottom: 1rem;
 	width: 100%;
 	box-sizing: border-box;
-	font-family: 'Little Dinosaur', sans-serif;
+	font-family: var(--font-family-body);
 	color:  var(--font-color)
 }
 
@@ -294,11 +304,11 @@ body {
   width: fit-content;
   margin-left: 1rem;
   margin-bottom: 1rem;
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .form div {
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
   /* font-size: 13px; */
   border-radius: 3px;
   padding: 15px;
@@ -310,7 +320,7 @@ body {
   margin-bottom: 1rem;
 	/* width: 100%; */
 	font-family: montserrat;
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .form button {
@@ -318,7 +328,7 @@ body {
   color: white;
   margin-left: 10px;
   background-color: var(--emphasis-color);
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .form-title {
@@ -326,13 +336,13 @@ body {
 	text-transform: uppercase;
   color: var(--emphasis-color);
 	margin-bottom: 1.5rem;
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
 }
 .form-subtitle {
 	font-weight: normal;
 	color: #666;
 	margin-bottom: 20px;
-  font-family: 'Little Dinosaur', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 .filterForm {
