@@ -111,6 +111,8 @@ Run the development server:
 
 ## Installs anime
 - npm install animejs
+*** Note: This install might need to be run with flag 
+--legacy-peer-deps if standard install doesn't work
 
 
 ## Backend commands
