@@ -35,9 +35,8 @@ export default function ChoreInfo({chore, isParent, chores}){
   // Mark chore as incomplete
   async function incomplete(){
     const token = await getToken({ template: "codehooks" });
-    const data = await completeChore(token, false, null, null, chore._id);
-    console.log("Ohm y: " +data);
-    // chore = data; 
+    await completeChore(token, false, null, null, chore._id);
+
     // Mobile view --> go back to home page
     if(!chores){
       router.push("/home");
@@ -65,9 +64,6 @@ export default function ChoreInfo({chore, isParent, chores}){
     const token = await getToken({ template: "codehooks" });
     await notifyChore(token, chore);
   }
-
-
-
 
   function getExtraInfo() {
     if(isParent){
