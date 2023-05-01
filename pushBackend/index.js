@@ -51,7 +51,7 @@ async function queryNotificationEndpoints() {
             webpush.sendNotification(subJson, JSON.stringify({
                 notificationMessage: chore.description,
                 notificationTitle: chore.title,
-                notificationLink: "http://localhost:4000/home"
+                notificationLink: "https://main--incredible-tulumba-63afdc.netlify.app/home"
             }))
             .then((success) => handleSuccess(success, index, chore))
             .catch((error) => handleError(error, index));
