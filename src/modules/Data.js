@@ -165,7 +165,7 @@ export async function addPin(authToken, pin, childName){
 
 // Delete a pin data 
 export async function deletePin(authToken, id) {
-    const result = await fetch(backend_base+"/pins/"+id,{
+    const result = await fetch(backend_base+"/pins/?pin="+pin,{
         'method':'DELETE',
         'headers': {'Authorization': 'Bearer ' + authToken}
         // 'headers': {'x-apikey': API_KEY} ???
