@@ -109,5 +109,5 @@ export default function BuildChore({isEditing, chore}) {
         </fieldset>
       </form>
     )
-  }
+    }
 }
