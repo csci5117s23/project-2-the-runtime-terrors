@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
-import { deleteChore, getChild } from "@/modules/Data";
+import { deleteChore, getChild, completeChore } from "@/modules/Data";
 import { notifyChore } from "@/modules/Push";
 
 
@@ -32,11 +32,26 @@ export default function ChoreInfo({chore, isParent, chores}){
     router.push("/complete/"+chore._id);
   }
 
+  // Mark chore as incomplete
+  async function incomplete(){
+    const token = await getToken({ template: "codehooks" });
+    const data = await completeChore(token, false, null, null, chore._id);
+    console.log(data);
+    chore = data; 
+  }
+
   // Delete chore
   async function remove(){
     const token = await getToken({ template: "codehooks" });
     await deleteChore(token, chore._id);
-    chores();
+
+    // Mobile view --> go back to home page
+    if(!chores){
+      router.push("/home");
+    }
+    else{
+      chores("", "");
+    }
   }
 
   async function notify() {
@@ -44,8 +59,10 @@ export default function ChoreInfo({chore, isParent, chores}){
     await notifyChore(token, chore);
   }
 
+
+
+
   function getExtraInfo() {
-    // setAssignedTo("")
     if(isParent){
       return(<>
         <label htmlFor="assignedTo">Assigned To</label>
@@ -56,7 +73,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       </>)
     }
     else if(chore.done){
-      return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Incomplete"}</button>
+      return <button onClick={incomplete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Incomplete"}</button>
     }
     else{
       return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Complete"}</button>
@@ -66,7 +83,11 @@ export default function ChoreInfo({chore, isParent, chores}){
   // Date string maniputlation
   function refineDate(){
     const newDate = new Date(chore.due);
-    let newDate2 = newDate.getMonth() + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
+    console.log(newDate.toString())
+    console.log(newDate.toLocaleTimeString('en-US'))
+
+
+    let newDate2 = newDate.getMonth()+1 + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
     let hours = (newDate.getHours()>=12? newDate.getHours()-12 : newDate.getHours());
     let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
     // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
@@ -81,12 +102,11 @@ export default function ChoreInfo({chore, isParent, chores}){
       <div className="chore-content-header">
         <h1 className="chore-content-title">{chore.title}</h1>
         <p className="chore-content-subtitle">
-          Created at <span>{chore.createdOn}</span>
+          Created on <span>{chore.createdOn}</span>
         </p>
       </div>
 
-      <div className="email-content-body">
-      <form className="form">
+      <div className="form">
         <fieldset>
           <h2 className="form-title">Chore details</h2>
           <label htmlFor="title">Title</label>
@@ -96,7 +116,8 @@ export default function ChoreInfo({chore, isParent, chores}){
           <textarea placeholder={chore.description} id="description" disabled/>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder= {refineDate()} disabled/>
+          <input id="due" type="text" placeholder={refineDate()} disabled/>
+          {/* {chore.due.substring(0,chore.due.length-1)} */}
         
           <label htmlFor="priority">Priority Level</label>
           <input type="text" placeholder={chore.priority} id="priority" disabled/>
@@ -106,9 +127,8 @@ export default function ChoreInfo({chore, isParent, chores}){
           {getExtraInfo()}
 
         </fieldset>
-      </form> 
+      </div> 
       </div>
-    </div>
     </>
   )
 }

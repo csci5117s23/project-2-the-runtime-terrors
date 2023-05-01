@@ -5,7 +5,7 @@ CSCI 5117, Spring 2022, [assignment description](https://canvas.umn.edu/courses/
 ## App Info:
 
 * Team Name: The Runtime Terrors
-* App Name: TBD
+* App Name: Chore-a-saurus
 * App Link: https://main--incredible-tulumba-63afdc.netlify.app/
 
 ### Students
@@ -22,15 +22,18 @@ CSCI 5117, Spring 2022, [assignment description](https://canvas.umn.edu/courses/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
-* ...
+* Linking child and parent accounts through pin creation and storage
+* 
+* 
+* 
 
 Which (if any) device integration(s) does your app support?
 
-* ...
+* Camera
 
 Which (if any) progressive web app feature(s) does your app support?
 
-* ...
+* Push notifications
 
 
 
@@ -105,6 +108,9 @@ Run the development server:
 
 ## Installs for auth/clerk
 - npm install @clerk/nextjs
+
+## Installs anime
+- npm install animejs
 
 
 ## Backend commands

@@ -12,22 +12,22 @@ export default function ChoreList({isParent, name}){
   const [selectedChore, setSelectedChore] = useState("");
     
   useEffect(() => {
-    chores("", "", "");
+    chores("", "");
   }, [isLoaded]);
 
   // Get chores for this user
-  async function chores(status, priority, due) {
+  async function chores(status, priority) {
     if (userId) {
       const token = await getToken({ template: "codehooks" });
       let chores;
 
       // Get chores assigned by this parent
       if(isParent){
-        chores = await getFilteredChores(token, status, priority, due, "assignedBy="+userId);
+        chores = await getFilteredChores(token, status, priority, "assignedBy="+userId);
       }
       // Get chores assigned to this child
       else{
-        chores = await getFilteredChores(token, status, priority, due, "assignedTo="+userId);
+        chores = await getFilteredChores(token, status, priority, "assignedTo="+userId);
       }
       setChoreList(chores)
 
@@ -58,7 +58,7 @@ export default function ChoreList({isParent, name}){
       <div id="layout" className="pure-g">
         <div id="list" className="pure-u-1 pure-u-md-1-2">
           <div id="space">
-            <h2 className="margin">Hello, {name}! Here are your chores</h2>
+            <h2 className="margin-left">Hello, {name}! Here are your chores</h2>
             <Filters filterChores={chores}></Filters>
             {htmlChoreList}
           </div>

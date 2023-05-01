@@ -47,9 +47,9 @@ export async function getChoresChildAll(authToken, userId) {
 }
 
 // Filter chores
-export async function getFilteredChores(authToken, status, priority, due, userInfo) {
-    console.log("/chores?"+status+priority+due+userInfo);
-    const result = await fetch(backend_base+"/chores?"+status+priority+due+userInfo,{
+export async function getFilteredChores(authToken, status, priority, userInfo) {
+    console.log("/chores?"+status+priority+userInfo);
+    const result = await fetch(backend_base+"/chores?sort=due&"+status+priority+userInfo,{
         'method':'GET',
         'headers': {'Authorization': 'Bearer ' + authToken}
     })
@@ -64,8 +64,7 @@ export async function addChore(authToken, title, description, assignedTo, due, p
         'Content-Type': 'application/json'},
         'body': JSON.stringify({'title': title, 'description': description, 'assignedTo': assignedTo, 'due': due, 'priority': priority})
         })
-    console.log(result.json());
-    // return await result.json();
+    return await result.json();
 }
 
 

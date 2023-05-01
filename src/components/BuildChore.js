@@ -65,6 +65,15 @@ export default function BuildChore({isEditing, chore}) {
     router.push('/home');
   }
 
+  function getDate(){
+    if(chore.due == undefined){
+      return "";
+    }
+    else{
+      return chore.due.substring(0,chore.due.length-1)
+    }
+  }
+
   if(loading){
     return <div>Loading</div>
   }
@@ -86,8 +95,7 @@ export default function BuildChore({isEditing, chore}) {
           <div>{errorMsg}</div>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="date" required/>
-          {/* defaultValue={chore.due} */}
+          <input id="due" type="datetime-local" defaultValue={getDate()} required/>
 
           <label htmlFor="priority">Priority Level</label>
           <select defaultValue={chore.priority} id="priority" required>

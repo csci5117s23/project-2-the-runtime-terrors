@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import Link from 'next/link'
-import { updateChoreStatus } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router'
+import { completeChore } from "@/modules/Data";
 
 
 export default function Chore({chore, isParent, setSelectedChore}){ 
@@ -12,18 +11,22 @@ export default function Chore({chore, isParent, setSelectedChore}){
 
   // Toggle chore completion status
   async function toggleDone(){
-    if(!isParent){
+    if(!done){
+      router.push("/complete/"+chore._id);
+    }
+    else{
       const token = await getToken({ template: "codehooks" });
-      if(!done){
-        router.push("/complete/"+chore._id);
-      }
-      else{
-        // ???
-      }
+      const data = await completeChore(token, false, null, null, chore._id);
+      setDone(false);
+      setSelectedChore(data)
     }
   }
   
   function viewChore(){
+    // Small screen --> mobile view - https://www.w3schools.com/howto/howto_js_media_queries.asp
+    if(!window.matchMedia("screen and (min-width: 48em)").matches){
+      router.push("chore/"+chore._id)
+    }
     setSelectedChore(chore); 
   }
 
@@ -36,17 +39,26 @@ export default function Chore({chore, isParent, setSelectedChore}){
     }
   }
 
+  function getDate(){
+    // console.log("okok: " + chore.due)
+    let newDate = new Date(chore.due);
+    // console.log("here: " + newDate.toString());
+    // console.log("new: " + newDate.toLocaleString());
+    // console.log("time: " + newDate.toLocaleDateString());
+
+    return chore.due
+  }
+
   return (
     <>
     <div onClick={viewChore} className="chore-item pure-g">
       <div className="pure-u-3-4">
         {getDoneStatus()}
         <span className="chore-name">{chore.title}</span>
-        <h4 className="chore-due">Due: {chore.due}</h4>
+        <h4 className="chore-due">Due: {getDate()}</h4>
         <p className="chore-priority">{chore.priority} Priority</p>
       </div>
     </div>
-    {/* <Link href={"/chore/"+chore._id}><span >{chore.title}</span></Link> */}
     </>
   )
 }
