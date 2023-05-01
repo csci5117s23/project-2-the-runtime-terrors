@@ -100,7 +100,7 @@ app.get('/pins', async (req, res, next) => {
 
     console.log("in pins");
 
-    const when = new Date(Date.now() + 500);
+    const when = new Date(Date.now() + 10000);
     await schedule.runAt(when, removePin(req, res), "Worker");
   } 
   next();
