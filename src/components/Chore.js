@@ -40,13 +40,12 @@ export default function Chore({chore, isParent, setSelectedChore}){
   }
 
   function getDate(){
-    // console.log("okok: " + chore.due)
-    let newDate = new Date(chore.due);
-    // console.log("here: " + newDate.toString());
-    // console.log("new: " + newDate.toLocaleString());
-    // console.log("time: " + newDate.toLocaleDateString());
-
-    return chore.due
+    if(chore.due == undefined){
+      return "";
+    }
+    else{
+      return new Date(chore.due).toLocaleDateString()
+    }
   }
 
   return (

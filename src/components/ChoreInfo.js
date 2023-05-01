@@ -60,11 +60,13 @@ export default function ChoreInfo({chore, isParent, chores}){
     }
   }
 
+  // Notifications 
   async function notify() {
     const token = await getToken({ template: "codehooks" });
     await notifyChore(token, chore);
   }
 
+  // Get extra parent vs child buttons
   function getExtraInfo() {
     if(isParent){
       return(<>
@@ -82,22 +84,6 @@ export default function ChoreInfo({chore, isParent, chores}){
       return <button onClick={complete} type="button" className="pure-button pure-button-primary">{"Mark Chore as Complete"}</button>
     }
   }
-  
-  // Date string maniputlation
-  function refineDate(){
-    const newDate = new Date(chore.due);
-    console.log(newDate.toString())
-    console.log(newDate.toLocaleTimeString('en-US'))
-
-
-    let newDate2 = newDate.getMonth()+1 + "-"+ newDate.getDate() + "-" + newDate.getFullYear() + " at ";
-    let hours = (newDate.getHours()>=12? newDate.getHours()-12 : newDate.getHours());
-    let minutes = (newDate.getMinutes()<10?'0':'') + newDate.getMinutes();
-    // from https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-    let ampm = (newDate.getHours()>=12?'PM':'AM');
-    newDate2 = newDate2 + hours+ ":" + minutes+ " " + ampm;
-    return newDate2;
-  }
 
   return (
     <>
@@ -105,7 +91,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       <div className="chore-content-header">
         <h1 className="chore-content-title">{chore.title}</h1>
         <p className="chore-content-subtitle">
-          Created on <span>{chore.createdOn}</span>
+          Created on <span>{new Date(chore.createdOn).toLocaleDateString()}</span>
         </p>
       </div>
 
@@ -119,8 +105,7 @@ export default function ChoreInfo({chore, isParent, chores}){
           <textarea placeholder={chore.description} id="description" disabled/>
 
           <label htmlFor="due">Due</label>
-          <input id="due" type="text" placeholder={refineDate()} disabled/>
-          {/* {chore.due.substring(0,chore.due.length-1)} */}
+          <input id="due" type="text" placeholder={new Date(chore.due).toLocaleString()} disabled/>
         
           <label htmlFor="priority">Priority Level</label>
           <input type="text" placeholder={chore.priority} id="priority" disabled/>
