@@ -76,6 +76,11 @@ main {
 }
 
 /* Navigation styling - Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
+#main-login{
+  margin: 0rem;
+}
+
+/* Reference: https://www.w3schools.com/howto/howto_css_bottom_nav.asp */
 .navbar, .header {
   background-color: var(--nav-color);
   overflow: hidden;
@@ -118,6 +123,10 @@ main {
   font-family: var(--font-family);
   
                 
+}
+
+#welcome{
+  text-align: center;
 }
 
 #userBtn{
@@ -399,4 +408,67 @@ button.filter{
     text-align: center;
     margin-top: 4em;
   
+}
+
+
+/* player styling */
+
+
+.dino-animation{
+  display: flex;
+  justify-content:flex-end;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+
+
+
+#dino-pic{
+  width:20%;
+
+}
+
+#dino-pic-landing{
+  width:5rem;
+  top: 100px;
+  
+
+}
+
+.splash-title{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+
+}
+
+#splash-img{
+  width:100rem;
+  
+}
+
+.intro-background{
+display: flex;
+align-items: center;
+flex-direction: column;
+ background-image: url(/dinoArt2.png);
+ background-size: 150px;
+ background-position: 0em 0em;
+ padding: 10rem;
+ width: 100%;
+
+}
+
+#intro-title{
+  display:flex;
+  justify-content: space-around;
+  width:370px;
+  height: 300px;
+  align-items: center;
+}
+
+#welcome-to-app {
+  width:20rem;
 }

@@ -1,4 +1,5 @@
 import ChoreList from '@/components/ChoreList';
+import Loading from '@/components/DinosaurLogo';
 import { useState, useEffect } from "react"
 import { getUser } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
@@ -35,11 +36,12 @@ export default function Home() {
   }, [isLoaded]);
 
   if(loading){
-    return <div className="margin">Loading...</div>
+    return <div className="margin"><Loading></Loading></div>
+
   }
   else{
     return (
-      <ChoreList isParent={isParent} name={name}></ChoreList>
+      <ChoreList isParent={isParent} name={name}></ChoreList>  
     )
   }
 }
