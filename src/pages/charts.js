@@ -77,10 +77,10 @@ export default function Analytics() {
     if (isParent) {
       return (<>
         <h1>Analytics</h1>
-        <p>Tasks Completed by Children: {numDone}</p>
-        <p>Total Tasks Assigned to Children: {numAssigned}</p>
-        <p>Deadlines Missed by Children: {deadlinesMissed}</p>
-        <p>Deadlines Met by Children: {deadlinesMet}</p>
+        <p>Tasks Completed by Child(s): {numDone}</p>
+        <p>Total Tasks Assigned to Child(s): {numAssigned}</p>
+        <p>Deadlines Missed by Child(s): {deadlinesMissed}</p>
+        <p>Deadlines Met by Child(s): {deadlinesMet}</p>
         <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
       </>)
     } else {
