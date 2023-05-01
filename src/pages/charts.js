@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getChoresParent, getChoresChild } from "@/modules/Data";
+import { getChoresParentAll, getChoresChildAll } from "@/modules/Data";
 import { getUser } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import PieChart from "@/components/PieChart";
@@ -32,11 +32,11 @@ export default function Analytics() {
         let chores;
         // Get chores assigned by this parent
         if(user[0].isParent){
-          chores = await getChoresParent(token, false, userId);
+          chores = await getChoresParentAll(token, userId);
         }
         // Get chores assigned to this child
         else{
-          chores = await getChoresChild(token, false, userId);
+          chores = await getChoresChildAll(token, userId);
         }
             
         console.log(chores);
