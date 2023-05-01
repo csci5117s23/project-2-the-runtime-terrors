@@ -39,7 +39,6 @@ export default function Pin() {
     // Child already connected to parent's account
     else{
       setStatus(child[0].childName + " is already connected to your account");
-      // 641674 --> pin # delete later ???
     }
   }
 

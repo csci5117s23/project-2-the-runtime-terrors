@@ -30,7 +30,6 @@ export default function CompleteChore() {
     // Mark chore as complete
     const token = await getToken({ template: "codehooks" });
     const chore = await completeChore(token, true, img, new Date(), id); 
-    console.log(chore) // more testing with date ???
     router.push("/home");
   }
 

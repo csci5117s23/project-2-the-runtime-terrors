@@ -18,7 +18,7 @@ export default function Navigation(){
         const token = await getToken({ template: "codehooks" });
         let user = await getUser(token); 
         if(user.length == 0){
-          console.log("okokok")
+          console.log("User does not yet exist")
         }
         else if(user[0].isParent){
           setIsParent(true);
@@ -31,12 +31,13 @@ export default function Navigation(){
     user();
   }, [isLoaded]);
 
-  // Let parents have access to "add chore" button
+  // Parents have "add chore" button and children have "notification" button
   let addBtn = <div></div>
   let notificationBtn = <div></div>
   if(isParent){
     addBtn = <Link href="/addChore"><img className="icon" src="add.png" alt="Add Chore"></img></Link>;
-  } else {
+  } 
+  else {
     notificationBtn = <NotificationButton></NotificationButton>;
   }
 

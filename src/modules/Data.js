@@ -48,7 +48,6 @@ export async function getChoresChildAll(authToken, userId) {
 
 // Filter chores
 export async function getFilteredChores(authToken, status, priority, userInfo) {
-    console.log("/chores?"+status+priority+userInfo);
     const result = await fetch(backend_base+"/chores?sort=due&"+status+priority+userInfo,{
         'method':'GET',
         'headers': {'Authorization': 'Bearer ' + authToken}
@@ -88,7 +87,7 @@ export async function updateChore(authToken, title, description, assignedTo, due
     return await result.json();
 }
 
-// Complete Chore ???
+// Complete Chore
 export async function completeChore(authToken, status, imageContent, date, id) {
     const result = await fetch(backend_base+"/chores/"+id,{
         'method':'PATCH',

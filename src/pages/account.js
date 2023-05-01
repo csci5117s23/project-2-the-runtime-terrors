@@ -28,7 +28,7 @@ export default function AccountSetUp() {
 
       {/* Need to get user's name and type of account (parent or child) */}
       <form className="form" onSubmit={addAcountInfo}>
-        <fieldset>
+        <fieldset className="no-bg">
         <h2 className="form-title">Quick questions</h2>
 
           <label htmlFor="name">First Name</label>

@@ -16,8 +16,6 @@
   --background-color-chore: #d7edd8;
   --background-size-form: none;
   --analytic-color: #9ae3af;
-
-
 }
 
 [data-theme="parent"] {
@@ -25,7 +23,7 @@
   --nav-color: #602234;
   --bg-color: #e3ded0;
   --font2-color: #948e7c;
-  --highlight-color: #c9c5b8;
+  --highlight-color: #9a4a61c9;
   --emphasis-color: #8a3c4f;
 
 
@@ -34,9 +32,8 @@
   --font-family: 'Vtks Wine Label', sans-serif;
   --font-family-body: 'ELEGANT', sans-serif;
   --background-picture: none;
-  /* --background-picture-form: url('../../public/wine-pouring.jpg'); */
   --background-picture-form: none; 
-  --background-color-chore: #722F37;
+  --background-color-chore: #9a4a61;
   --background-size-form: 480px;
   --analytic-color: #DAABB2;
 }
@@ -172,8 +169,9 @@ textarea {
 
 /* Pin font styling */
 .pin {
-  font-size: 150%;
-  /* background-color: var(--emphasis-color) */
+  font-size: 250%;
+  margin: 1rem;
+  color:var(--emphasis-color)
 }
 
 /* PURE - Taken from: 
@@ -189,7 +187,6 @@ textarea {
   background-image: var(--background-picture);
   background-color: var(--background-color-chore);
   background-size: 150px;
-  /* background-size: 100px; */
   background-repeat: no-repeat;
   background-position: right;
   background-blend-mode: soft-light;
@@ -284,7 +281,6 @@ body {
 	margin: 50px auto;
 	text-align: center;
   font-family: var(--font-family-body);
-  /* background-image: url('../../public/triceratops.jpg'); */
 }
 
 .form fieldset {
@@ -295,13 +291,19 @@ body {
 	padding: 20px 30px;
 	box-sizing: border-box;
 	width: 80%;
-	margin: 0 10%;
+  margin: 0 10%;
   background-image: var(--background-picture-form);
   background-color: var(--bg-color);
   background-size: var(--background-size-form);
   background-repeat: no-repeat;
   background-blend-mode: soft-light;
-  /* opacity: 0.5;*/
+  /* opacity: 0.5; */
+}
+
+fieldset.no-bg {
+  background-image: none;
+  background-color: white;
+
 }
 
 .form input, .form textarea, .form select, .imgField {
@@ -343,14 +345,13 @@ button.filter{
   font-family: var(--font-family-body);
 }
 
-
+/* 
 .form div {
   font-family: var(--font-family-body);
-  /* font-size: 13px; */
   border-radius: 3px;
   padding: 15px;
   background-image: url('../../public/triceratops.jpg');
-}
+} */
 
 .form label, .form button {
   padding: 15px;
@@ -375,7 +376,6 @@ button.filter{
 }
 .form-subtitle {
 	font-weight: normal;
-	color: var(--font2-color);
 	margin-bottom: 20px;
   font-family: var(--font-family-body);
 }

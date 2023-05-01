@@ -26,17 +26,17 @@ export default function Connect() {
 
 
   if(loading){
-    return <div className="margin">Loading...</div>
+    return <div className="margin-top center">Loading...</div>
   }
   else if(isParent){
     return (
       <main className="margin-top">
         <form className="form">
-          <fieldset>
-        <h1 className="form-title">Connect a Child Account</h1>
-        <div>Enter your child's verification pin</div>
-        <Pin></Pin>
-        <span className="form-subtitle">On your child account, click on <img className="small-icon" src="/connect.png"/> in the bottom navigation bar. Copy the generated pin and enter it here.</span>
+          <fieldset className="no-bg">
+            <h1 className="form-title">Connect a Child Account</h1>
+            <div>Enter your child's verification pin</div>
+            <Pin></Pin>
+            <span className="form-subtitle">On your child account, click on <img className="small-icon" src="/connect.png"/> in the bottom navigation bar. Copy the generated pin and enter it here.</span>
         </fieldset>
         </form>
       </main>
@@ -46,12 +46,12 @@ export default function Connect() {
     return (
       <main className="margin-top">
         <form className="form">
-          <fieldset>
-        <h1 className="form-title">Connect a Parent Account</h1>
-        <div>Here is your temporary verification pin</div>
-        <CreatePin></CreatePin>
-        <span className="form-subtitle">On your parent account, click on <img className="small-icon" src="/connect.png"/> in the bottom navigation bar. Then, enter this pin.</span>
-        </fieldset>
+          <fieldset className="no-bg">
+            <h1 className="form-title">Connect a Parent Account</h1>
+            <div>Here is your temporary verification pin</div>
+            <CreatePin></CreatePin>
+            <span className="form-subtitle">On your parent account, click on <img className="small-icon" src="/connect.png"/> in the bottom navigation bar. Then, enter this pin.</span>
+          </fieldset>
         </form>
       </main>
 

@@ -79,7 +79,7 @@ export default function BuildChore({isEditing, chore}) {
   }
 
   if(loading){
-    return <div>Loading</div>
+    return <div className="margin-top center">Loading...</div>
   }
   else{
     return (

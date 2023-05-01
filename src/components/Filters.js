@@ -10,7 +10,6 @@ export default function Filters({filterChores}){
 
   function changePriority(e){
     const priorityFilter = e.target.value;
-    console.log(priorityFilter)
     let newPriority = "";
     if(priorityFilter === "high"){
       newPriority = "priority=High&";
@@ -27,7 +26,6 @@ export default function Filters({filterChores}){
 
   function changeStatus(e){
     const statusFilter = e.target.value;
-    console.log(statusFilter)
     let newStatus = "";
     if(statusFilter === "done"){
       newStatus = "done=true&";
@@ -42,7 +40,7 @@ export default function Filters({filterChores}){
   function clear(){
     setStatus("");
     setPriority("");
-    filterChores("", "", "");
+    filterChores("", "");
   }
 
   return <>
