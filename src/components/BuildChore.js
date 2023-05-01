@@ -38,7 +38,7 @@ export default function BuildChore({isEditing, chore}) {
     const title = e.target.title.value;
     const description = e.target.description.value;
     const assignedTo = e.target.assignedTo.value;
-    const due = e.target.due.value;
+    const due = new Date(e.target.due.value).toUTCString();
     const priority = e.target.priority.value;
     const token = await getToken({ template: "codehooks" });
 
@@ -70,7 +70,11 @@ export default function BuildChore({isEditing, chore}) {
       return "";
     }
     else{
-      return chore.due.substring(0,chore.due.length-1)
+      // https://stackoverflow.com/questions/17415579/how-to-iso-8601-format-a-date-with-timezone-offset-in-javascript
+      let due =  new Date(chore.due).toLocaleString( 'sv', { timeZoneName: 'short' } );
+      due = due.substring(0, due.indexOf(" G"));
+      due = due.replace(" ", "T");
+      return due;
     }
   }
 
