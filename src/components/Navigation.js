@@ -37,7 +37,7 @@ export default function Navigation(){
   }
 
   if(loading){
-    return <div className="margin">Loading...</div>
+    return <div className="margin"></div>
   }
 
   else{
