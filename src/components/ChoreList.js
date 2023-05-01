@@ -29,7 +29,9 @@ export default function ChoreList({isParent, name}){
       else{
         chores = await getFilteredChores(token, status, priority, "assignedTo="+userId);
       }
+      console.log(chores)
       setChoreList(chores)
+      console.log("in chorelist: " + chores)
 
       // Check if there are chores
       if(chores.length !== 0){

@@ -35,8 +35,15 @@ export default function ChoreInfo({chore, isParent, chores}){
   async function incomplete(){
     const token = await getToken({ template: "codehooks" });
     const data = await completeChore(token, false, null, null, chore._id);
-    console.log(data);
-    chore = data; 
+    console.log("Ohm y: " +data);
+    // chore = data; 
+    // Mobile view --> go back to home page
+    if(!chores){
+      router.push("/home");
+    }
+    else{
+      chores("", "");
+    }
   }
 
   // Delete chore
@@ -49,7 +56,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       router.push("/home");
     }
     else{
-      chores();
+      chores("", "");
     }
   }
 
