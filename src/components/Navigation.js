@@ -3,6 +3,7 @@ import { getUser } from "@/modules/Data";
 import { useAuth } from "@clerk/nextjs";
 import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link'
+import NotificationButton from "./NotificationButton";
 
 
 export default function Navigation(){ 
@@ -32,8 +33,11 @@ export default function Navigation(){
 
   // Let parents have access to "add chore" button
   let addBtn = <div></div>
+  let notificationBtn = <div></div>
   if(isParent){
     addBtn = <Link href="/addChore"><img className="icon" src="add.png" alt="Add Chore"></img></Link>;
+  } else {
+    notificationBtn = <NotificationButton></NotificationButton>;
   }
 
   if(loading){
@@ -54,6 +58,7 @@ export default function Navigation(){
         <Link href="/charts"><img className="icon" src="analytics.png" alt="Analytics"></img></Link>
         {addBtn}
         <Link href="/connect"><img className="icon" src="connect2.png" alt="Connect Account"></img></Link>
+        {notificationBtn}
       </div>
       </>
   }

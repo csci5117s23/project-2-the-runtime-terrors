@@ -12,7 +12,7 @@ export default function ChoreList({isParent, name}){
   const [selectedChore, setSelectedChore] = useState("");
     
   useEffect(() => {
-    chores("", "", "");
+    chores("", "");
   }, [isLoaded]);
 
   // Get chores for this user
