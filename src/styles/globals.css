@@ -307,9 +307,9 @@ body {
   font-family: var(--font-family-body);
 }
 
-/* .imgField {
+.imgField {
   display: block;
-} */
+}
 
 .filter {
   width: fit-content;
