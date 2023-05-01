@@ -70,6 +70,7 @@ export default function BuildChore({isEditing, chore}) {
       return "";
     }
     else{
+      // https://stackoverflow.com/questions/17415579/how-to-iso-8601-format-a-date-with-timezone-offset-in-javascript
       let due =  new Date(chore.due).toLocaleString( 'sv', { timeZoneName: 'short' } );
       due = due.substring(0, due.indexOf(" G"));
       due = due.replace(" ", "T");
