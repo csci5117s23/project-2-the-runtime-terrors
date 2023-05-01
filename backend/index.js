@@ -85,13 +85,13 @@ app.use('/users', (req, res, next) => {
   next();
 })
 
-// async function removePin(req, res) {
-//   const conn = await Datastore.open();
-//   const data = await conn.removeOne('pin', req.params['pin']);
+async function removePin(req, res) {
+  const conn = await Datastore.open();
+  const data = await conn.removeOne('pin', req.params['pin']);
 
-//   console.log(data);
-//   console.log("Removed");
-// }
+  console.log(data);
+  console.log("Removed");
+}
 
 app.get('/pins', async (req, res, next) => {
   console.log("pog");
@@ -100,9 +100,8 @@ app.get('/pins', async (req, res, next) => {
 
     console.log("in pins");
 
-    const when = new Date(Date.now() + 500)
-    await schedule.runAt(when, removePin(req, res), "Worker")
-
+    const when = new Date(Date.now() + 500);
+    await schedule.runAt(when, removePin(req, res), "Worker");
   } 
   next();
 })
