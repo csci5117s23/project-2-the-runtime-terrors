@@ -49,7 +49,7 @@ export default function ChoreInfo({chore, isParent, chores}){
       router.push("/home");
     }
     else{
-      chores();
+      chores("", "");
     }
   }
 
