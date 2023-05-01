@@ -84,42 +84,6 @@ export default function BuildChore({isEditing, chore}) {
   if(loading){
     return <div>Loading</div>
   }
-  else if(isEditing == false){
-    return (
-      <form className="form" onSubmit={save}>
-        <fieldset>
-          <h2 className="form-title">Chore details</h2>
-          <label htmlFor="title">Title</label>
-          <input type="text" defaultValue={chore.title} id="title" placeholder="Chore Name" required/>
-          
-          <label htmlFor="description">Description</label>
-          <textarea defaultValue={chore.description} placeholder="Chore Information" id="description"/>
-
-          <label htmlFor="assignedTo">Assign To</label>
-          <select defaultValue={chore.assignedTo} name="assignedTo" id="assignedTo" required>
-            {/* <option>Select a Child</option> */}
-            {getChildOptions()}
-          </select>
-          <div>{errorMsg}</div>
-
-          <label htmlFor="due">Due</label>
-          <input id="due" type="date" required/>
-          {/* defaultValue={chore.due} */}
-
-            <label htmlFor="priority">Priority Level</label>
-            <select defaultValue={chore.priority} id="priority" required>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select>
-            <button type="submit" className="pure-button pure-button-primary">Save</button>
-            <button onClick={cancel} type="button" className="pure-button pure-button-primary">Cancel</button>
-            {/* {getDeleteBtn()} */}
-          </fieldset>
-        </form>
-    // </main>
-    )
-  }
   else{
     return (
       <form className="form" onSubmit={save}>
@@ -171,5 +135,5 @@ export default function BuildChore({isEditing, chore}) {
         </form>
     // </main>
     )
-  }
+    }
 }
