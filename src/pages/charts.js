@@ -71,7 +71,7 @@ export default function Analytics() {
   }, [isLoaded]);
 
   if(loading){
-    return <div class="margin">Loading...</div>
+    return <div className="margin">Loading...</div>
   } 
   else {
     if (isParent) {
