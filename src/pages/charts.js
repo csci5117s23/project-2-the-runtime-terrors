@@ -11,8 +11,8 @@ export default function Analytics() {
   const [choreList, setChoreList] = useState([]);
   const [ numDone, setNumDone ] = useState(0);
   const [ numAssigned, setNumAssigned ] = useState(0);
-  const [ deadlinesMissed, setDeadlinesMissed ] = useState(1);
-  const [ deadlinesMet, setDeadlinesMet ] = useState(1);
+  const [ deadlinesMissed, setDeadlinesMissed ] = useState(0);
+  const [ deadlinesMet, setDeadlinesMet ] = useState(0);
 
   // Get user info - find out if this is a parent or child account
   useEffect(() => {
@@ -74,19 +74,24 @@ export default function Analytics() {
     return <div className="margin">Loading...</div>
   } 
   else {
-    // const htmlChoreList = choreList.map((chore) => <li>{{chore}}</li>)
-    // const choreListItems = Object.keys(choreList[0]).map(key => {
-    //     return <li key={key}>{choreList[0][key]}</li>;
-    // });
-    return (<>
-      <h1>Analytics</h1>
-      <p>Tasks Completed: {numDone}</p>
-      <p>Tasks Assigned: {numAssigned}</p>
-      <p>Deadlines Missed: {deadlinesMissed}</p>
-      <p>Deadlines Met: {deadlinesMet}</p>
-      {/* <PieChart label1="Deadlines Met" value1={5} label2="Deadlines Missed" value2 = {6}></PieChart> */}
-      <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
-      {/* <ul> {{ choreListItems }} </ul> */}
-    </>)
+    if (isParent) {
+      return (<>
+        <h1>Analytics</h1>
+        <p>Tasks Completed by Child(s): {numDone}</p>
+        <p>Total Tasks Assigned to Child(s): {numAssigned}</p>
+        <p>Deadlines Missed by Child(s): {deadlinesMissed}</p>
+        <p>Deadlines Met by Child(s): {deadlinesMet}</p>
+        <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
+      </>)
+    } else {
+      return (<>
+        <h1>Analytics</h1>
+        <p>Tasks Completed: {numDone}</p>
+        <p>Tasks Assigned: {numAssigned}</p>
+        <p>Deadlines Missed: {deadlinesMissed}</p>
+        <p>Deadlines Met: {deadlinesMet}</p>
+        <PieChart label1="Deadlines Met" value1={deadlinesMet} label2="Deadlines Missed" value2={deadlinesMissed}></PieChart>
+      </>)
+    }
   }
 }

@@ -9,18 +9,37 @@
   --font2-color: #527d5e;
   --highlight-color: #c0d3c1;
   --emphasis-color: #82667F;
+  --font-family: 'Caveman', sans-serif;
+  --font-family-body: 'Little Dinosaur', sans-serif;
+  --background-picture: url('../../public/dinosaur.png');
+  --background-picture-form: url('../../public/triceratops.jpg');
+  --background-color-chore: #d7edd8;
+  --background-size-form: none;
+
+
 }
 
 [data-theme="parent"] {
-  --font-color: #473144;
+  --font-color: black;
   --nav-color: #602234;
   --bg-color: #e3ded0;
   --font2-color: #948e7c;
   --highlight-color: #c9c5b8;
   --emphasis-color: #8a3c4f;
-}
+
 
 /* Overall styling */
+  --emphasis-color: #773344;
+  --font-family: 'Vtks Wine Label', sans-serif;
+  --font-family-body: 'ELEGANT', sans-serif;
+  --background-picture: none;
+  /* --background-picture-form: url('../../public/wine-pouring.jpg'); */
+  --background-picture-form: none; 
+  --background-color-chore: #722F37;
+  --background-size-form: 480px;
+}
+
+
 body {
   margin: 0;
   background-color: var(--bg-color);
@@ -31,6 +50,7 @@ body {
 .margin {
   margin: 1.5rem;
   margin-top: 2rem;
+  font-family: var(--font-family-body);
 }
 
 .margin-top {
@@ -61,6 +81,9 @@ main {
   width: 100%;
   position: fixed;
   z-index: 1;
+  /* background: linear-gradient(90deg);
+  border-radius: 50%; */
+
   
 }
 
@@ -90,6 +113,9 @@ main {
   float: left;
   text-align: center;
   padding: 1rem;
+  font-family: var(--font-family);
+  
+                
 }
 
 #userBtn{
@@ -149,6 +175,15 @@ textarea {
   padding: 0.9em 1em;
   border-bottom: 1px solid var(--emphasis-color);
   border-left: 6px solid transparent;
+  background-image: var(--background-picture);
+  background-color: var(--background-color-chore);
+  background-size: 150px;
+  /* background-size: 100px; */
+  background-repeat: no-repeat;
+  background-position: right;
+  background-blend-mode: soft-light;
+  mix-blend-mode: multiply;
+  
 }
 .chore-item:hover{
   background-color: var(--highlight-color);
@@ -230,13 +265,15 @@ textarea {
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body {
-	font-family: montserrat, arial, verdana;
+	font-family: var(--font-family-body);
 }
 
 .form {
   max-width: 600px;
 	margin: 50px auto;
 	text-align: center;
+  font-family: var(--font-family-body);
+  /* background-image: url('../../public/triceratops.jpg'); */
 }
 
 .form fieldset {
@@ -248,6 +285,12 @@ body {
 	box-sizing: border-box;
 	width: 80%;
 	margin: 0 10%;
+  background-image: var(--background-picture-form);
+  background-color: var(--bg-color);
+  background-size: var(--background-size-form);
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+  /* opacity: 0.5;*/
 }
 
 .form input, .form textarea, .form select, .imgField {
@@ -259,16 +302,18 @@ body {
 	box-sizing: border-box;
 	font-family: montserrat;
   color:  var(--font-color);
+  font-family: var(--font-family-body);
 }
 
-.imgField {
+/* .imgField {
   display: block;
-}
+} */
 
 .filter {
   width: fit-content;
   margin-left: 1rem;
   margin-bottom: 1rem;
+  font-family: var(--font-family-body);
 }
 
 select.filter {
@@ -277,30 +322,37 @@ select.filter {
 	border-radius: 3px;
   font-family: montserrat;
   color:  var(--font-color);
+  font-family: var(--font-family-body);
 }
 
 button.filter{
   background-color: var(--emphasis-color);
   font-family: montserrat;
   margin-top: 12px;
+  font-family: var(--font-family-body);
 }
 
-/* .form div {
-  font-family: montserrat;
+
+.form div {
+  font-family: var(--font-family-body);
+  /* font-size: 13px; */
   border-radius: 3px;
   padding: 15px;
-} */
+  background-image: url('../../public/triceratops.jpg');
+}
 
 .form label, .form button {
   padding: 15px;
   margin-bottom: 1rem;
   width: 100%;
 	font-family: montserrat;
+  font-family: var(--font-family-body);
 }
 
 .form button {
   color: white;
   background-color: var(--emphasis-color);
+  font-family: var(--font-family-body);
 }
 
 .form-title {
@@ -308,9 +360,26 @@ button.filter{
 	text-transform: uppercase;
   color: var(--emphasis-color);
 	margin-bottom: 1.5rem;
+  font-family: var(--font-family-body);
 }
 .form-subtitle {
 	font-weight: normal;
 	color: var(--font2-color);
 	margin-bottom: 20px;
+  font-family: var(--font-family-body);
 }
+
+/* .filterForm {
+    border-radius: 7px;
+    display: block;
+    width: auto;
+    height: 10px;
+    overflow: auto;
+    background-color: lightblue;
+    outline: rgb(86, 89, 89) solid 1px;
+    padding: 0.5em;
+    padding-bottom: 2.5em;
+    text-align: center;
+    margin-top: 4em;
+  
+} */
