@@ -58,7 +58,7 @@ LINK TO LOW_FIDELITY MOCK_UPS: https://www.figma.com/file/giJnNbf3UK2Fl20W4A3LiA
 **Is there anything special we need to know in order to effectively test your app? (optional):**
 
 * Need to enable push notifications in browser or mobile to allow for them to be sent
-
+* Click the bell in the navigation bar to enable push notifications. Then, either click allow push notifications in the popup that appears, or manually enable push notifications in settings. After this, push notifications should be sent to your device.
 
 
 ## Screenshots of Site
