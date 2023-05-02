@@ -65,12 +65,6 @@ Analytics page
 
 
 ## Screenshots of Site (complete)
-
-**[Add a screenshot of each key page](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository)
-along with a very brief caption:**
-
-![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
-
 ## *Home*
 The parent and child home pages include a list of chores as well as being able to click a chore to see further details. There are filters in place as well to filter the chores by status and priority.
 
