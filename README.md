@@ -22,10 +22,9 @@ CSCI 5117, Spring 2022, [assignment description](https://canvas.umn.edu/courses/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
+* Parent and child account separate functionality
 * Linking child and parent accounts through pin creation and storage
-* 
-* 
-* 
+* Push notifications
 
 Which (if any) device integration(s) does your app support?
 
@@ -41,18 +40,16 @@ Which (if any) progressive web app feature(s) does your app support?
 
 LINK TO LOW_FIDELITY MOCK_UPS: https://www.figma.com/file/giJnNbf3UK2Fl20W4A3LiA/Project-2?node-id=0-1&t=7nftTO4VlO5hJRVG-0
 
-**[Add images/photos that show your mockup](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
-
-Login page
+## *Login page*
 ![Login](mockup/login.png)
 
-Home page or View task page
+## *Home page or View task page*
 ![Home and View Task](mockup/home.png)
 
-Add or Edit task page
+## *Add or Edit task page*
 ![Add or Edit Tasks](mockup/add.png)
 
-Analytics page
+## *Analytics page*
 ![Analytics](mockup/analytics.png)
 
 
@@ -60,11 +57,11 @@ Analytics page
 
 **Is there anything special we need to know in order to effectively test your app? (optional):**
 
-* ...
+* Need to enable push notifications in browser or mobile to allow for them to be sent
 
 
 
-## Screenshots of Site (complete)
+## Screenshots of Site
 ## *Home*
 The parent and child home pages include a list of chores as well as being able to click a chore to see further details. There are filters in place as well to filter the chores by status and priority.
 
@@ -145,12 +142,13 @@ Clerk
 **Document integrations with 3rd Party code or services here.
 Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 
-* Library or service name: description of use
-* ...
+* web-push: Used this for our push notifications system
 
 **If there's anything else you would like to disclose about how your project
 relied on external code, expertise, or anything else, please disclose that
 here:**
+
+* The pushBackend folder is a separate backend that handles our push notification system. Dependencies for this include web-push, dotenv, node-cron, and node-fetch
 
 ...
 
