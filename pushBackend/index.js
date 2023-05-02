@@ -33,7 +33,6 @@ async function queryNotificationEndpoints() {
             'body': JSON.stringify(chore)
         }).then( (res_json) => {
             res_json.json().then( (resJson) => {
-                console.log(resJson);
             });
         });
 
@@ -67,7 +66,6 @@ async function queryNotificationEndpoints() {
 
     chores.forEach( (chore) => {
         if (!chore.notified && !chore.done) {
-            console.log(chore.assignedTo);
             fetch("https://backend-1zr3.api.codehooks.io/dev/subscribe?userId=" + chore.assignedTo, {
                 method: 'get',
                 headers: {'x-api-key' : '36ab01e0-e919-4a1a-9ae1-4193ea79fa55'}
