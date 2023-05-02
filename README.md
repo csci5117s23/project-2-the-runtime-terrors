@@ -157,10 +157,17 @@ here:**
 Run the development server:
 - npm run dev
 
+Run the push notification server:
+- Run on any computer that has internet access
+- node index.js (from pushBackend/)
+
 ## Installs for backend/codehooks
 - npm install codehooks-js codehooks-crudlify
 - npm install jwt-decode
 - npm install yup
+
+## Installs for pushBackend
+- npm install web-push dotenv node-cron node-fetch
 
 ## Installs for extra react packages
 - npm install react-pin-input
@@ -183,6 +190,9 @@ In /backend:
 - coho deploy
 - coho info
 
+## Push Backend commands
+In pushBackend:
+- node index.js
 
 # Icons - Attribution:
 
