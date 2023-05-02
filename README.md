@@ -148,9 +148,7 @@ Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 relied on external code, expertise, or anything else, please disclose that
 here:**
 
-* The pushBackend folder is a separate backend that handles our push notification system. Dependencies for this include web-push, dotenv, node-cron, and node-fetch
-
-...
+* The pushBackend folder is a separate backend that handles our push notification system. Dependencies for this include web-push, dotenv, node-cron, and node-fetch.
 
 
 
